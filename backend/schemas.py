@@ -30,7 +30,7 @@ class ModelCreate(ModelBase):
 class Model(ModelBase):
     id: int
     manufacturer_id: int
-    cars = List[Car]
+    cars: List[Car] = []
 
     class Config:
         orm_mode = True

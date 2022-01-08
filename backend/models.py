@@ -17,7 +17,7 @@ class Model(Base):
     __tablename__ = "model"
 
     id = Column(Integer, primary_key=True, index=True)
-    manufacurer_id = Column(Integer, ForeignKey("manufaturer.id"))
+    manufacturer_id = Column(Integer, ForeignKey("manufacturer.id"))
     name = Column(String(32))
     
     manufacturer = relationship("Manufacturer", back_populates="models")
