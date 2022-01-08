@@ -1,0 +1,1 @@
+mysql://root:root@mysql/car_rental?charset=utf8mb4
