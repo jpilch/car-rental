@@ -1,4 +1,5 @@
 app-design/
+backend/sqlite.db
 
 # Taken from FastAPI github repo
 .idea
