@@ -28,3 +28,29 @@ def delete_manufacturer(db: Session, db_manufacturer: schemas.Manufacturer):
     db.delete(db_manufacturer)
     db.commit()
     return JSONResponse(status_code=204)
+
+
+def get_model(db: Session, model_id: int):
+    return db.query(models.Model).filter(models.Model.id == model_id).first()
+
+
+def get_models(db: Session):
+    return db.query(models.Model).all()
+
+
+def get_model_by_name(db: Session, name: str):
+    return db.query(models.Model).filter(models.Model.name == name).first()
+
+
+def create_model(db: Session, model: schemas.ModelCreate, manufacturer_id: int):
+    db_model = models.Model(**model.dict(), manufacturer_id=manufacturer_id)
+    db.add(db_model)
+    db.commit()
+    db.refresh(db_model)
+    return db_model
+
+
+def delete_model(db: Session, db_model):
+    db.delete(db_model)
+    db.commit()
+    return JSONResponse(status_code=204)
