@@ -7,12 +7,11 @@ class CarBase(BaseModel):
 
 
 class CarCreate(CarBase):
-    pass
+    model_id: int
 
 
 class Car(CarBase):
     id: int
-    model_id: int
     is_available: bool
 
     class Config:
