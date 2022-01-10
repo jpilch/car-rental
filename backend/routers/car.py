@@ -33,3 +33,4 @@ async def delete_car(car_id: int, db: Session = Depends(get_db)):
     if not db_car:
         raise HTTPException(status_code=404, detail="Car does not exist")
     return crud.delete_car(db=db, db_car=db_car)
+    
