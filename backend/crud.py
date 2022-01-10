@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.sqltypes import JSON
 import models, schemas
 from fastapi.responses import JSONResponse
@@ -54,3 +55,25 @@ def delete_model(db: Session, db_model):
     db.delete(db_model)
     db.commit()
     return JSONResponse(status_code=204)
+
+
+def get_car(db: Session, car_id: int):
+    return db.query(models.Car).filter(models.Car.id == car_id).first()
+
+
+def get_cars(db: Session):
+    return db.query(models.Car).all()
+
+
+def create_car(db: Session, car: schemas.CarCreate):
+    db_car = models.Car(**car.dict())
+    db.add(db_car)
+    db.commit()
+    db.refresh(db_car)
+    return db_car
+
+
+def delete_car(db: Session, db_car: schemas.Car):
+    db.delete(db_car)
+    db.commit()
+    return {"detail": "Car deleted successfully"}

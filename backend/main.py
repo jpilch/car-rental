@@ -81,5 +81,28 @@ async def delete_model(model_id: int, db: Session = Depends(get_db)):
     return crud.delete_model(db=db, db_model=db_model)
 
 
+@app.get("/cars/")
+async def get_cars(db: Session = Depends(get_db)):
+    return crud.get_cars(db=db)
+
+
+@app.get("/cars/{car_id}")
+async def get_car(car_id: int, db: Session = Depends(get_db)):
+    return crud.get_car(db=db, car_id=car_id)
+
+
+@app.post("/cars/")
+async def create_car(car: schemas.CarCreate, db: Session = Depends(get_db)):
+    return crud.create_car(db=db, car=car)
+
+
+@app.delete("/cars/{car_id}", status_code=201)
+async def delete_car(car_id: int, db: Session = Depends(get_db)):
+    db_car = crud.get_car(db=db, car_id=car_id)
+    if not db_car:
+        raise HTTPException(status_code=404, detail="Car does not exist")
+    return crud.delete_car(db=db, db_car=db_car)
+
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host='0.0.0.0', port=8000, reload=True)
