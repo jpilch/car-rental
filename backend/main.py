@@ -1,23 +1,16 @@
-from os import name
 from typing import List
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-from starlette.responses import JSONResponse
 import uvicorn 
 
+from dependencies import get_db
 import models, schemas, crud
-from database import SessionLocal, engine
+from database import engine
+from routers import car
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+app.include_router(car.router)
 
 
 @app.get("/")
@@ -79,29 +72,6 @@ async def delete_model(model_id: int, db: Session = Depends(get_db)):
     if not db_model:
         raise HTTPException(status_code=404, detail="Model does not exist")
     return crud.delete_model(db=db, db_model=db_model)
-
-
-@app.get("/cars/")
-async def get_cars(db: Session = Depends(get_db)):
-    return crud.get_cars(db=db)
-
-
-@app.get("/cars/{car_id}")
-async def get_car(car_id: int, db: Session = Depends(get_db)):
-    return crud.get_car(db=db, car_id=car_id)
-
-
-@app.post("/cars/")
-async def create_car(car: schemas.CarCreate, db: Session = Depends(get_db)):
-    return crud.create_car(db=db, car=car)
-
-
-@app.delete("/cars/{car_id}", status_code=201)
-async def delete_car(car_id: int, db: Session = Depends(get_db)):
-    db_car = crud.get_car(db=db, car_id=car_id)
-    if not db_car:
-        raise HTTPException(status_code=404, detail="Car does not exist")
-    return crud.delete_car(db=db, db_car=db_car)
 
 
 if __name__ == "__main__":
