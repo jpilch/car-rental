@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -49,3 +49,13 @@ class Manufacturer(ManufacturerBase):
 
     class Config:
         orm_mode = True
+
+
+class User(BaseModel):
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    is_active: Optional[bool] = True
+
+
+class UserInDB(User):
+    password: str
