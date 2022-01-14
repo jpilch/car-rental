@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.sqltypes import JSON
-import models, schemas
+import models
+import schemas
 from fastapi.responses import JSONResponse
 
 
@@ -77,3 +78,11 @@ def delete_car(db: Session, db_car: schemas.Car):
     db.delete(db_car)
     db.commit()
     return {"detail": "Car deleted successfully"}
+
+
+def create_user(db: Session, user: schemas.UserInDB):
+    db_user = models.User(**user.dict())
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
