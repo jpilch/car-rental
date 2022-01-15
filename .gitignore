@@ -1,6 +1,6 @@
 app-design/
 backend/sqlite.db
-
+backend/.env
 # Taken from FastAPI github repo
 .idea
 .ipynb_checkpoints
