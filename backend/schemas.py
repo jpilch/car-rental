@@ -56,6 +56,9 @@ class User(BaseModel):
     full_name: Optional[str] = None
     is_active: Optional[bool] = True
 
+    class Config:
+        orm_mode = True
+
 
 class UserInDB(User):
     password: str
