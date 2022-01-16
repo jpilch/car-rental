@@ -29,9 +29,11 @@ class Car(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     model_id = Column(Integer, ForeignKey("model.id"))
+    rental_id = Column(Integer, ForeignKey("rental.id"))
     is_avaiable = Column(Boolean, default=True)
 
     model = relationship("Model", back_populates="cars")
+    rental = relationship("Rental", back_populates="cars")
 
 
 class User(Base):
@@ -42,3 +44,34 @@ class User(Base):
     email = Column(String(32))
     password = Column(String(64))
     is_active = Column(Boolean, default=True)
+
+
+class City(Base):
+    __tablename__ = "city"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(32), unique=True)
+
+    locations = relationship("Location", back_populates="city")
+
+
+class Location(Base):
+    __tablename__ = "location"
+
+    id = Column(Integer, primary_key=True)
+    city_id = Column(Integer, ForeignKey("city.id"))
+    street_name = Column(String(64))
+    building_no = Column(Integer)
+
+    city = relationship("City", back_populates="locations")
+    rentals = relationship("Rental", back_populates="location")
+
+
+class Rental(Base):
+    __tablename__ = "rental"
+
+    id = Column(Integer, primary_key=True)
+    location_id = Column(Integer, ForeignKey("location.id"))
+
+    location = relationship("Location", back_populates="rentals")
+    cars = relationship("Car", back_populates="rental")
