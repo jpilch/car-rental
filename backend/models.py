@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
+from sqlalchemy import Column, SmallInteger, Date, ForeignKey, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -30,10 +30,12 @@ class Car(Base):
     id = Column(Integer, primary_key=True, index=True)
     model_id = Column(Integer, ForeignKey("model.id"))
     rental_id = Column(Integer, ForeignKey("rental.id"))
-    is_avaiable = Column(Boolean, default=True)
+    is_available = Column(Boolean, default=True)
 
     model = relationship("Model", back_populates="cars")
     rental = relationship("Rental", back_populates="cars")
+    reviews = relationship("Review", back_populates="car")
+    agreements = relationship("Agreements", back_populates="car")
 
 
 class User(Base):
@@ -44,6 +46,12 @@ class User(Base):
     email = Column(String(32))
     password = Column(String(64))
     is_active = Column(Boolean, default=True)
+
+    reviews = relationship(
+        "User", back_populates="author",
+        cascade="delete, all, delete-orphan"
+    )
+    agreements = relationship("Agreement", back_populates="customer")
 
 
 class City(Base):
@@ -75,3 +83,29 @@ class Rental(Base):
 
     location = relationship("Location", back_populates="rentals")
     cars = relationship("Car", back_populates="rental")
+
+
+class Review(Base):
+    __tablename__ = "review"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    car_id = Column(Integer, ForeignKey("car.id"))
+    score = Column(SmallInteger)
+    content = Column(String(256))
+
+    author = relationship("User", back_populates="reviews")
+    car = relationship("Car", back_populates="reviews")
+
+
+class Agreement(Base):
+    __tablename__ = "agreement"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("user.id"))
+    car_id = Column(Integer, ForeignKey("car.id"))
+    start = Column(Date)
+    end = Column(Date)
+
+    customer = relationship("User", back_populates="agreements")
+    car = relationship("Car", back_populates="agreements")
