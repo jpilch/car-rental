@@ -62,3 +62,37 @@ class User(BaseModel):
 
 class UserInDB(User):
     password: str
+
+
+
+class LocationBase(BaseModel):
+    city: str
+    street: str
+    building_no: int
+
+    class Config:
+        orm_mode = True
+
+
+class LocationCreate(LocationBase):
+    city_id: int
+
+
+class Location(LocationBase):
+    pass
+
+
+class CityBase(BaseModel):
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class CityCreate(CityBase):
+    pass
+
+
+class City(CityBase):
+    id: int
+    locations: List[Location] = []

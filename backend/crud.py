@@ -86,3 +86,7 @@ def create_user(db: Session, user: schemas.UserInDB):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+def get_cities(db: Session):
+    return db.query(models.City).all()

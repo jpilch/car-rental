@@ -35,7 +35,7 @@ class Car(Base):
     model = relationship("Model", back_populates="cars")
     rental = relationship("Rental", back_populates="cars")
     reviews = relationship("Review", back_populates="car")
-    agreements = relationship("Agreements", back_populates="car")
+    agreements = relationship("Agreement", back_populates="car")
 
 
 class User(Base):
@@ -48,7 +48,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     reviews = relationship(
-        "User", back_populates="author",
+        "Review", back_populates="author",
         cascade="delete, all, delete-orphan"
     )
     agreements = relationship("Agreement", back_populates="customer")
