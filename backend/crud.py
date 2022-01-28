@@ -88,5 +88,33 @@ def create_user(db: Session, user: schemas.UserInDB):
     return db_user
 
 
+def get_city(db: Session, city_id: int):
+    return db.query(models.City).filter(models.City.id == city_id).first()
+
+
+def get_location(db: Session, address_id: int):
+    return db.query(models.Location).filter(models.Location.id == address_id).first()
+
+
 def get_cities(db: Session):
     return db.query(models.City).all()
+
+
+def get_locations(db: Session):
+    return db.query(models.Location).all()
+
+
+def create_city(db: Session, city: schemas.CityCreate):
+    db_city = models.City(**city.dict())
+    db.add(db_city)
+    db.commit()
+    db.refresh(db_city)
+    return db_city
+
+
+def create_location(db: Session, location: schemas.LocationCreate):
+    db_location = models.Location(**location.dict())
+    db.add(db_location)
+    db.commit()
+    db.refresh(db_location)
+    return db_location

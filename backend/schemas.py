@@ -64,10 +64,8 @@ class UserInDB(User):
     password: str
 
 
-
 class LocationBase(BaseModel):
-    city: str
-    street: str
+    street_name: str
     building_no: int
 
     class Config:
