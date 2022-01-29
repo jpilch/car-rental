@@ -92,8 +92,8 @@ def get_city(db: Session, city_id: int):
     return db.query(models.City).filter(models.City.id == city_id).first()
 
 
-def get_location(db: Session, address_id: int):
-    return db.query(models.Location).filter(models.Location.id == address_id).first()
+def get_location(db: Session, location_id: int):
+    return db.query(models.Location).filter(models.Location.id == location_id).first()
 
 
 def get_cities(db: Session):
@@ -118,3 +118,15 @@ def create_location(db: Session, location: schemas.LocationCreate):
     db.commit()
     db.refresh(db_location)
     return db_location
+
+
+def delete_city(db: Session, db_city: schemas.City):
+    db.delete(db_city)
+    db.commit()
+    return {"detail": "City deleted successfully"}
+
+
+def delete_location(db: Session, db_location: schemas.Location):
+    db.delete(db_location)
+    db.commit()
+    return {"detail": "Location deleted successfully"}
