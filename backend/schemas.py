@@ -94,3 +94,17 @@ class CityCreate(CityBase):
 class City(CityBase):
     id: int
     locations: List[Location] = []
+
+
+class RentalBase(BaseModel):
+
+    class Config:
+        orm_mode = True
+
+
+class RentalCreate(RentalBase):
+    location_id: int
+
+
+class Rental(RentalBase):
+    id: int

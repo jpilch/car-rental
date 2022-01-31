@@ -1,3 +1,4 @@
+from telnetlib import SE
 from sqlalchemy.orm import Session
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.sqltypes import JSON
@@ -130,3 +131,26 @@ def delete_location(db: Session, db_location: schemas.Location):
     db.delete(db_location)
     db.commit()
     return {"detail": "Location deleted successfully"}
+
+
+def get_rental(db: Session, rental_id: int):
+    return db.query(models.Rental).filter(models.Rental.id == rental_id).first()
+
+
+def get_rentals(db: Session):
+    return db.query(models.Rental).all()
+
+
+def create_rental(db: Session, rental: schemas.RentalCreate):
+    db_rental = models.Rental(**rental.dict())
+    db.add(db_rental)
+    db.commit()
+    db.refresh(db_rental)
+    return db_rental
+
+
+def delete_rental(db: Session, rental_id: int):
+    db_retnal = get_rental(db=db, rental_id=rental_id)
+    db.delete(db_retnal)
+    db.commit()
+    return {"detail": "Rental deleted successfully"}
