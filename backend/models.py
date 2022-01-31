@@ -72,7 +72,7 @@ class Location(Base):
     building_no = Column(Integer)
 
     city = relationship("City", back_populates="locations")
-    rentals = relationship("Rental", back_populates="location")
+    rental = relationship("Rental", back_populates="location",  uselist=False)
 
 
 class Rental(Base):
@@ -81,7 +81,7 @@ class Rental(Base):
     id = Column(Integer, primary_key=True)
     location_id = Column(Integer, ForeignKey("location.id"))
 
-    location = relationship("Location", back_populates="rentals")
+    location = relationship("Location", back_populates="rental")
     cars = relationship("Car", back_populates="rental")
 
 
