@@ -1,6 +1,6 @@
 from typing import List, Optional
 from pydantic import BaseModel
-
+import datetime
 
 class CarBase(BaseModel):
     pass
@@ -108,3 +108,38 @@ class RentalCreate(RentalBase):
 
 class Rental(RentalBase):
     id: int
+
+
+class AgreementBase(BaseModel):
+    start: datetime.date
+    end: datetime.date
+
+    class Config:
+        orm_mode = True
+
+
+class AgreementCreate(AgreementBase):
+    car_id: int
+    user_id: int
+
+
+class Agreement(AgreementBase):
+    id: int
+
+
+class ReviewBase(BaseModel):
+    score: int
+    end: str
+
+    class Config:
+        orm_mode = True
+
+
+class ReviewCreate(ReviewBase):
+    car_id: int
+    user_id: int
+
+
+class Review(ReviewBase):
+    id: int
+
