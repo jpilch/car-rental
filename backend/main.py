@@ -3,7 +3,7 @@ import uvicorn
 
 import models
 from database import engine
-from routers import car, location, city, manufacturer, model, auth, rental, agreement
+from routers import car, location, city, manufacturer, model, auth, rental, agreement, review
 
 models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -16,6 +16,7 @@ app.include_router(location.router)
 app.include_router(city.router)
 app.include_router(rental.router)
 app.include_router(agreement.router)
+app.include_router(review.router)
 
 
 @app.get("/")
