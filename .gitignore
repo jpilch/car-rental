@@ -1,6 +1,12 @@
 app-design/
-backend/sqlite.db
-backend/.env
+fastapi-app/sqlite.db
+fastapi-app/.env
+
+# react app
+node_modules/
+react-app/node_modules/
+
+
 # Taken from FastAPI github repo
 .idea
 .ipynb_checkpoints
