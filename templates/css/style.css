@@ -12,7 +12,7 @@
 
 header {
     height: 70px;
-    background-color: #1D3557;
+    background-color: #064273;
     width: 100%;
     position: fixed;
     z-index: 11;
@@ -20,7 +20,7 @@ header {
 
 header .content {
     padding-top: 5px;
-    color: #fff;
+    color: #def3f6;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +32,7 @@ header h1 {
 }
 
 header span {
-    color: #A8DADC;
+    color: #76b6c4;
 }
 
 header nav {
@@ -62,12 +62,12 @@ header nav button {
 
 header nav a {
     text-decoration: none;
-    color: #fff;
+    color: #def3f6;
 }
 
 header nav a:hover {
-    border-bottom: 2px solid #A8DADC;
-    color: #fff;
+    border-bottom: 2px solid #76b6c4;
+    color: #def3f6;
 }
 
 
@@ -91,7 +91,7 @@ header nav a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #def3f6;
     height: 200px;
     width: 50%;
     padding: 20px 80px;
@@ -128,4 +128,55 @@ header nav a:hover {
     z-index: 10;
 }
 
+/* instruction */
+.instruction {
+    height: 80vh;
+    background-color: #fff;
+}
 
+.instruction .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.instruction .content .row {
+    padding: 30px 0px;
+    height: 50%;
+    display: flex;
+}
+
+.instruction .content .row-1 {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.instruction .content .row-2 {
+    align-items: center;
+    justify-content: center;
+}
+
+.instruction .content .tile {
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 20px;
+    width: 45%;
+    height: 100%;
+    text-align: center;
+}
+
+.instruction .content .tile hr{
+    width: 60%;
+    margin: auto;
+    color: #999;
+}
+
+.instruction .tile h1 {
+    padding: 40px 20px;
+}
+
+.instruction .tile h4 {
+    padding: 40px 40px;
+}
