@@ -130,8 +130,28 @@ header nav a:hover {
 
 /* instruction */
 .instruction {
-    height: 80vh;
-    background-color: #666;
+    height: 100vh;
+    background: url('../img/instruction-bg.jpg') no-repeat center center/cover;
+    position: relative;
+    z-index: 10;
+}
+
+.instruction::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+    z-index: -10;
+}
+
+.instruction .content .section-heading {
+    margin-bottom: 40px;
+    font-size: 3rem;
+    color: #eee;
 }
 
 .instruction .content {
@@ -139,13 +159,14 @@ header nav a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 30px;
     height: 100%;
 }
 
 .instruction .content .row {
     padding: 30px 0px;
     display: flex;
-    flex-grow: 1.5;
+    /* flex-grow: 1; */
 }
 
 .instruction .content .row-1 {
@@ -171,15 +192,18 @@ header nav a:hover {
     width: 60%;
     margin: auto;
     color: #999;
+    opacity: 0.5;
 }
 
 .instruction .tile h1 {
     padding: 40px 20px;
+    padding-bottom: 15px;
 }
 
 .instruction .tile h4 {
-    padding: 40px 40px;
+    padding: 25px 40px;
 }
+
 
 /* footer */
 footer {
@@ -218,3 +242,4 @@ footer i:hover {
     /* background-color: #76b6c4; */
     color: #76b6c4;
 }
+
