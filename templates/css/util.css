@@ -18,3 +18,14 @@
 }
 
 .btn:hover {opacity: 0.8;}
+
+
+.btn-filter {
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: #000 1px solid;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 5px 20px;
+}
