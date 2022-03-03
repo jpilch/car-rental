@@ -21,7 +21,7 @@ app.include_router(review.router)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello from Rent-A-Ride!"}
+    return {"message": "Hello from MotoRent!"}
 
 
 if __name__ == "__main__":
