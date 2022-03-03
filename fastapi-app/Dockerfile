@@ -6,11 +6,10 @@ COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY . /app/src
-
+# run seperately or will cause error otherwise
 RUN pip install psycopg2
 
-RUN pip install pip install python-multipart
+COPY . /app/src
 
 CMD ["python3", "./src/main.py"]
 
