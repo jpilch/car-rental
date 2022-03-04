@@ -17,6 +17,8 @@ services:
      - ./env/db_admin.env
     ports:
       - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
   api:
     env_file:
       - ./env/api.env
@@ -29,3 +31,4 @@ services:
 
 volumes:
   postgres:
+  pgadmin:
