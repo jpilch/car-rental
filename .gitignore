@@ -1,9 +1,7 @@
-
-tmp/
-
 app-design/
-fastapi-app/sqlite.db
-fastapi-app/.env
+
+# env files
+env/
 
 # react app
 node_modules/
