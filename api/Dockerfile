@@ -12,6 +12,6 @@ COPY . /app/src
 
 WORKDIR /app/src
 
-CMD ["python3", "./main.py"]
-
 EXPOSE 8000
+
+CMD ["python", "./main.py"]

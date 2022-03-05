@@ -20,6 +20,8 @@ services:
     volumes:
       - pgadmin:/var/lib/pgadmin
   api:
+    depends_on:
+      - 'db'
     env_file:
       - ./env/api.env
     container_name: 'api'
@@ -28,6 +30,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ./api:/app/src
 
 volumes:
   postgres:
