@@ -68,8 +68,23 @@
             </div>
         </div>
         <div class="car-list">
-            <div class="content">
-
+            <div class="content" id="car-list-content">
+                <script>
+                    let carList = document.getElementById("car-list-content");
+                    const fetchModels = async () => {
+                        const response = await fetch('http://localhost:8000/models')
+                        const data = await response.json()
+                        console.log(data)
+                        for (const item of data) {
+                            console.log(item)
+                            let p = document.createElement('p')
+                            p.innerHTML = item.name
+                            carList.appendChild(p)
+                            console.log(p)
+                        }
+                    }
+                    fetchModels()                    
+                </script> 
             </div>
         </div>
     </main>
