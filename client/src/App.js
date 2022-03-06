@@ -1,7 +1,14 @@
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Landing from './pages/Landing';
+
 function App() {
   return (
     <>
-      <h1>MotoRent UI</h1>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Landing />}/>
+        </Routes>
+      </Router>
     </>
   );
 }
