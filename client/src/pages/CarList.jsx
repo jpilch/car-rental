@@ -1,32 +1,36 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Bars } from 'react-loading-icons'
 
 
 function CarList() {
     const [models, setModels] = useState([])
     const [manufacturers, setManufacturers] = useState([])
-    
-    const fetchData = async () => {
-        let response = await fetch(
+
+    const fetchModels = async () => {
+        const response = await fetch(
             `${process.env.REACT_APP_API_URL}/models`, {
             crossDomain:true
         })
-        let data = await response.json()
+        const data = await response.json()
         setModels(data)
-        console.log(data)
-        response = await fetch(
-            `${process.env.REACT_APP_API_URL}/manufacturers`
-        )
-        data = await response.json()
+    }
+
+    const fetchManufacturers = async () => {
+        const response = await fetch(
+            `${process.env.REACT_APP_API_URL}/manufacturers`, {
+            crossDomain:true
+        })
+        const data = await response.json()
         setManufacturers(data)
-        console.log(data)
     }
 
     useEffect(() => {
-        fetchData()
+        fetchModels()
+        fetchManufacturers()
     }, [])
 
-    return (
+    return ( (models.length && manufacturers.length) ? 
         <main>
             <div className="header main-header">
                 <div className="content">
@@ -54,8 +58,8 @@ function CarList() {
                 <div className="content" id="car-list-content">
                     {
                         models.map((model) => {
-                            const {name, id, manufacturer_id} = model
-                            const manufacturerName = manufacturers.find(m => m.id === manufacturer_id).name
+                            let {name, id, manufacturer_id} = model
+                            const manufacturerName = manufacturers.find(m => m.id == manufacturer_id).name
                             return (
                                 <div key={id} className='car-item'>
                                     <div className="content">
@@ -67,7 +71,13 @@ function CarList() {
                     }
                 </div>
             </div>
-        </main>
+        </main> 
+        : (
+            <div>
+                <h1>Loading</h1>
+                {console.log('loading')}
+            </div>
+        )
     )
 }
 
