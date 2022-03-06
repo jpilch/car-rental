@@ -3,20 +3,27 @@ import { useState, useEffect } from 'react'
 
 
 function CarList() {
-    const [cars, setCars] = useState([])
+    const [models, setModels] = useState([])
+    const [manufacturers, setManufacturers] = useState([])
     
-    const fetchModels = async () => {
-        const response = await fetch(
+    const fetchData = async () => {
+        let response = await fetch(
             `${process.env.REACT_APP_API_URL}/models`, {
             crossDomain:true
         })
-        const data = await response.json()
+        let data = await response.json()
+        setModels(data)
         console.log(data)
-        setCars(data)
+        response = await fetch(
+            `${process.env.REACT_APP_API_URL}/manufacturers`
+        )
+        data = await response.json()
+        setManufacturers(data)
+        console.log(data)
     }
 
     useEffect(() => {
-        fetchModels()
+        fetchData()
     }, [])
 
     return (
@@ -45,7 +52,19 @@ function CarList() {
             </div>
             <div className="car-list">
                 <div className="content" id="car-list-content">
-                    
+                    {
+                        models.map((model) => {
+                            const {name, id, manufacturer_id} = model
+                            const manufacturerName = manufacturers.find(m => m.id === manufacturer_id).name
+                            return (
+                                <div key={id} className='car-item'>
+                                    <div className="content">
+                                        <h1>{manufacturerName} {name}</h1>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </main>
