@@ -1,0 +1,40 @@
+.car-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.car-item .content {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px 40px;
+    margin: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.car-item .content .car-info {
+    flex-grow: 3;
+}
+
+.car-item .content .car-img {
+    flex: 1 0 20%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.car-item .content .car-img img {
+    border-radius: 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.car-info {
+    height: 100%;
+}
+
+.car-info h3 {
+    text-align: center;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Bars } from 'react-loading-icons'
-
+import CarItem from '../components/CarItem'
 
 function CarList() {
     const [models, setModels] = useState([])
@@ -61,11 +61,7 @@ function CarList() {
                             let {name, id, manufacturer_id} = model
                             const manufacturerName = manufacturers.find(m => m.id == manufacturer_id).name
                             return (
-                                <div key={id} className='car-item'>
-                                    <div className="content">
-                                        <h1>{manufacturerName} {name}</h1>
-                                    </div>
-                                </div>
+                                <CarItem key={id} {...model} manufacturerName={manufacturerName}/>
                             )
                         })
                     }
