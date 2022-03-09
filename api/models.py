@@ -1,4 +1,4 @@
-from sqlalchemy import Column, SmallInteger, Date, ForeignKey, Integer, String, Boolean
+from sqlalchemy import Column, SmallInteger, Date, ForeignKey, Integer, String, Boolean, Float
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -19,7 +19,13 @@ class Model(Base):
     id = Column(Integer, primary_key=True, index=True)
     manufacturer_id = Column(Integer, ForeignKey("manufacturer.id"))
     name = Column(String(32))
-
+    img_url = Column(String(128))
+    person_capacity = Column(Integer)
+    trunk_capacity = Column(Integer)
+    avg_fuel_consumption = Column(Float)
+    height = Column(Float)
+    width = Column(Float)
+    
     manufacturer = relationship("Manufacturer", back_populates="models")
     cars = relationship("Car", back_populates="model")
 
