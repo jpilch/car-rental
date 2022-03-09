@@ -1,5 +1,6 @@
-from sqlalchemy import Column, SmallInteger, Date, ForeignKey, Integer, String, Boolean, Float
+from sqlalchemy import Column, SmallInteger, Date, ForeignKey, Integer, String, Boolean, Float, Enum
 from sqlalchemy.orm import relationship
+import enum
 
 from database import Base
 
@@ -11,6 +12,12 @@ class Manufacturer(Base):
     name = Column(String(32))
 
     models = relationship("Model", back_populates="manufacturer")
+
+
+class DriveCatEnum(enum.Enum):
+    FWD = 'fwd'
+    RWD = 'rwd'
+    AWD = 'awd'
 
 
 class Model(Base):
@@ -25,7 +32,9 @@ class Model(Base):
     avg_fuel_consumption = Column(Float)
     height = Column(Float)
     width = Column(Float)
-    
+    length = Column(Integer)
+    drive_cat = Column(Enum(DriveCatEnum))
+
     manufacturer = relationship("Manufacturer", back_populates="models")
     cars = relationship("Car", back_populates="model")
 
