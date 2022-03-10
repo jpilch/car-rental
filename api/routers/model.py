@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.Model])
+@router.get("/")
 async def get_models(db: Session = Depends(get_db)):
     return crud.get_models(db=db)
 
