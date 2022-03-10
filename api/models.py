@@ -15,9 +15,9 @@ class Manufacturer(Base):
 
 
 class DriveCatEnum(enum.Enum):
-    FWD = 'fwd'
-    RWD = 'rwd'
-    AWD = 'awd'
+    FWD = 'FWD'
+    RWD = 'RWD'
+    AWD = 'AWD'
 
 
 class Model(Base):
