@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Bars } from 'react-loading-icons'
 import CarItem from '../components/CarItem'
 
 function CarList() {
@@ -13,6 +12,7 @@ function CarList() {
             crossDomain:true
         })
         const data = await response.json()
+        console.log(data)
         setModels(data)
     }
 
@@ -22,6 +22,7 @@ function CarList() {
             crossDomain:true
         })
         const data = await response.json()
+        console.log(data)
         setManufacturers(data)
     }
 
@@ -58,10 +59,9 @@ function CarList() {
                 <div className="content" id="car-list-content">
                     {
                         models.map((model) => {
-                            let {name, id, manufacturer_id} = model
-                            const manufacturerName = manufacturers.find(m => m.id == manufacturer_id).name
+                            const manufacturerName = manufacturers.find(m => m.id === model.manufacturer_id).name
                             return (
-                                <CarItem key={id} {...model} manufacturerName={manufacturerName}/>
+                                <CarItem key={model.id} {...model} manufacturerName={manufacturerName}/>
                             )
                         })
                     }
