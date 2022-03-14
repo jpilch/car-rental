@@ -70,9 +70,17 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 80%;
 }
 
-/*.car-info .specs .row {*/
-/*    display: flex;*/
-/*    !*justify-content: center*!*/
-/*}*/
+.car-info .specs .row {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car-info .specs .row .spec-item .icon {
+    display: inline;
+    padding: 0.5rem;
+}
