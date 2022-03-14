@@ -5,6 +5,8 @@ import {MdFamilyRestroom, MdLuggage} from 'react-icons/md'
 import {IoMdResize} from 'react-icons/io'
 import {AiFillStar} from 'react-icons/ai'
 import {FaMoneyBillWaveAlt} from 'react-icons/fa'
+import {GiCarDoor} from 'react-icons/gi'
+
 function CarItem({id, name, manufacturerName, img_url, drive_cat, person_capacity, trunk_capacity, height, length, width, avg_fuel_consumption}) {
   return (
     <div className='car-item'>
@@ -17,44 +19,67 @@ function CarItem({id, name, manufacturerName, img_url, drive_cat, person_capacit
                             <div className="icon">
                                 <GiCarWheel />
                             </div>
-                             {drive_cat}
+                            <p>
+                                {drive_cat}
+                            </p>
                         </div>
                         <div className="spec-item">
                             <div className="icon">
                                 <MdFamilyRestroom />
                             </div>
-                             {person_capacity}
+                            <p>
+                                {person_capacity}
+                            </p>
                         </div>
                         <div className="spec-item">
                             <div className="icon">
                                 <MdLuggage />
                             </div>
-                            {trunk_capacity}L
+                            <p>
+                                {trunk_capacity}L
+                            </p>
                         </div>
                         <div className="spec-item">
                             <div className="icon">
                                 <FaBurn />
                             </div>
-                             {avg_fuel_consumption}L/100km
+                            <p>
+                                {avg_fuel_consumption}L/100km
+                            </p>
                         </div>
                     </div>
                     <div className="row">
                         <div className="spec-item">
                             <div className="icon">
                                 <IoMdResize />
-                            </div> {width}(W) x {length}(L) x {height}(H)
+                            </div>
+                            <p>
+                                {width} x {length} x {height}
+                            </p>
+                        </div>
+                        <div className="spec-item">
+                            <div className="icon">
+                                <GiCarDoor />
+                            </div>
+                            <p>
+                                5
+                            </p>
                         </div>
                         <div className="spec-item">
                             <div className="icon">
                                 <AiFillStar />
                             </div>
-                             4.5/5
+                            <p>
+                                4.5/5
+                            </p>
                         </div>
                         <div className="spec-item">
                             <div className="icon">
                                 <FaMoneyBillWaveAlt />
                             </div>
-                            See pricing
+                            <p>
+                                See pricing
+                            </p>
                         </div>
                     </div>
                 </div>

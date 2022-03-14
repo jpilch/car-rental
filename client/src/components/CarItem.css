@@ -45,6 +45,7 @@
 }
 
 .car-info {
+    flex: 1.2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -70,14 +71,30 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 80%;
+    width: 90%;
 }
 
 .car-info .specs .row {
     width:100%;
+    padding-left: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.car-info .specs .row .spec-item {
+    width: 25%;
+}
+
+.car-info .specs .row .spec-item p {
+    display: inline;
+    padding-left: 10px;
+}
+
+.car-info .specs .row .spec-item .icon {
+    color: #fff;
+    background-color: #064273;
+    border-radius: 5px;
 }
 
 .car-info .specs .row .spec-item .icon {
