@@ -4,6 +4,7 @@ import './index.css';
 import './util.css'
 import './pages/CarList.css'
 import './components/CarItem.css';
+import './components/Navbar.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import {AiTwotoneCar, AiOutlineCar} from 'react-icons/ai'
 
 export default function Navbar() {
   const navigate = useNavigate()
@@ -9,10 +10,12 @@ export default function Navbar() {
       <div className="content">
         <div className="logo company-name">
           <h1>
+            <a href="" onClick={() => navigate('/')}>
             <span>
-              <i className="fa-solid fa-car-side"></i>Moto
+              <AiOutlineCar />Moto
             </span>
             Rent
+            </a>
           </h1>
         </div>
         <nav>
