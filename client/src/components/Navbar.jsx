@@ -31,7 +31,12 @@ export default function Navbar() {
             </li>
           </ul>
           <button className="btn">
-            <a href="">Sign Up</a>
+            <a
+                href=""
+                onClick={() => navigate('/sign-up')}
+            >
+              Sign Up
+            </a>
           </button>
         </nav>
       </div>

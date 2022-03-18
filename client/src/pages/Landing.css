@@ -1,5 +1,5 @@
 .hero {
-    /* width: 100%; */
+    width: 100%;
     background: url('../assets/images/landing-hero-bg.jpg') no-repeat center center/cover;
     position: relative;
     height: 100vh;
@@ -38,6 +38,7 @@
 .hero .content .service-info button a {
     text-decoration: none;
 }
+
 .hero::before {
     content: '';
     position: absolute;
@@ -56,6 +57,7 @@
 
 /* instruction */
 .instruction {
+    width: 100%;
     height: 100vh;
     background: url('../assets/images/landing-instruction-bg.jpg') no-repeat center center/cover;
     position: relative;
@@ -90,14 +92,14 @@
 }
 
 .instruction .content .row {
+    width: 100%;
     padding: 30px 0px;
     display: flex;
-    /* flex-grow: 1; */
 }
 
 .instruction .content .row-1 {
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .instruction .content .row-2 {
@@ -107,14 +109,20 @@
 
 .instruction .content .tile {
     background-color: #eee;
+    opacity: 0.85;
     border: 1px solid #999;
     border-radius: 20px;
-    width: 45%;
+    width: 400px;
     height: 100%;
     text-align: center;
 }
 
-.instruction .content .tile hr{
+.instruction .content .tile:hover {
+    opacity: 1;
+    background-color: #fff;
+}
+
+.instruction .content .tile hr {
     width: 60%;
     margin: auto;
     color: #999;
@@ -123,7 +131,6 @@
 
 .instruction .tile h1 {
     padding: 40px 20px;
-    padding-bottom: 15px;
 }
 
 .instruction .tile h4 {
