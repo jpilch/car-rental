@@ -1,3 +1,7 @@
+:root {
+    --text-primary: #def3f6;
+}
+
 body {
     overflow-x: hidden;
     margin: 0;
@@ -24,6 +28,6 @@ code {
 }
 
 .content {
-    padding: 0px 300px;
+    padding: 0px 200px;
 }
 
