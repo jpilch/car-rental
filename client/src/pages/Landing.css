@@ -6,6 +6,7 @@
 }
 
 .hero .content {
+    padding: 0px 0px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -20,7 +21,7 @@
     color: #def3f6;
     height: 200px;
     width: 50%;
-    padding: 20px 80px;
+    padding: 20px 0px;
     text-align: center;
     border-radius: 20px;
     font-weight: 800;
@@ -79,7 +80,7 @@
 .instruction .content .section-heading {
     margin-bottom: 40px;
     font-size: 3rem;
-    color: #eee;
+    color: var(--text-primary);
 }
 
 .instruction .content {
@@ -108,11 +109,12 @@
 }
 
 .instruction .content .tile {
+    padding: 5px;
     background-color: #eee;
     opacity: 0.85;
     border: 1px solid #999;
     border-radius: 20px;
-    width: 400px;
+    width: 300px;
     height: 100%;
     text-align: center;
 }
@@ -130,7 +132,7 @@
 }
 
 .instruction .tile h1 {
-    padding: 40px 20px;
+    padding: 40px 20px 20px;
 }
 
 .instruction .tile h4 {

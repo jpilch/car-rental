@@ -1,5 +1,7 @@
 :root {
     --text-primary: #def3f6;
+    --bg-dark: #333;
+    --text-secondary: #def3f6;
 }
 
 body {
