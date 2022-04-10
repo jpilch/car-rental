@@ -9,7 +9,7 @@ import './components/CarItem.css';
 import './components/Navbar.css'
 import './pages/Landing.css'
 import './components/Footer.css'
-
+import './pages/Register.css'
 import App from './App';
 
 ReactDOM.render(

@@ -1,5 +1,7 @@
 /* footer */
 footer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
     color: #ddd;
     /* padding: 30px 10px; */
