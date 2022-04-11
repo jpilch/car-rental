@@ -1,0 +1,27 @@
+.btn {
+    align-self: center;
+    padding: 10px 15px;
+    background-color: #A8DADC;
+    border-radius: 7px;
+    border: none;
+}
+
+.btn a {
+    color: #000;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn a:hover {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 0px;
+}
+
+.btn:hover {
+    background-color: #52bcc1;
+}
