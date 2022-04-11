@@ -17,7 +17,9 @@
     border-bottom: 0px;
 }
 
-.btn:hover {opacity: 0.8;}
+.btn:hover {
+    background-color: #52bcc1;
+}
 
 
 .btn-filter {

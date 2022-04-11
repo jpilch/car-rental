@@ -3,7 +3,8 @@ import Landing from './pages/Landing';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CarList from './pages/CarList';
-import Register from "./pages/Register";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 function App() {
 	return (
@@ -13,7 +14,8 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Landing/>}/>
 					<Route path='/cars' element={<CarList/>}/>
-					<Route path='/sign-up' element={<Register/>}/>
+					<Route path='/sign-up' element={<SignUp/>}/>
+					<Route path='/login' element={<Login/>}/>
 				</Routes>
 				<Footer/>
 			</Router>
