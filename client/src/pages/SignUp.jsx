@@ -1,8 +1,8 @@
 import SignUpForm from "../components/SignUpForm";
 
-const Register = (props) => {
+const SignUp = (props) => {
 	return (
-		<div className="register">
+		<div className="container">
 			<div className="content">
 				<h1>Sign-up</h1>
 				<SignUpForm/>
@@ -12,4 +12,4 @@ const Register = (props) => {
 	)
 }
 
-export default Register
+export default SignUp
