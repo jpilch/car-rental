@@ -1,6 +1,6 @@
 const Button = (props) => {
 	return (
-		<button className="btn">
+		<button type="submit" className="btn">
 			<a>{props.text}</a>
 		</button>
 	)
