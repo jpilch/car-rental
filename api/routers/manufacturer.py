@@ -8,7 +8,7 @@ import schemas
 from dependencies import get_db
 
 router = APIRouter(
-    prefix = "/manufacturers",
+    prefix="/manufacturers",
     tags=["manufacturers"]
 )
 

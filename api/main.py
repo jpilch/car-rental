@@ -6,7 +6,6 @@ import models
 from database import engine
 from routers import car, location, city, manufacturer, model, auth, rental, agreement, review
 
-# models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origins = [
