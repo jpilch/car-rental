@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException, status, APIRouter
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
+from starlette.responses import JSONResponse
 
 import env
 import models
@@ -122,3 +123,18 @@ async def register(user: schemas.UserInDB, db: Session = Depends(get_db)):
 @router.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(get_current_active_user)):
     return current_user
+
+
+@router.get("/users", response_model=List[schemas.User])
+async def get_users(db: Session = Depends(get_db)):
+    return db.query(models.User).all()
+
+
+@router.delete("/users/{user_id}")
+async def delete_user(user_id: int, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(400, detail='User not found')
+    db.delete(user)
+    db.commit()
+    return JSONResponse(status_code=204)
