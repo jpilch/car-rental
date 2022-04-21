@@ -8,20 +8,31 @@ export const ContextProvider = (props) => {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [passwordConfirm, setPasswordConfirm] = useState('')
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
 
-	const handleRegistration = (e) => {
+	const handleRegistration = async (e) => {
 		e.preventDefault()
-		axios.post(
-			`${process.env.REACT_APP_API_URL}/users`,
-			{
-				username: email,
-				password: password
-			}
-		).then(result => {
-			console.log(result)
-		}).catch(err => console.log(err))
+		const data = {
+			full_name: `${firstName} ${lastName}`,
+			email: email,
+			password: password
+		}
+		try {
+			const response = await axios.post(`${process.env.REACT_APP_API_URL}/users`, data)
+			console.log(response)
+			console.log(response.detail)
+			console.log(response.data)
+		} catch (err) {
+			console.log('err')
+			console.log(err)
+		}
 		setEmail('')
 		setPassword('')
+		setPasswordConfirm('')
+		setFirstName('')
+		setLastName('')
 	}
 
 	const handleLogin = (e) => {
@@ -41,6 +52,9 @@ export const ContextProvider = (props) => {
 			value={{
 				email, setEmail,
 				password, setPassword,
+				firstName, setFirstName,
+				lastName, setLastName,
+				passwordConfirm, setPasswordConfirm,
 				handleRegistration, handleLogin
 			}}>
 			{props.children}
