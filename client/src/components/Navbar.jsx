@@ -1,9 +1,25 @@
 import React from "react";
 import {useNavigate, useLocation} from "react-router-dom";
+import Radium from 'radium'
 import {AiTwotoneCar, AiOutlineCar} from 'react-icons/ai'
 
-export default function Navbar() {
+function Navbar() {
 	const navigate = useNavigate()
+
+	const accountButtonStyle = {
+		padding: '5px 20px',
+		borderRadius: '10px',
+		border: '2px solid #fff',
+		color: '#fff',
+		fontSize: '1rem',
+		fontWeight: 'bold',
+		backgroundColor: 'rgba(0,0,0,0)',
+		':hover': {
+			cursor: 'pointer',
+			backgroundColor: '#fff',
+			color: '#000'
+		}
+	}
 
 	return (
 		<header id="navbar">
@@ -30,9 +46,12 @@ export default function Navbar() {
 						<li>
 							<a href="#">Contact</a>
 						</li>
+						<button style={accountButtonStyle}>Account</button>
 					</ul>
 				</nav>
 			</div>
 		</header>
 	);
 }
+
+export default Radium(Navbar)
