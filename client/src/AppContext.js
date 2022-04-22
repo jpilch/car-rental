@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 
 export const AppContext = React.createContext(null)
@@ -11,6 +11,7 @@ export const ContextProvider = (props) => {
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
+	const [user, setUser] = useState({})
 
 	const handleRegistration = async (e) => {
 		e.preventDefault()
@@ -35,16 +36,34 @@ export const ContextProvider = (props) => {
 		setLastName('')
 	}
 
-	const handleLogin = (e) => {
+	const handleLogin = async (e) => {
 		e.preventDefault()
 		const data = new FormData()
 		data.append('username', email)
 		data.append('password', password)
-		axios.post(
-			`${process.env.REACT_APP_API_URL}/token`,
-			data
-		).then(result => console.log(result))
-			.catch((err) => console.log(err))
+		try {
+			const loginResponse = await axios.post(
+				`${process.env.REACT_APP_API_URL}/token`,
+				data
+			)
+			const userResponse = await axios.get(
+				`${process.env.REACT_APP_API_URL}/users/me`,
+				{
+					headers: {
+						Authorization: `Bearer ${loginResponse.data.access_token}`
+					}
+				}
+			)
+			console.log(userResponse, userResponse.data)
+			window.localStorage.setItem(
+				`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`,
+				JSON.stringify(userResponse.data)
+			)
+			setUser(userResponse.data)
+		} catch (e) {
+			console.log(e)
+			console.log('Error during Login')
+		}
 	}
 
 	return (
