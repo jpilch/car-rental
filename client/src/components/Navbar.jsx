@@ -14,9 +14,12 @@ function Navbar() {
 		fontSize: '1rem',
 		fontWeight: 'bold',
 		backgroundColor: 'rgba(0,0,0,0)',
+		transitionProperty: 'background-color, color',
+		transitionDuration: '0.25s',
+		transitionTimingFunction: 'ease-out',
 		':hover': {
 			cursor: 'pointer',
-			backgroundColor: '#fff',
+			backgroundColor: 'rgba(255, 255, 255, 1)',
 			color: '#000'
 		}
 	}
