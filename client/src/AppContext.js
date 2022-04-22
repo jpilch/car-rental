@@ -11,7 +11,37 @@ export const ContextProvider = (props) => {
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
-	const [user, setUser] = useState({})
+	const [user, setUser] = useState(null)
+
+	useEffect(async () => {
+		const saveUserInfo = JSON.parse(window.localStorage.getItem(
+			`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`
+		))
+		if (saveUserInfo) {
+			try {
+				console.log(saveUserInfo)
+				// check if login token has expired
+				const loginResponse = await axios.get(
+					`${process.env.REACT_APP_API_URL}/users/me`,
+					{
+						headers: {
+							Authorization: `Bearer ${saveUserInfo.accessToken}`
+						}
+					}
+				)
+				console.log(loginResponse, loginResponse.data)
+				if (loginResponse.status !== 200) {
+					setUser(null)
+					window.localStorage.removeItem(
+						`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`
+					)
+				}
+				setUser(saveUserInfo)
+			} catch (e) {
+				console.log('Error during context auth')
+			}
+		}
+	}, [])
 
 	const handleRegistration = async (e) => {
 		e.preventDefault()
@@ -55,6 +85,7 @@ export const ContextProvider = (props) => {
 				}
 			)
 			console.log(userResponse, userResponse.data)
+			userResponse.data.accessToken = loginResponse.data.access_token
 			window.localStorage.setItem(
 				`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`,
 				JSON.stringify(userResponse.data)
