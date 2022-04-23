@@ -94,6 +94,13 @@ export const ContextProvider = (props) => {
 		}
 	}
 
+	const handleLogout = () => {
+		window.localStorage.removeItem(
+			`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`
+		)
+		setUser(null)
+	}
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -103,7 +110,7 @@ export const ContextProvider = (props) => {
 				lastName, setLastName,
 				passwordConfirm, setPasswordConfirm,
 				user,
-				handleRegistration, handleLogin
+				handleRegistration, handleLogin, handleLogout
 			}}>
 			{props.children}
 		</AppContext.Provider>

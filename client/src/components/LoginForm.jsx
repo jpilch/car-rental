@@ -22,7 +22,7 @@ const LoginForm = (props) => {
 					   onChange={(e) => context.setPassword(e.target.value)}
 				/>
 			</div>
-			<Button text={'Login'}/>
+			<Button text={'Login'} />
 		</form>
 	)
 }

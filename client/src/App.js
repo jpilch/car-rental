@@ -20,7 +20,7 @@ function App() {
 					<Route path='/account' element={<UserAccount />}/>
 				</Routes>
 				<Footer/>
-			</Router>
+				< /Router>
 		</>
 	);
 }

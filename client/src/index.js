@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ContextProvider} from "./AppContext";
+import {BrowserRouter as Router} from "react-router-dom";
 
 // Stylesheet imports
 import './index.css';
