@@ -19,7 +19,6 @@ export const ContextProvider = (props) => {
 		))
 		if (saveUserInfo) {
 			try {
-				console.log(saveUserInfo)
 				// check if login token has expired
 				const loginResponse = await axios.get(
 					`${process.env.REACT_APP_API_URL}/users/me`,
@@ -29,16 +28,14 @@ export const ContextProvider = (props) => {
 						}
 					}
 				)
-				console.log(loginResponse, loginResponse.data)
-				if (loginResponse.status !== 200) {
-					setUser(null)
-					window.localStorage.removeItem(
-						`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`
-					)
-				}
 				setUser(saveUserInfo)
 			} catch (e) {
-				console.log('Error during context auth')
+				console.log('Error during context auth', 'deleting saveUserInfo')
+				console.log(e)
+				setUser(null)
+				window.localStorage.removeItem(
+					`${process.env.REACT_APP_LOGGED_IN_USER_VARIABLE_NAME}`
+				)
 			}
 		}
 	}, [])
@@ -105,6 +102,7 @@ export const ContextProvider = (props) => {
 				firstName, setFirstName,
 				lastName, setLastName,
 				passwordConfirm, setPasswordConfirm,
+				user,
 				handleRegistration, handleLogin
 			}}>
 			{props.children}

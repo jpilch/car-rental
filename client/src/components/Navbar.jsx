@@ -1,9 +1,13 @@
 import React from "react";
 import {useNavigate, useLocation} from "react-router-dom";
 import Radium from 'radium'
+import {useContext} from "react";
 import {AiTwotoneCar, AiOutlineCar} from 'react-icons/ai'
+import {AppContext} from "../AppContext";
 
 function Navbar() {
+	const {user} = useContext(AppContext)
+
 	const navigate = useNavigate()
 
 	const accountButtonStyle = {
@@ -49,7 +53,12 @@ function Navbar() {
 						<li>
 							<a href="#">Contact</a>
 						</li>
-						<button style={accountButtonStyle}>Account</button>
+						<button
+							style={accountButtonStyle}
+							onClick={() => navigate(user ? '/account' : 'login')}
+						>
+							{user ? 'My Account' : 'Login'}
+						</button>
 					</ul>
 				</nav>
 			</div>
