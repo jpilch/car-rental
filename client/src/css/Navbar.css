@@ -1,0 +1,60 @@
+header {
+    height: 8h;
+    padding: 15px 40px;
+    background-color: var(--clr-dark);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+span {
+    color: var(--clr-highlight);
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem
+}
+
+a {
+    text-decoration: none;
+    color: var(--clr-light);
+}
+
+.link {
+    transition-property: color;
+    transition-duration: var(--duration-short);
+    transition-timing-function: ease-in-out;
+}
+
+.link:hover {
+    cursor: pointer;
+    color: var(--clr-highlight);
+}
+
+#account-button {
+    padding: 5px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    background: transparent;
+    transition-property: background-color, color, border-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+#account-button:hover {
+    cursor: pointer;
+    background-color: var(--clr-highlight);
+    color: var(--clr-dark);
+    border-color: var(--clr-dark)
+}
