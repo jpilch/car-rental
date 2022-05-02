@@ -1,4 +1,11 @@
 :root {
+    --clr-dark: #333533;
+    --clr-darker: #202020;
+    --clr-light: #D6D6D6;
+    --clr-lighter: #fff;
+    --clr-highlight: #FFD100;
+    --duration-short: 0.25s;
+    --duration-mid: 0.5s;
     --text-primary: #def3f6;
     --bg-dark: #333;
     --text-secondary: #def3f6;
@@ -21,7 +28,7 @@ code {
     monospace;
 }
 
-* {
+*, *:before, *:after {
     margin: 0;
     padding: 0;
     font-family: 'Fredoka', sans-serif;

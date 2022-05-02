@@ -4,13 +4,10 @@ import {ContextProvider} from "./AppContext";
 import {BrowserRouter as Router} from "react-router-dom";
 
 // Stylesheet imports
-import './index.css';
-import './util.css'
+import './css/index.css';
+import './css/util.css'
 import './pages/CarList.css'
 import './components/CarItem.css';
-import './components/Navbar.css'
-import './pages/Landing.css'
-import './components/Footer.css'
 import './components/Button.css'
 
 import App from './App';
