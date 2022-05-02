@@ -1,8 +1,8 @@
-"""""
+"""initial migrations for new db instance
 
-Revision ID: 9df3ac4f1e39
+Revision ID: 85ffdc6e58c8
 Revises: 
-Create Date: 2022-03-05 11:04:30.094619
+Create Date: 2022-04-16 11:41:17.295961
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '9df3ac4f1e39'
+revision = '85ffdc6e58c8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,6 +50,14 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('manufacturer_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=32), nullable=True),
+    sa.Column('img_url', sa.String(length=512), nullable=True),
+    sa.Column('person_capacity', sa.Integer(), nullable=True),
+    sa.Column('trunk_capacity', sa.Integer(), nullable=True),
+    sa.Column('avg_fuel_consumption', sa.Float(), nullable=True),
+    sa.Column('height', sa.Float(), nullable=True),
+    sa.Column('width', sa.Float(), nullable=True),
+    sa.Column('length', sa.Float(), nullable=True),
+    sa.Column('drive_cat', sa.String(length=3), nullable=True),
     sa.ForeignKeyConstraint(['manufacturer_id'], ['manufacturer.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

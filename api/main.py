@@ -1,9 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-import models
-from database import engine
 from routers import car, location, city, manufacturer, model, auth, rental, agreement, review
 
 app = FastAPI()

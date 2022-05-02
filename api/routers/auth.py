@@ -120,7 +120,7 @@ async def register(user: schemas.UserInDB, db: Session = Depends(get_db)):
     return db_user
 
 
-@router.get("/users/me/", response_model=schemas.User)
+@router.get("/users/me", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(get_current_active_user)):
     return current_user
 
