@@ -1,17 +1,41 @@
 import React from 'react'
+import Icon from '@mdi/react'
+import { mdiInstagram } from '@mdi/js'
+import { mdiTwitter } from '@mdi/js'
+import {mdiFacebook} from "@mdi/js";
+import {mdiYoutube} from "@mdi/js";
+import '../css/Footer.css'
 
 function Footer() {
 	return (
 		<footer>
-			<div className="content">
-				<ul>
-					<li><i className="gg-instagram"></i></li>
-					<li><i className="gg-twitter"></i></li>
-					<li><i className="gg-facebook"></i></li>
-					<li><i className="gg-youtube"></i></li>
-				</ul>
-				<p id="copyright">&copy; Copyright 2022 J. Pilch</p>
-			</div>
+			<ul>
+				<li>
+					<Icon
+						path={mdiInstagram}
+						size={1}
+					/>
+				</li>
+				<li>
+					<Icon
+						path={mdiTwitter}
+						size={1}
+					/>
+				</li>
+				<li>
+					<Icon
+						path={mdiYoutube}
+						size={1}
+					/>
+				</li>
+				<li>
+					<Icon
+						path={mdiFacebook}
+						size={1}
+					/>
+				</li>
+			</ul>
+			<p>&copy; Copyright 2022 Jan Pilch</p>
 		</footer>
 	)
 }
