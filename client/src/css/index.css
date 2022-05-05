@@ -1,11 +1,11 @@
 :root {
     --clr-dark: #333533;
     --clr-darker: #202020;
-    --clr-light: #D6D6D6;
+    --clr-light: #dedede;
     --clr-lighter: #fff;
     --clr-highlight: #FFD100;
     --duration-short: 0.25s;
-    --duration-mid: 0.5s;
+    --duration-mid: 2s;
     --text-primary: #def3f6;
     --bg-dark: #333;
     --text-secondary: #def3f6;
@@ -36,7 +36,18 @@ code {
     scroll-behavior: smooth;
 }
 
-.content {
-    padding: 0px 200px;
+@keyframes landing-header {
+    from {
+        top: 450px;
+        display: none;
+        opacity: 0;
+    }
+    to {
+        top: 300px;
+        display: block;
+        opacity: 1;
+    }
 }
+
+
 

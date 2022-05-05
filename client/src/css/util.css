@@ -31,3 +31,7 @@
     cursor: pointer;
     padding: 5px 20px;
 }
+
+.none {
+    display: none;
+}
