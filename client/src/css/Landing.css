@@ -87,6 +87,8 @@ main.landing .service-info span:hover {
         padding: 5rem 2rem;
         justify-content: center;
         flex-direction: column-reverse;
+        gap: 5rem;
+        height: calc(92vh - 93px);
     }
     main.landing div.heading {
         font-size: 1.5rem;

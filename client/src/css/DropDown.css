@@ -1,4 +1,6 @@
 ul.dropdown {
+    position: absolute;
+    width: 100%;
     margin-top: 1px;
     display: flex;
     flex-direction: column;
