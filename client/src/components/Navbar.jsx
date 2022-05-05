@@ -1,33 +1,54 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {useContext} from "react";
-import {AppContext} from "../AppContext";
 import '../css/Navbar.css'
+import useWindowDimensions from "../hooks";
+import {useState, useEffect} from "react";
+import Icon from '@mdi/react'
+import { mdiMenu, mdiClose } from '@mdi/js';
+
+import DropDown from "./DropDown";
 
 function Navbar() {
-	const {user} = useContext(AppContext)
+	const {width} = useWindowDimensions()
+	const [displayLinks, setDisplayLinks] = useState(true)
+	const [displayDropdown, setDisplayDropdown] = useState(false)
 
-	const navigate = useNavigate()
+
+	useEffect(() => {
+		width <= 400
+			? setDisplayLinks(false)
+			: setDisplayLinks(true)
+	}, [width])
 
 	return (
-		<header>
-				<div>
-					<h1><a href="" onClick={() => navigate('/')}><span >Moto</span>Rent</a></h1>
-				</div>
-				<nav>
-					<ul>
-						<li><a className={'link'} onClick={() => navigate('/cars')}>Cars</a></li>
-						<li><a className={'link'}>About</a></li>
-						<li><a className={'link'}>Contact</a></li>
-						<button
-							id='account-button'
-							onClick={() => navigate(user ? '/account' : 'login')}
-						>
-							{user ? 'My Account' : 'Login'}
-						</button>
-					</ul>
-				</nav>
-		</header>
+		<>
+			<header>
+					<div>
+						<h1><span>Moto</span>Rent</h1>
+					</div>
+					<nav>
+						<ul className={!displayLinks && 'none'}>
+							<li><a className={'link'}>Cars</a></li>
+							<li><a className={'link'}>About</a></li>
+							<li><a className={'link'}>Contact</a></li>
+							<button
+								id='account-button'
+							>
+							 Login
+							</button>
+						</ul>
+						<ul className={displayLinks && 'none'}>
+							<li onClick={() => setDisplayDropdown(!displayDropdown)}>
+								{
+									!displayDropdown
+										? <Icon path={mdiMenu} size={1.5}/>
+										: <Icon path={mdiClose} size={1.5}/>
+								}
+							</li>
+						</ul>
+					</nav>
+			</header>
+			{displayDropdown && <DropDown />}
+		</>
 	);
 }
 

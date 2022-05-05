@@ -5,7 +5,7 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: var(--text-primary);
+    color: var(--clr-light);
     font-weight: bold;
 }
 
@@ -20,6 +20,12 @@ header ul {
     align-items: center;
     gap: 15px;
     font-size: 1.2rem
+}
+
+header ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header a {
@@ -57,4 +63,10 @@ header #account-button:hover {
     background-color: var(--clr-highlight);
     color: var(--clr-dark);
     border-color: var(--clr-dark)
+}
+
+@media screen and (max-width: 400px) {
+    header {
+        justify-content: space-between;
+    }
 }

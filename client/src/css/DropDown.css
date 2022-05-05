@@ -1,0 +1,15 @@
+ul.dropdown {
+    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+ul.dropdown li {
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    padding: 5px 10px;
+}
