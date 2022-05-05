@@ -1,7 +1,7 @@
 main.landing {
     padding: 10rem 0px;
     width: 100%;
-    min-height: 92vh;
+    height: 92vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,7 +9,7 @@ main.landing {
     gap: 40px;
 }
 
-main.landing h1:first-child {
+main.landing div.heading {
     position: absolute;
     top: 300px;
     font-weight: normal;
@@ -17,6 +17,8 @@ main.landing h1:first-child {
     padding-bottom: 6rem;
     animation-name: landing-header;
     animation-duration: var(--duration-mid);
+    display: flex;
+    gap: 60px;
 }
 
 main.landing span.number-highlight {
@@ -30,9 +32,19 @@ main.landing span.number-highlight {
     text-align: center;
 }
 
-main.landing .search-wrapper {
+main.landing div.item {
     min-width: 40%;
-    height: 3rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+main.landing .search-wrapper {
+    flex: 1.5;
+    width: 100%;
 }
 
 main.landing form,
@@ -54,6 +66,10 @@ main.landing input:focus {
     border: 1px solid var(--clr-dark);
 }
 
+main.landing .service-info {
+    flex: 0.75;
+}
+
 main.landing .service-info span {
     cursor: pointer;
     font-weight: bold;
@@ -64,4 +80,30 @@ main.landing .service-info span {
 
 main.landing .service-info span:hover {
     color: var(--clr-highlight);
+}
+
+@media screen and (max-width: 400px) {
+    main.landing {
+        padding: 5rem 2rem;
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+    main.landing div.heading {
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        position: static;
+        gap: 10px;
+    }
+    main.landing .service-info {
+        justify-self: flex-start;
+    }
+    main.landing .item {
+        width: 100%;
+    }
+    main.landing .search-wrapper input {
+        text-align: center;
+    }
 }
