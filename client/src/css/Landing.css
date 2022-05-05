@@ -1,0 +1,67 @@
+main.landing {
+    padding: 10rem 0px;
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+main.landing h1:first-child {
+    position: absolute;
+    top: 300px;
+    font-weight: normal;
+    font-size: 2rem;
+    padding-bottom: 6rem;
+    animation-name: landing-header;
+    animation-duration: var(--duration-mid);
+}
+
+main.landing span.number-highlight {
+    background-color: var(--clr-dark);
+    padding: 3px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: var(--clr-highlight);
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+
+main.landing .search-wrapper {
+    min-width: 40%;
+    height: 3rem;
+}
+
+main.landing form,
+main.landing input {
+    width: 100%;
+    height: 100%;
+}
+
+main.landing input {
+    border-radius: 0.5rem;
+    border: none;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    background-color: var(--clr-light);
+}
+
+main.landing input:focus {
+    outline: none;
+    border: 1px solid var(--clr-dark);
+}
+
+main.landing .service-info span {
+    cursor: pointer;
+    font-weight: bold;
+    transition-property: color;
+    transition-duration: var(--duration-short);
+    transition-timing-function: ease-in-out;
+}
+
+main.landing .service-info span:hover {
+    color: var(--clr-highlight);
+}
