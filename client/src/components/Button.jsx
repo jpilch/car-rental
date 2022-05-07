@@ -1,7 +1,7 @@
-const Button = (props) => {
+const Button = ({text}) => {
 	return (
-		<button type="submit" className="btn">
-			<a>{props.text}</a>
+		<button type="submit" className="btn animated-btn">
+			{text}
 		</button>
 	)
 }

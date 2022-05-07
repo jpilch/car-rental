@@ -1,0 +1,27 @@
+main#login {
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem 5rem;
+    gap: 1rem;
+}
+
+main#login span {
+    font-weight: bold;
+    transition-property: color;
+    transition-duration: var(--duration-short);
+    transition-timing-function: ease-in-out;
+}
+
+main#login span:hover {
+    cursor: pointer;
+    color: var(--clr-highlight);
+}
+
+@media screen and (max-width: 550px) {
+    main#login {
+        text-align: center;
+    }
+}

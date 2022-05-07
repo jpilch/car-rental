@@ -1,14 +1,15 @@
 import LoginForm from "../components/LoginForm";
+import '../css/Login.css'
+import {Link} from 'react-router-dom'
 
-const Login = (props) => {
+const Login = () => {
 	return (
-		<div className="container">
-			<div className="content">
-				<h1>Login</h1>
-				<LoginForm/>
-				<p>First time here? <span>Sign up</span></p>
-			</div>
-		</div>
+		<main id={'login'}>
+			<LoginForm />
+			<p>First time here?
+				<span><Link to={'/register'}> Register</Link></span>
+			</p>
+		</main>
 	)
 }
 
