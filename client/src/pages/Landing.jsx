@@ -1,8 +1,26 @@
 import React from 'react'
 import '../css/Landing.css'
-import useWindowDimensions from "../hooks";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {setUser} from "../reducers/authSlice";
 
 export default function Landing() {
+
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		const checkIfUserLoggedIn = () => {
+			const savedUser = JSON.parse(
+				window.localStorage.getItem(
+					`${process.env.REACT_APP_LOGGED_IN_USER}`
+				)
+			)
+			if (savedUser !== null) {
+				dispatch(setUser(savedUser))
+			}
+		}
+		checkIfUserLoggedIn()
+	}, [])
 
 	return (
 			<main className={'landing'}>
