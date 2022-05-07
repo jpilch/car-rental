@@ -1,0 +1,20 @@
+button.btn.user-btn {
+    padding: 5px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    background: transparent;
+    transition-property: background-color, color, border-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+button.btn.user-btn:hover {
+    cursor: pointer;
+    background-color: var(--clr-highlight);
+    color: var(--clr-dark);
+    border-color: var(--clr-dark)
+}

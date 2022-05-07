@@ -4,17 +4,22 @@ import useWindowDimensions from "../hooks";
 import {useState, useEffect} from "react";
 import Icon from '@mdi/react'
 import { mdiMenu, mdiClose } from '@mdi/js';
+import {useDispatch, useSelector} from "react-redux";
+import {log} from "../reducers/authSlice";
 
 import DropDown from "./DropDown";
+import UserButton from "./UserButton";
 
 function Navbar() {
 	const {width} = useWindowDimensions()
 	const [displayLinks, setDisplayLinks] = useState(true)
 	const [displayDropdown, setDisplayDropdown] = useState(false)
 
+	const state = useSelector(state => state.authReducer)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		width <= 400
+		width <= 900
 			? setDisplayLinks(false)
 			: setDisplayLinks(true)
 	}, [width])
@@ -26,17 +31,13 @@ function Navbar() {
 						<h1><span>Moto</span>Rent</h1>
 					</div>
 					<nav>
-						<ul className={!displayLinks && 'none'}>
+						<ul className={!displayLinks ? 'none' : ''}>
 							<li><a className={'link'}>Cars</a></li>
 							<li><a className={'link'}>About</a></li>
 							<li><a className={'link'}>Contact</a></li>
-							<button
-								id='account-button'
-							>
-							 Login
-							</button>
+							<UserButton />
 						</ul>
-						<ul className={displayLinks && 'none'}>
+						<ul className={displayLinks ? 'none' : ''}>
 							<li onClick={() => setDisplayDropdown(!displayDropdown)}>
 								{
 									!displayDropdown
