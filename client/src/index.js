@@ -1,22 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {ContextProvider} from "./AppContext";
+// import {ContextProvider} from "./AppContext";
 import {BrowserRouter as Router} from "react-router-dom";
+import {store} from "./store";
+import {Provider} from "react-redux";
 
 // Stylesheet imports
 import './css/index.css';
 import './css/util.css'
-import './pages/CarList.css'
-import './components/CarItem.css';
-import './components/Button.css'
 
 import App from './App';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ContextProvider>
+		<Provider store={store}>
 			<App/>
-		</ContextProvider>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
