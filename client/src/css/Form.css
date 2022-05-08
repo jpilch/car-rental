@@ -7,6 +7,8 @@ div.form-container {
     background-color: var(--clr-dark);
     color: var(--clr-light);
     border-radius: 1rem;
+    animation-name: form;
+    animation-duration: var(--duration-mid);
 }
 
 div.form-container form {

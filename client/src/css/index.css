@@ -49,5 +49,14 @@ code {
     }
 }
 
+@keyframes form {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 
 
