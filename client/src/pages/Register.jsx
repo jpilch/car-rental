@@ -1,14 +1,15 @@
-import SignUpForm from "../components/RegisterForm";
+import RegisterForm from "../components/RegisterForm";
+import {Link} from "react-router-dom";
+import '../css/Register.css'
 
-const Register = (props) => {
+const Register = () => {
 	return (
-		<div className="container">
-			<div className="content">
-				<h1>Sign-up</h1>
-				<SignUpForm/>
-				<p>Already have an account? <span>Log in</span></p>
-			</div>
-		</div>
+		<main id="register">
+				<RegisterForm />
+				<p>Have an account?
+					<span><Link to={'/login'}> Login</Link></span>
+				</p>
+		</main>
 	)
 }
 
