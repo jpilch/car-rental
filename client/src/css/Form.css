@@ -3,7 +3,7 @@ div.form-container {
     justify-content: center;
     align-items: center;
     width: 30%;
-    height: 80%;
+    min-height: 80%;
     background-color: var(--clr-dark);
     color: var(--clr-light);
     border-radius: 1rem;
