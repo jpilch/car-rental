@@ -8,6 +8,7 @@ div#notification {
     justify-content: center;
     align-items: center;
 }
+
 div#notification p {
     width: 50%;
     height: 100%;

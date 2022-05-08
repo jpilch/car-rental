@@ -12,7 +12,7 @@ const Notification = () => {
     }
 
     return (
-        <div id="notification" className={show ? '' : 'none'} style={{
+        <div id="notification" style={{
             display: show ? '' : 'none'
         }}>
             <Icon size={1} path={mdiExclamationThick} />

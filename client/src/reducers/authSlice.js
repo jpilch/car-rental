@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import {notify} from "./notificationSlice";
 
 const initialState = {
     user: null
@@ -28,6 +29,7 @@ export const login = ({email, password}) => {
                 data
             )
             dispatch(setUser(response.data))
+            dispatch(notify(`Login Successful`, true))
         } catch (e) {
             console.log('error', e)
         }
