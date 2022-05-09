@@ -32,6 +32,7 @@ export const login = ({email, password}) => {
             dispatch(notify(`Login Successful`, true))
         } catch (e) {
             console.log('error', e)
+            dispatch(notify('Login Failed. Check you credentials', false))
         }
     }
 }

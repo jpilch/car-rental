@@ -6,6 +6,7 @@
     --clr-highlight: #FFD100;
     --duration-short: 0.25s;
     --duration-mid: 2s;
+    --duration-long: 6s;
     --text-primary: #def3f6;
     --bg-dark: #333;
     --text-secondary: #def3f6;
@@ -60,3 +61,20 @@ code {
 
 
 
+@keyframes notification {
+    from {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

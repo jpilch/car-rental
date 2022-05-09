@@ -32,7 +32,7 @@ export const notify = (message, success) => {
         dispatch(showNotification(true))
         setTimeout(() => {
             dispatch(showNotification(false))
-        }, 3000)
+        }, 6000)
     }
 }
 
