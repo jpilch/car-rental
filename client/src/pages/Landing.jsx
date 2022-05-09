@@ -1,26 +1,29 @@
 import React from 'react'
 import '../css/Landing.css'
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {setUser} from "../reducers/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setUser, setToken, checkValidityOf} from "../reducers/authSlice";
 
 export default function Landing() {
-
+	const {tokenValid} = useSelector(state => state.authReducer)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		const checkIfUserLoggedIn = () => {
-			const savedUser = JSON.parse(
-				window.localStorage.getItem(
-					`${process.env.REACT_APP_LOGGED_IN_USER}`
-				)
+		console.log('useEffect called')
+		const {token, user} = JSON.parse(
+			window.localStorage.getItem(
+				`${process.env.REACT_APP_LOGGED_IN_USER}`
 			)
-			if (savedUser !== null) {
-				dispatch(setUser(savedUser))
-			}
+		)
+		console.log(token, user)
+		if (token !== null) {
+			dispatch(checkValidityOf(token))
 		}
-		checkIfUserLoggedIn()
-	}, [])
+		if (tokenValid) {
+			dispatch(setUser(user))
+			dispatch(setToken(token))
+		}
+	}, [tokenValid])
 
 	return (
 			<main className={'landing'}>
