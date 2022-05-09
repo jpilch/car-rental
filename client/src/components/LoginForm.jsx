@@ -1,20 +1,30 @@
 import Button from "./Button";
 import '../css/Form.css'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../reducers/authSlice";
+import {useEffect} from "react";
+import {useNavigate} from 'react-router-dom'
 
 const LoginForm = () => {
 
 	const dispatch = useDispatch()
+	const {user, token} = useSelector(state => state.authReducer)
+	const navigate = useNavigate()
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
 		const email = e.target.email.value
 		const password = e.target.password.value
 		e.target.email.value = ''
 		e.target.password.value = ''
-		dispatch(login({email, password}))
+		dispatch(login(email, password))
 	}
+
+	useEffect(() => {
+		if (user && token) {
+			navigate('/')
+		}
+	}, [user, token])
 
 	return (
 		<div className="form-container">
