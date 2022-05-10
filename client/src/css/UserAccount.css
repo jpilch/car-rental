@@ -1,0 +1,25 @@
+main#account {
+    min-height: 92vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main#account .container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main#account section.greeting {
+    flex: 1;
+}
+
+main#account section.manage {
+    flex: 2;
+}

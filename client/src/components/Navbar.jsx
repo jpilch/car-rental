@@ -34,7 +34,7 @@ function Navbar() {
 							<li><a className={'link'}>Cars</a></li>
 							<li><a className={'link'}>About</a></li>
 							<li><a className={'link'}>Contact</a></li>
-							<Link to={user ? '/account' : '/login'}>
+							<Link to={user ? '/my-account' : '/login'}>
 								<Button text={user ? 'My Account' : 'Login'} />
 							</Link>
 						</ul>

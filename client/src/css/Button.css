@@ -1,0 +1,48 @@
+button.btn {
+    padding: 5px 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: transparent;
+}
+
+button.btn:hover {
+    cursor: pointer;
+}
+
+button.btn.animated-btn {
+    transition-property: background-color, color, border-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+}
+
+button.btn.animated-btn:hover {
+    cursor: pointer;
+    background-color: var(--clr-highlight);
+    color: var(--clr-dark);
+    border-color: var(--clr-dark)
+}
+
+
+button.btn.btn-light {
+    border: 2px solid var(--clr-light);
+    color: var(--clr-light);
+}
+
+button.btn.btn-dark {
+    border: 2px solid var(--clr-dark);
+    color: var(--clr-dark);
+}
+
+button.btn.btn-light.animated-btn:hover {
+    background-color: var(--clr-highlight);
+    color: var(--clr-dark);
+    border-color: var(--clr-dark)
+}
+
+button.btn.btn-dark.animated-btn:hover {
+    background-color: var(--clr-red);
+    color: var(--clr-light);
+    border-color: var(--clr-lighter);
+}
