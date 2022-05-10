@@ -5,7 +5,8 @@ import {notify} from "./notificationSlice";
 const initialState = {
     token: null,
     user: null,
-    tokenValid: false
+    tokenValid: false,
+    tokenChecked : false,
 }
 
 const authSlice = createSlice({
@@ -26,11 +27,21 @@ const authSlice = createSlice({
         },
         setTokenValid: (state, action) => {
             state.tokenValid = action.payload
+        },
+        setTokenChecked: (state, action) => {
+            state.tokenChecked = action.payload
+        },
+        logout: (state) => {
+            window.localStorage.removeItem(
+                `${process.env.REACT_APP_LOGGED_IN_USER}`
+            )
+            state.user = null
+            state.token = null
         }
     }
 })
 
-export const {setUser, setToken, saveUserAndToken, setTokenValid} = authSlice.actions
+export const {setUser, setToken, saveUserAndToken, setTokenValid, setTokenChecked, logout} = authSlice.actions
 
 export const login = (email, password) => {
     return async dispatch => {
@@ -58,7 +69,6 @@ export const login = (email, password) => {
             }))
             dispatch(notify('Login Successful', true))
         } catch (e) {
-            console.log('error', e)
             dispatch(notify('Login Failed. Check you credentials', false))
         }
     }
@@ -66,20 +76,19 @@ export const login = (email, password) => {
 
 export const checkValidityOf = (token) => {
     return async dispatch => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/users/me`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
+        try {
+            const response = await axios.get(
+                `${process.env.REACT_APP_API_URL}/users/me`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
-        )
-        console.log(response)
-        if (response.status !== 200) {
+            )
+            dispatch(setTokenValid(true))
+        } catch (e) {
             dispatch(setTokenValid(false))
-            return
         }
-        dispatch(setTokenValid(true))
     }
 }
 

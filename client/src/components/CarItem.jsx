@@ -8,7 +8,12 @@ import {FaMoneyBillWaveAlt} from 'react-icons/fa'
 import {GiCarDoor} from 'react-icons/gi'
 
 function CarItem({id, name, manufacturerName, img_url, drive_cat, person_capacity, trunk_capacity, height, length, width, avg_fuel_consumption}) {
-  return (
+
+    const carImgStyle = {
+        background: `url(${img_url}) center center/contain no-repeat`
+    }
+
+    return (
     <div className='car-item'>
         <div className="content">
             <div className="car-info">
@@ -87,8 +92,8 @@ function CarItem({id, name, manufacturerName, img_url, drive_cat, person_capacit
                     read more / rent now
                 </div>
             </div>
-            <div className="car-img">
-                <img src={img_url} alt="model picture here" />
+            <div className="car-img" style={carImgStyle}>
+                {/*<img src={img_url} alt="model picture here" />*/}
             </div>
         </div>
     </div>
