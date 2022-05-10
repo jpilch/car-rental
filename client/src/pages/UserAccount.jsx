@@ -1,46 +1,33 @@
-import {useContext} from "react";
-import {AppContext} from "../AppContext";
+import '../css/UserAccount.css'
 import Button from "../components/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useNavigate} from 'react-router-dom'
+import {useEffect} from "react";
+import {notify} from "../reducers/notificationSlice";
 
-const UserAccount = (props) => {
-    const {user, handleLogout} = useContext(AppContext)
+const UserAccount = () => {
+    const navigate = useNavigate()
 
-    const accountOptionsContainerStyle = {
-        height: '800px',
-        paddingTop: '300px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '20px'
-    }
-
-    const accountOptionsStyle = {
-        border: '1px solid #ccc',
-        borderRadius: '20px',
-        padding: '40px 60px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '15px'
-    }
+    const dispatch = useDispatch()
+    const {user} = useSelector(state => state.authReducer)
 
     return (
-        <div style={accountOptionsContainerStyle}>
-            <h1>Hi there, {user.full_name}</h1>
-            <div style={accountOptionsStyle}>
-                <h3>Information</h3>
-                <h3>History</h3>
-                <h3>Settings</h3>
+        <main id="account">
+            <div className="container">
+                <section className="greeting">
+                    <h1>Hi there{user.full_name && `, ${user.full_name}`}</h1>
+                </section>
+                <section className="manage">
+                    <Link to={'/my-account/orders'}>
+                        <p>Manage Orders</p>
+                    </Link>
+                    <Link to={'/my-account/settings'}>
+                        <p>Account Settings</p>
+                    </Link>
+                </section>
+                <Button text={'logout'} dark={true}/>
             </div>
-            <button
-                className={'btn'}
-                onClick={() => handleLogout()}
-            >
-                <a href="/">Logout</a>
-            </button>
-        </div>
+        </main>
     )
 }
 

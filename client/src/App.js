@@ -5,8 +5,8 @@ import Footer from './components/Footer';
 import Login from "./pages/Login";
 // import CarList from './pages/CarList';
 import Register from "./pages/Register";
-// import UserAccount from "./pages/UserAccount";
-
+import Notification from "./components/Notification";
+import UserAccount from "./pages/UserAccount";
 
 
 function App() {
@@ -14,10 +14,12 @@ function App() {
 		<>
 			<Router>
 				<Navbar/>
+				<Notification />
 				<Routes>
 					<Route path='/' element={<Landing/>}/>
 					<Route path='/login' element={<Login/>}/>
 					<Route path='/register' element={<Register />}/>
+					<Route path='/my-account' element={<UserAccount />}/>
 				</Routes>
 				<Footer/>
 				< /Router>

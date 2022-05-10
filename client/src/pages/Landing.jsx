@@ -9,13 +9,11 @@ export default function Landing() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		console.log('useEffect called')
 		const {token, user} = JSON.parse(
 			window.localStorage.getItem(
 				`${process.env.REACT_APP_LOGGED_IN_USER}`
 			)
 		)
-		console.log(token, user)
 		if (token !== null) {
 			dispatch(checkValidityOf(token))
 		}
