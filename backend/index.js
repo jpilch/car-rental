@@ -1,16 +1,17 @@
 const express = require('express')
 const {carModels} = require('./_data')
+const {morganLogger} = require('./middleware')
 
 const app = express()
 
 app.use(express.json())
+app.use(morganLogger)
 
 app.get('/', (req, res) => {
     res.send('Hello from MotoRent API!').end()
 })
 
 app.get('/api/car-models', (req, res) => {
-    console.log(carModels, typeof carModels)
     res.json(carModels)
 })
 
