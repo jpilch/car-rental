@@ -1,6 +1,6 @@
 const morgan = require('morgan')
 
-const morganLogger = morgan('tiny')
+const morganLogger = morgan('combined')
 
 module.exports = {
     morganLogger
