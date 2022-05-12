@@ -2,6 +2,25 @@ const morgan = require('morgan')
 
 const morganLogger = morgan('combined')
 
+const errorHandler = (err, req, res, next) => {
+    console.log('error handler called')
+    console.log(err.message)
+    if (err.name === 'CastError') {
+        return res.status(400).send({
+            err: 'Malformed id'
+        })
+    }
+    next(err)
+}
+
+const unknownEndpoint = (req, res, next) => {
+    res.status(400).send({
+        err: 'Unknown endpoint'
+    })
+}
+
 module.exports = {
-    morganLogger
+    morganLogger,
+    errorHandler,
+    unknownEndpoint
 }
