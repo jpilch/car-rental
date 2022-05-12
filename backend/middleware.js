@@ -9,11 +9,15 @@ const errorHandler = (err, req, res, next) => {
         return res.status(400).send({
             err: 'Malformed id'
         })
+    } else if (err.name === 'ValidationError') {
+        return res.status(400).send({
+            err: err.message
+        })
     }
     next(err)
 }
 
-const unknownEndpoint = (req, res, next) => {
+const unknownEndpoint = (req, res) => {
     res.status(400).send({
         err: 'Unknown endpoint'
     })

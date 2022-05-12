@@ -35,12 +35,13 @@ app.get('/api/car-models/:id', (req, res, next) => {
 })
 
 
-app.post('/api/car-models', (req, res) => {
-    console.log(req.body)
+app.post('/api/car-models', (req, res, next) => {
     const carModel = new CarModel(req.body)
-    carModel.save().then(savedCarModel => {
-        res.json(savedCarModel)
-    })
+    carModel.save()
+        .then(savedCarModel => {
+            res.json(savedCarModel)
+        })
+        .catch(err => next(err))
 })
 
 app.put('/api/car-models/:id', (req, res, next) => {
