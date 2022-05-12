@@ -21,7 +21,6 @@ app.get('/api/car-models', async (req, res) => {
     res.json(carModels)
 })
 
-
 app.get('/api/car-models/:id', (req, res, next) => {
     CarModel.findById(req.params.id)
         .then(carModel => {
@@ -34,7 +33,6 @@ app.get('/api/car-models/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-
 app.post('/api/car-models', (req, res, next) => {
     const carModel = new CarModel(req.body)
     carModel.save()
@@ -45,10 +43,8 @@ app.post('/api/car-models', (req, res, next) => {
 })
 
 app.put('/api/car-models/:id', (req, res, next) => {
-    CarModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        .then((updatedCarModel => {
-            res.json(updatedCarModel)
-        }))
+    CarModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then(updatedCarModel => res.json(updatedCarModel))
         .catch(err => next(err))
 })
 
@@ -61,7 +57,7 @@ app.delete('/app/car-models/:id', (req, res, err, next) => {
 })
 
 app.get('/api/cars', (req, res) => {
-    res.json({'msg': 'car instances here'})
+    res.json({ msg: 'car instances here' })
 })
 
 app.use(errorHandler)
