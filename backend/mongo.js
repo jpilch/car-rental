@@ -1,8 +1,17 @@
 const mongoose = require('mongoose')
-console.log(process.env.MONGODB_URI)
-mongoose.connect(
-    `${process.env.MONGODB_URI}`
-)
+
+const username = process.argv[2]
+const password = process.argv[3]
+
+try {
+    mongoose.connect(
+        `mongodb+srv://${username}:${password}@cluster0.mulf6.mongodb.net/MotoRent?retryWrites=true&w=majority`
+    )
+} catch (e) {
+    console.log('error', e)
+    process.exit(1)
+}
+
 
 const carModelSchema = new mongoose.Schema({
     manufacturer: String,
@@ -32,6 +41,6 @@ const carModel = new CarModel({
     "drive_cat": "FWD"
 })
 
-carModel.save()
-console.log('saved')
-mongoose.connection.close()
+carModel.save().then(result => {
+    mongoose.connection.close()
+})
