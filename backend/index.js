@@ -1,9 +1,12 @@
 const express = require('express')
-const {carModels} = require('./_data')
 const {morganLogger} = require('./middleware')
+
+// models
+const CarModel = require('./models/carmodel')
 
 const app = express()
 
+// middleware
 app.use(express.json())
 app.use(morganLogger)
 
@@ -11,39 +14,42 @@ app.get('/', (req, res) => {
     res.send('Hello from MotoRent API!').end()
 })
 
-app.get('/api/car-models', (req, res) => {
+app.get('/api/car-models', async (req, res) => {
+    const carModels = await CarModel.find({})
     res.json(carModels)
 })
 
 app.get('/api/car-models/:id', (req, res) => {
     const id = +req.params.id
-    const carModel = carModels.find(cm => cm.id === id)
-    if (!carModel) {
-        return res.status(404).end()
-    }
-    res.status(200).json(carModel)
+    CarModel.findById(id).then(carModel => {
+        res.json(carModel)
+    })
 })
 
-app.delete('/api/car-models/:id', (req, res) => {
-    const id = +req.params.id
-    const carModel = carModels.find(cm => cm.id === id)
-    if (!carModel) {
-        return res.status(404).end()
-    }
-    carModels.filter(cm => cm.id !== id)
-    res.status(201).end()
-})
 
 app.post('/api/car-models', (req, res) => {
-    const carModel = req.body
-    carModels.concat(carModel)
-    res.json(carModel)
+    const body = req.body
+    const carModel = new CarModel({
+        manufacturer: body.manufacturer,
+        name: body.name,
+        img_url: body.img_url,
+        person_capacity: body.person_capacity,
+        trunk_capacity: body.person_capacity,
+        avg_fuel_consumption: body.avg_fuel_consumption,
+        length: body.length,
+        width: body.width,
+        height: body.height,
+        drive_cat: body.drive_cat
+    })
+    carModel.save().then(savedCarModel => {
+        res.json(savedCarModel)
+    })
 })
 
 app.get('/api/cars', (req, res) => {
     res.json({'msg': 'car instances here'})
 })
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on port ${process.env.PORT}`)
+app.listen(process.env.PORT || 3001, () => {
+    console.log(`Server running on port ${process.env.PORT || 3001}`)
 })
