@@ -36,22 +36,27 @@ app.get('/api/car-models/:id', (req, res, next) => {
 
 
 app.post('/api/car-models', (req, res) => {
-    const body = req.body
-    const carModel = new CarModel({
-        manufacturer: body.manufacturer,
-        name: body.name,
-        img_url: body.img_url,
-        person_capacity: body.person_capacity,
-        trunk_capacity: body.person_capacity,
-        avg_fuel_consumption: body.avg_fuel_consumption,
-        length: body.length,
-        width: body.width,
-        height: body.height,
-        drive_cat: body.drive_cat
-    })
+    console.log(req.body)
+    const carModel = new CarModel(req.body)
     carModel.save().then(savedCarModel => {
         res.json(savedCarModel)
     })
+})
+
+app.put('/api/car-models/:id', (req, res, next) => {
+    CarModel.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        .then((updatedCarModel => {
+            res.json(updatedCarModel)
+        }))
+        .catch(err => next(err))
+})
+
+app.delete('/app/car-models/:id', (req, res, err, next) => {
+    CarModel.findByIdAndRemove(req.params.id)
+        .then(() => {
+            res.status(204).end()
+        })
+        .catch(err => next(err))
 })
 
 app.get('/api/cars', (req, res) => {
