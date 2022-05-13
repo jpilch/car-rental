@@ -1,6 +1,5 @@
 const carModels = [
     {
-        "id": 1,
         "manufacturer": "Toyota",
         "name": "Avalon",
         "img_url": "https://cdn.jdpower.com/JDPA_2020-Toyota-Avalon-XLE-Hybrid-Harbor-Gray-Front-Quarter.jpg",
@@ -13,7 +12,6 @@ const carModels = [
         "drive_cat": "FWD"
     },
     {
-        "id": 2,
         "manufacturer": "Toyota",
         "name": "Yaris",
         "img_url": "https://img-optimize.toyota-europe.com/resize/ccis/680x680/zip/pl/product-token/29905d6b-5079-4648-a605-cea0f4cc21ef/vehicle/8718abb8-324e-41b9-b843-2ac7e6feb700/image-quality/70/hero-exterior-4_2rz.png",
@@ -26,7 +24,6 @@ const carModels = [
         "drive_cat": "FWD"
     },
     {
-        "id": 3,
         "manufacturer": "Volkswagen",
         "name": "Taos",
         "img_url": "https://thumbor.forbes.com/thumbor/fit-in/960x/filters:format(jpg)/https://www.forbes.com/wheels/wp-content/uploads/2020/09/2021-volkswagen-Taos-compact-suv.png",
@@ -39,7 +36,6 @@ const carModels = [
         "drive_cat": "AWD"
     },
     {
-        "id": 4,
         "manufacturer": "Volkswagen",
         "name": "Jetta",
         "img_url": "https://d-mf.ppstatic.pl/art/af/yo/d08d00wk4wcwwoo88s0wg/vw-new-midsize-coupe.1200.jpg",
