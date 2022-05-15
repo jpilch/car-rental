@@ -25,7 +25,7 @@ const populateCars = async () => {
     await Car.deleteMany({})
     const carModels = await carModelsInDb()
     const carModelIds = carModels.map(carModel => carModel._id)
-    const objects = carModelIds.map(carModelId => new Car({ carModel: carModelId }))
+    const objects = carModelIds.map(carModelId => new Car({ car_model: carModelId }))
     const promiseArray = objects.map(object => object.save())
     await Promise.all(promiseArray)
 }
