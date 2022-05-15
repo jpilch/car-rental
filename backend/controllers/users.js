@@ -15,7 +15,7 @@ usersRouter.post('/', async (req, res) => {
             err: 'This username is already taken'
         })
     }
-    const passwordHash = bcrypt.hash(password, 10)
+    const passwordHash = await bcrypt.hash(password, 10)
     const user = new User({
         username,
         full_name,
