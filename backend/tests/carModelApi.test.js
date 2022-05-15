@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const helper = require('./carModelTestHelper')
+const helper = require('./testHelper')
 const supertest = require('supertest')
 const app = require('../app')
 const CarModel = require('../models/carmodel')
