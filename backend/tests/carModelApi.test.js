@@ -7,10 +7,7 @@ const mockData = require('../utils/_data')
 const api = supertest(app)
 
 beforeEach(async () => {
-    await CarModel.deleteMany({})
-    const objects = mockData.carModels.map(mockCarModel => new CarModel(mockCarModel))
-    const promiseArray = objects.map(object => object.save())
-    await Promise.all(promiseArray)
+   await helper.populateCarModels()
 })
 
 test('car models are returned as json', async () => {
