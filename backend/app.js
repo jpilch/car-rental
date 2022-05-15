@@ -7,6 +7,7 @@ const config = require('./utils/config')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 const carModelsRouter = require('./controllers/carModels')
+const carsRouter = require('./controllers/cars')
 
 mongoose.connect(`${config.MONGODB_URI}`)
     .then(() => {
@@ -24,6 +25,7 @@ if (config.NODE_ENV !== 'test') {
 }
 
 app.use('/api/car-models', carModelsRouter)
+app.use('/api/cars', carsRouter)
 
 app.use(middleware.errorHandler)
 app.use(middleware.unknownEndpoint)
