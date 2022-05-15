@@ -1,5 +1,6 @@
 const carsRouter = require('express').Router()
 const Car = require('../models/car')
+const CarModel = require('../models/carmodel')
 
 carsRouter.get('', async (req, res) => {
     const cars = await Car.find({})
@@ -13,6 +14,17 @@ carsRouter.get('/:id', async (req, res) => {
     } else {
         res.status(404).end()
     }
+})
+
+carsRouter.post('/', async (req, res) => {
+    const carModel = await CarModel.findById(req.body.car_model)
+    const car = new Car({
+        car_model: carModel._id
+    })
+    const savedCar = await car.save()
+    carModel.cars = carModel.cars.concat(savedCar._id)
+    await carModel.save()
+    res.status(201).json(savedCar)
 })
 
 carsRouter.put('/:id', async (req, res) => {

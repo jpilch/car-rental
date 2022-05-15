@@ -41,7 +41,13 @@ const carModelSchema = new mongoose.Schema({
     drive_cat: {
         type: String,
         required: true
-    }
+    },
+    cars: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Car'
+        }
+    ]
 })
 
 carModelSchema.set('toJSON', {

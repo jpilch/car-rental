@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const carSchema = new mongoose.Schema({
-    carModel: {
+    car_model: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CarModel',
         required: true
