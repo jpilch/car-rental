@@ -21,8 +21,31 @@ test('car models are returned as json', async () => {
 
 test('all car models are returned', async () => {
     const response = await api.get('/api/car-models').expect(200)
-    console.log(response.body)
     expect(response.body.length).toBe(mockData.carModels.length)
+})
+
+test('car model can be created', async () => {
+    const newCarModel = {
+        "manufacturer": "Volkswagen",
+        "name": "Jetta",
+        "img_url": "test",
+        "person_capacity": 5,
+        "trunk_capacity": 430,
+        "avg_fuel_consumption": 8.0,
+        "length": 4,
+        "width": 1,
+        "height": 1,
+        "drive_cat": "FWD"
+    }
+    await api
+        .post('/api/car-models')
+        .send(newCarModel)
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+    const response = await api.get('/api/car-models')
+    const modelNames = response.body.map(carModel => carModel.name)
+    expect(modelNames).toContain('Jetta')
+    expect(response.body).toHaveLength(mockData.carModels.length + 1)
 })
 
 afterAll(() => {

@@ -18,7 +18,7 @@ carModelsRouter.get('/:id', async (req, res, next) => {
 carModelsRouter.post('/', async (req, res, next) => {
     const carModel = new CarModel(req.body)
     const saveCarModel = await carModel.save()
-    res.json(saveCarModel)
+    res.status(201).json(saveCarModel)
 })
 
 carModelsRouter.put('/:id', async (req, res, next) => {

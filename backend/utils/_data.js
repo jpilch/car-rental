@@ -34,19 +34,19 @@ const carModels = [
         "width": 1.84,
         "height": 1.63,
         "drive_cat": "AWD"
-    },
-    {
-        "manufacturer": "Volkswagen",
-        "name": "Jetta",
-        "img_url": "https://d-mf.ppstatic.pl/art/af/yo/d08d00wk4wcwwoo88s0wg/vw-new-midsize-coupe.1200.jpg",
-        "person_capacity": 5,
-        "trunk_capacity": 430,
-        "avg_fuel_consumption": 8.0,
-        "length": 4.66,
-        "width": 1.77,
-        "height": 1.45,
-        "drive_cat": "FWD"
     }
+    // {
+    //     "manufacturer": "Volkswagen",
+    //     "name": "Jetta",
+    //     "img_url": "https://d-mf.ppstatic.pl/art/af/yo/d08d00wk4wcwwoo88s0wg/vw-new-midsize-coupe.1200.jpg",
+    //     "person_capacity": 5,
+    //     "trunk_capacity": 430,
+    //     "avg_fuel_consumption": 8.0,
+    //     "length": 4.66,
+    //     "width": 1.77,
+    //     "height": 1.45,
+    //     "drive_cat": "FWD"
+    // }
 ]
 
 
