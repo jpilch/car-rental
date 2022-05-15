@@ -18,7 +18,9 @@ mongoose.connect(`${config.MONGODB_URI}`)
 
 app.use(cors())
 app.use(express.json())
-app.use(middleware.morganLogger)
+if (config.NODE_ENV !== 'test') {
+    app.use(middleware.morganLogger)
+}
 
 app.use('/api/car-models', carModelsRouter)
 
