@@ -1,5 +1,6 @@
 const CarModel = require('../models/carmodel')
 const Car = require('../models/car')
+const User = require('../models/user')
 const {
     carModels
 } = require('../utils/_data')
@@ -30,7 +31,13 @@ const populateCars = async () => {
     await Promise.all(promiseArray)
 }
 
+const usersInDb = async () => {
+    const users = await User.find({})
+    return users
+}
+
 module.exports = {
     carModelsInDb, populateCarModels,
-    carsInDb, populateCars
+    carsInDb, populateCars,
+    usersInDb
 }
