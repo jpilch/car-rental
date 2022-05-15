@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 
 const carSchema = new mongoose.Schema({
-    isAvailable: {
-        type: Boolean,
-        required: true
-    },
     carModel: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CarModel',
