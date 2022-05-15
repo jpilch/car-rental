@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const helper = require('./carModelTestHelper')
 const supertest = require('supertest')
 const app = require('../app')
 const CarModel = require('../models/carmodel')
@@ -47,6 +48,18 @@ test('car model can be created', async () => {
     expect(modelNames).toContain('Jetta')
     expect(response.body).toHaveLength(mockData.carModels.length + 1)
 })
+
+test('car model can be deleted', async () => {
+    const carModelsBefore = await helper.carModelsInDb()
+    const carModelId = carModelsBefore[0]._id.toString()
+    expect(carModelId).toBeDefined()
+    const response = await api.delete('/api/car-models/' + carModelId)
+        .expect(204)
+    const carModelsAfter = await helper.carModelsInDb()
+    expect(carModelsAfter).toHaveLength(carModelsBefore.length - 1)
+
+})
+
 
 afterAll(() => {
     mongoose.connection.close()
