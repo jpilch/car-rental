@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const helper = require('./testHelper')
 const supertest = require('supertest')
 const app = require('../app')
-const Car = require('../models/car')
 const mockData = require('../utils/_data')
 const api = supertest(app)
 

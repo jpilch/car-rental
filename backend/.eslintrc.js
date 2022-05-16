@@ -27,16 +27,16 @@ module.exports = {
             'error',
             'never'
         ],
-        "eqeqeq": "error",
-        "object-curly-spacing": [
-            "error",
-            "always"
+        'eqeqeq': 'error',
+        'object-curly-spacing': [
+            'error',
+            'always'
         ],
-        "arrow-spacing": [
-            "error", {
-                "before": true, "after": true
+        'arrow-spacing': [
+            'error', {
+                'before': true, 'after': true
             }
         ],
-        "no-trailing-spaces": "error"
+        'no-trailing-spaces': 'error'
     }
 }
