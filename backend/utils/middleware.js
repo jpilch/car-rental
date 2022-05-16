@@ -20,6 +20,7 @@ const userExtractor = (req, res, next) => {
             req.user = jwt.verify(req.token, SECRET)
         } catch (e) {
             next(e)
+            return
         }
     } else {
         req.user = null
