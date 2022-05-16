@@ -38,8 +38,12 @@ const errorHandler = (err, req, res, next) => {
             err: err.message
         })
     } else if (err.name === 'JsonWebTokenError') {
-        return res.status(400).send({
+        return res.status(401).send({
             err: 'JWT malformed'
+        })
+    } else if (err.name === 'TokenExpiredError') {
+        return res.status(401).send({
+            err: 'JWT expired'
         })
     }
     next(err)
