@@ -25,6 +25,8 @@ app.use(express.json())
 if (config.NODE_ENV !== 'test') {
     app.use(middleware.morganLogger)
 }
+app.use(middleware.tokenExtractor)
+app.use(middleware.userExtractor)
 
 app.use('/api/car-models', carModelsRouter)
 app.use('/api/cars', carsRouter)

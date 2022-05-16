@@ -1,6 +1,31 @@
 const morgan = require('morgan')
+const jwt = require('jsonwebtoken')
+const { SECRET } = require('../utils/config')
 
 const morganLogger = morgan('combined')
+
+const tokenExtractor = (req, res, next) => {
+    const authorization = req.get('authorization')
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+        req.token = authorization.substring(7)
+    } else {
+        req.token = null
+    }
+    next()
+}
+
+const userExtractor = (req, res, next) => {
+    if (req.token) {
+        try {
+            req.user = jwt.verify(req.token, SECRET)
+        } catch (e) {
+            next(e)
+        }
+    } else {
+        req.user = null
+    }
+    next()
+}
 
 const errorHandler = (err, req, res, next) => {
     if (err.name === 'CastError') {
@@ -10,6 +35,10 @@ const errorHandler = (err, req, res, next) => {
     } else if (err.name === 'ValidationError') {
         return res.status(400).send({
             err: err.message
+        })
+    } else if (err.name === 'JsonWebTokenError') {
+        return res.status(400).send({
+            err: 'JWT malformed'
         })
     }
     next(err)
@@ -23,6 +52,8 @@ const unknownEndpoint = (req, res) => {
 
 module.exports = {
     morganLogger,
+    tokenExtractor,
+    userExtractor,
     errorHandler,
     unknownEndpoint
 }
