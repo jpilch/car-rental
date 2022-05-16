@@ -7,11 +7,11 @@ const api = supertest(app)
 
 beforeEach(async () => {
     await User.deleteMany({})
-    const sampleUser = new User({
+    await api.post('/api/users').send({
         username: 'sample',
-        passwordHash: 'notARealHash'
+        full_name: 'sample',
+        password: 'sample'
     })
-    await sampleUser.save()
 })
 
 test('users are returned as json', async () => {
@@ -46,6 +46,22 @@ test('user with duplicate username cannot be created', async () => {
         .expect(400)
     expect(response.body).toEqual({
         err: 'This username is already taken'
+    })
+})
+
+test('existing user can successfully login', async () => {
+    const response = await api
+        .post('/api/login')
+        .send({
+            username: 'sample',
+            password: 'sample'
+        })
+        .expect(200)
+    expect(response.body.token).toBeDefined()
+    delete response.body.token
+    expect(response.body).toEqual({
+        username: 'sample',
+        full_name: 'sample'
     })
 })
 
