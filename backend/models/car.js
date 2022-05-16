@@ -3,9 +3,14 @@ const mongoose = require('mongoose')
 const carSchema = new mongoose.Schema({
     car_model: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'CarModel',
-        required: true
-    }
+        ref: 'CarModel'
+    },
+    agreements: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Agreement'
+        }
+    ]
 })
 
 carSchema.set('toJSON', {

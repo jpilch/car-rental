@@ -2,8 +2,8 @@ const carsRouter = require('express').Router()
 const Car = require('../models/car')
 const CarModel = require('../models/carmodel')
 
-carsRouter.get('', async (req, res) => {
-    const cars = await Car.find({})
+carsRouter.get('/', async (req, res) => {
+    const cars = await Car.find({}).populate('agreements')
     res.json(cars)
 })
 

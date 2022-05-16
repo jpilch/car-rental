@@ -6,7 +6,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     full_name: String,
-    passwordHash: String
+    passwordHash: String,
+    agreements: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Agreement'
+        }
+    ]
 })
 
 userSchema.set('toJSON', {

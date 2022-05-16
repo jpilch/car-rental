@@ -29,4 +29,4 @@ agreementSchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('agreement', agreementSchema)
+module.exports = mongoose.model('Agreement', agreementSchema)
