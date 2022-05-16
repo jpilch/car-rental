@@ -26,7 +26,9 @@ function Navbar() {
 		<>
 			<header>
 					<div>
-						<h1><span>Moto</span>Rent</h1>
+						<Link to={'/'}>
+							<h1><span>Moto</span>Rent</h1>
+						</Link>
 					</div>
 					<nav>
 						<ul className={!displayLinks ? 'none' : ''}>
