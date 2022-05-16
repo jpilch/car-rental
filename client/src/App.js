@@ -3,7 +3,6 @@ import Landing from './pages/Landing';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from "./pages/Login";
-// import CarList from './pages/CarList';
 import Register from "./pages/Register";
 import Notification from "./components/Notification";
 import UserAccount from "./pages/UserAccount";

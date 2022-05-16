@@ -3,10 +3,8 @@ import axios from "axios";
 import {notify} from "./notificationSlice";
 
 const initialState = {
-    token: null,
     user: null,
-    tokenValid: false,
-    tokenChecked : false,
+    token: null
 }
 
 const authSlice = createSlice({
@@ -25,11 +23,19 @@ const authSlice = createSlice({
                 JSON.stringify(action.payload)
             )
         },
-        setTokenValid: (state, action) => {
-            state.tokenValid = action.payload
-        },
-        setTokenChecked: (state, action) => {
-            state.tokenChecked = action.payload
+        extractUserAndToken: (state, action) => {
+            const savedUserAndToken = JSON.parse(
+                window.localStorage.getItem(
+                    `${process.env.REACT_APP_LOGGED_IN_USER}`
+                )
+            )
+            if (savedUserAndToken) {
+                state.user = {
+                    username: savedUserAndToken.username,
+                    full_name: savedUserAndToken.full_name
+                }
+                state.token = savedUserAndToken.token
+            }
         },
         logout: (state) => {
             window.localStorage.removeItem(
@@ -41,53 +47,26 @@ const authSlice = createSlice({
     }
 })
 
-export const {setUser, setToken, saveUserAndToken, setTokenValid, setTokenChecked, logout} = authSlice.actions
+export const {setUser, setToken, saveUserAndToken, extractUserAndToken, logout} = authSlice.actions
 
-export const login = (email, password) => {
+export const login = (username, password) => {
     return async dispatch => {
         try {
-            const data = new FormData()
-            data.append('username', email)
-            data.append('password', password)
-            const tokenResponse = await axios.post(
-                `${process.env.REACT_APP_API_URL}/token`,
-                data
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/login`,
+                {username, password}
             )
-            const loginResponse = await axios.get(
-                `${process.env.REACT_APP_API_URL}/users/me`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${tokenResponse.data.access_token}`
-                    }
-                }
-            )
-            dispatch(setUser(loginResponse.data))
-            dispatch(setToken(tokenResponse.data.access_token))
-            dispatch(saveUserAndToken({
-                token: tokenResponse.data.access_token,
-                user: loginResponse.data
-            }))
-            dispatch(notify('Login Successful', true))
+            if (response.status === 200) {
+                dispatch(setUser({
+                    username: response.data.username,
+                    full_name: response.data.full_name
+                }))
+                dispatch(setToken(response.data.token))
+                dispatch(saveUserAndToken(response.data))
+                dispatch(notify('Login Successful', true))
+            }
         } catch (e) {
             dispatch(notify('Login Failed. Check you credentials', false))
-        }
-    }
-}
-
-export const checkValidityOf = (token) => {
-    return async dispatch => {
-        try {
-            const response = await axios.get(
-                `${process.env.REACT_APP_API_URL}/users/me`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
-            dispatch(setTokenValid(true))
-        } catch (e) {
-            dispatch(setTokenValid(false))
         }
     }
 }

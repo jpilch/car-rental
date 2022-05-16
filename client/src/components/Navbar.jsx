@@ -1,21 +1,20 @@
 import React from "react";
 import '../css/Navbar.css'
-import useWindowDimensions from "../hooks";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 import {useState, useEffect} from "react";
 import Icon from '@mdi/react'
 import { mdiMenu, mdiClose } from '@mdi/js';
-import {useDispatch, useSelector} from "react-redux";
 import DropDown from "./DropDown";
 import Button from "./Button";
 import {Link} from 'react-router-dom'
+import useAuth from "../hooks/useAuth";
 
 function Navbar() {
 	const {width} = useWindowDimensions()
 	const [displayLinks, setDisplayLinks] = useState(true)
 	const [displayDropdown, setDisplayDropdown] = useState(false)
 
-	const {user} = useSelector(state => state.authReducer)
-	const dispatch = useDispatch()
+	const {user} = useAuth()
 
 	useEffect(() => {
 		width <= 900

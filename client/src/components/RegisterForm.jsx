@@ -18,8 +18,8 @@ const RegisterForm = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="email">Email</label>
-					<input type="email" id="email"
+					<label htmlFor="username">Email</label>
+					<input type="username" id="username"
 					/>
 				</div>
 				<div>

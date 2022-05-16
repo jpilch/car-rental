@@ -2,26 +2,21 @@ import '../css/UserAccount.css'
 import Button from "../components/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from 'react-router-dom'
-import {useAuth} from "../hooks";
 import Loading from "../components/Loading";
 import {notify} from "../reducers/notificationSlice";
 import {logout} from "../reducers/authSlice";
+import useAuth from "../hooks/useAuth";
 
 const UserAccount = () => {
-    useAuth()
-    const {user, tokenChecked, tokenValid, isLoggedOut} = useSelector(state => state.authReducer)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    const {user} = useAuth()
 
     if (!user) {
         return (
             <Loading />
         )
-    }
-
-    if (!tokenValid && tokenChecked) {
-        dispatch(notify('You must login before accessing this page', false))
-        navigate('/login')
     }
 
     return (

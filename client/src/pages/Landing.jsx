@@ -1,10 +1,7 @@
 import React from 'react'
 import '../css/Landing.css'
-import {useAuth} from "../hooks";
 
 export default function Landing() {
-	useAuth()
-
 	return (
 			<main className={'landing'}>
 				<div className={'heading'}>

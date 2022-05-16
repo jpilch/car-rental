@@ -1,23 +1,25 @@
 import Button from "./Button";
 import '../css/Form.css'
-import {useDispatch, useSelector} from "react-redux";
-import {login} from "../reducers/authSlice";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import {login} from "../reducers/authSlice";
 
 const LoginForm = () => {
 
 	const dispatch = useDispatch()
-	const {user, token} = useSelector(state => state.authReducer)
+	const {user, token} = useAuth()
 	const navigate = useNavigate()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
-		const email = e.target.email.value
+		const username = e.target.username.value
 		const password = e.target.password.value
-		e.target.email.value = ''
+		e.target.username.value = ''
 		e.target.password.value = ''
-		dispatch(login(email, password))
+		dispatch(login(username, password))
+		navigate('/')
 	}
 
 	useEffect(() => {
@@ -31,13 +33,13 @@ const LoginForm = () => {
 			<form onSubmit={e => handleSubmit(e)}>
 				<h1>Login Form</h1>
 				<div>
-					<label htmlFor="email">
-						Email
+					<label htmlFor="username">
+						Username
 					</label>
 					<input
-						type="email"
-						id="email"
-						name={'email'}
+						type="text"
+						id="username"
+						name={'username'}
 					/>
 				</div>
 				<div>
