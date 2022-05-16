@@ -37,6 +37,18 @@ test('user creation succeeds', async () => {
     expect(users).toHaveLength(2)
 })
 
+test('user with duplicate username cannot be created', async () => {
+    const response = await api.post('/api/users')
+        .send({
+            username: 'sample',
+            password: 'test'
+        })
+        .expect(400)
+    expect(response.body).toEqual({
+        err: 'This username is already taken'
+    })
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
