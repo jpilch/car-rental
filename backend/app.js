@@ -10,6 +10,7 @@ const carModelsRouter = require('./controllers/carModels')
 const carsRouter = require('./controllers/cars')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+const agreementsRouter = require('./controllers/agreements')
 
 mongoose.connect(`${config.MONGODB_URI}`)
     .then(() => {
@@ -32,6 +33,7 @@ app.use('/api/car-models', carModelsRouter)
 app.use('/api/cars', carsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/agreements', agreementsRouter)
 
 app.use(middleware.errorHandler)
 app.use(middleware.unknownEndpoint)
