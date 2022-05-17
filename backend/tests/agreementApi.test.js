@@ -8,6 +8,7 @@ const app = require('../app')
 const api = supertest(app)
 
 beforeAll(async () => {
+    await helper.clearAll()
     await helper.populateCarModels()
     await helper.populateCars()
     await helper.populateUsers(api)
@@ -62,9 +63,28 @@ test('cannot create agreement for non-existent users', async () => {
             ends_on: new Date()
         })
         .expect(404)
+    await helper.populateUsers(api)
     expect(response.body.err).toBeDefined()
     expect(response.body.err.toLowerCase()).toBe(
         'agreement attribute does not exist'
+    )
+})
+
+test('rental period must be between 2 to 9 days', async () => {
+    const token = await helper.getUserAuthToken(api)
+    const cars = await helper.carsInDb()
+    const response = await api
+        .post('/api/agreements')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            car_id: cars[0]._id.toString(),
+            starts_on: '01-01-2022',
+            ends_on: '01-11-2022'
+        })
+        .expect(400)
+    expect(response.body.err).toBeDefined()
+    expect(response.body.err.toLowerCase()).toBe(
+        'rental period must be between 2 to 9 days'
     )
 })
 

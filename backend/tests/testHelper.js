@@ -82,9 +82,17 @@ const populateAgreements = async () => {
     await secondAgreement.save()
 }
 
+const clearAll = async () => {
+    await CarModel.deleteMany({})
+    await Car.deleteMany({})
+    await User.deleteMany({})
+    await Agreement.deleteMany({})
+}
+
 module.exports = {
     carModelsInDb, populateCarModels,
     carsInDb, populateCars,
     usersInDb, populateUsers, getUserAuthToken,
-    agreementsInDb, populateAgreements
+    agreementsInDb, populateAgreements,
+    clearAll
 }
