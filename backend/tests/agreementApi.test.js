@@ -88,6 +88,30 @@ test('rental period must be between 2 to 9 days', async () => {
     )
 })
 
+test('agreements are created', async () => {
+    const token = await helper.getUserAuthToken(api)
+    const cars = await helper.carsInDb()
+    const users = await helper.usersInDb()
+    const response = await api
+        .post('/api/agreements')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            car_id: cars[0]._id.toString(),
+            starts_on: '01-01-2022',
+            ends_on: '01-8-2022'
+        })
+        .expect(201)
+        .expect('Content-Type', /application\/json/)
+    expect(response.body.id).toBeDefined()
+    delete response.body.id
+    expect(response.body).toEqual({
+        car_id: cars[0]._id.toString(),
+        user_id: users[0]._id.toString(),
+        starts_on: new Date('01-01-2022').toISOString(),
+        ends_on: new Date('01-8-2022').toISOString()
+    })
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
