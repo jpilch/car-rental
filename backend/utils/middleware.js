@@ -28,6 +28,15 @@ const userExtractor = (req, res, next) => {
     next()
 }
 
+const loginRequired = (req, res, next) => {
+    if (!req.user) {
+        return res.status(401).send({
+            err: 'Login required'
+        })
+    }
+    next()
+}
+
 const errorHandler = (err, req, res, next) => {
     if (err.name === 'CastError') {
         return res.status(400).send({
@@ -59,6 +68,7 @@ module.exports = {
     morganLogger,
     tokenExtractor,
     userExtractor,
+    loginRequired,
     errorHandler,
     unknownEndpoint
 }

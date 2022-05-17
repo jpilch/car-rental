@@ -9,11 +9,6 @@ agreementsRouter.get('/', async (req, res) => {
 })
 
 agreementsRouter.post('/', async (req, res) => {
-    if (!req.user) {
-        return res.status(401).send({
-            err: 'You have to be logged in to do that'
-        })
-    }
     const { car_id, starts_on, ends_on } = req.body
     const car = await Car.findById(car_id)
     const user = await User.findById(req.user.id)
