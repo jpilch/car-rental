@@ -5,6 +5,10 @@ const carSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CarModel'
     },
+    rental: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rental'
+    },
     agreements: [
         {
             type: mongoose.Schema.Types.ObjectId,
