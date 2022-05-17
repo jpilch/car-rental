@@ -32,4 +32,20 @@ agreementsRouter.post('/', async (req, res) => {
     res.status(201).json(savedAgreement)
 })
 
+agreementsRouter.delete('/:id', async (req, res) =>{
+    const agreement = await Agreement.findById(req.params.id)
+    if (!agreement) {
+        return res.status(404).send({
+            err: 'Agreement does not exist'
+        })
+    }
+    if (agreement.user_id.toString() !== req.user.id) {
+        return res.status(403).send({
+            err: 'Agreement owned by different user'
+        })
+    }
+    await Agreement.findByIdAndRemove(req.params.id)
+    res.status(204).end()
+})
+
 module.exports = agreementsRouter
