@@ -36,6 +36,19 @@ test('agreements are not accessible for non logged in users', async () => {
     expect(response.body.err.toLowerCase()).toBe('login required')
 })
 
+test('missing agreement attributes result in an error response', async () => {
+    const token = await helper.getUserAuthToken(api)
+    const response = await api
+        .post('/api/agreements')
+        .set('Authorization', `Bearer ${token}`)
+        .send({})
+        .expect(400)
+    expect(response.body.err).toBeDefined()
+    expect(response.body.err.toLowerCase()).toContain(
+        '\'ends_on\' are required'
+    )
+})
+
 test('cannot create agreement for non-existent users', async () => {
     const token = await helper.getUserAuthToken(api)
     await User.deleteMany({})
@@ -54,7 +67,6 @@ test('cannot create agreement for non-existent users', async () => {
         'agreement attribute does not exist'
     )
 })
-
 
 afterAll(() => {
     mongoose.connection.close()
