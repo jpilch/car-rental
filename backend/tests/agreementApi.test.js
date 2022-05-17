@@ -112,6 +112,18 @@ test('agreements are created', async () => {
     })
 })
 
+test('user cannot delete someone else\'s agreement', async () => {
+    const agreements = await helper.agreementsInDb()
+    const token = await helper.getUserAuthToken(api)
+    const response = await api
+        .delete(`/api/agreements/${agreements[1]._id.toString()}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(403)
+    expect(response.body).toEqual({
+        err: 'Agreement owned by different user'
+    })
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
