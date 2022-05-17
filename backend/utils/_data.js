@@ -37,7 +37,20 @@ const carModels = [
     }
 ]
 
+const users = [
+    {
+        username: 'firstUser',
+        full_name: 'first user',
+        password: 'secret'
+    },
+    {
+        username: 'secondUser',
+        full_name: 'second user',
+        password: 'secret'
+    }
+]
 
 module.exports = {
-    carModels
+    carModels,
+    users
 }
