@@ -124,6 +124,16 @@ test('user cannot delete someone else\'s agreement', async () => {
     })
 })
 
+test('user can delete his/her agreements', async () => {
+    const agreements = await helper.agreementsInDb()
+    const token = await helper.getUserAuthToken(api)
+    const response = await api
+        .delete(`/api/agreements/${agreements[0]._id.toString()}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(204)
+    expect(response.body).toEqual({})
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
