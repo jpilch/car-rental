@@ -1,8 +1,11 @@
 const CarModel = require('../models/carmodel')
 const Car = require('../models/car')
 const User = require('../models/user')
+const Agreement = require('../models/agreement')
+
 const {
-    carModels
+    carModels,
+    users
 } = require('../utils/_data')
 
 const carModelsInDb = async () => {
@@ -36,8 +39,52 @@ const usersInDb = async () => {
     return users
 }
 
+const populateUsers = async (api) => {
+    for (let user of users) {
+        await api.post('/api/users')
+            .send(user)
+    }
+}
+
+const getUserAuthToken = async (api) => {
+    const response = await api.post('/api/login').send({
+        username: 'firstUser',
+        password: 'secret'
+    })
+    return response.body.token
+}
+
+const agreementsInDb = async () => {
+    const agreements = await Agreement.find({})
+    return agreements
+}
+
+const populateAgreements = async () => {
+    await Agreement.deleteMany({})
+    const today = new Date()
+    const currentMonth = today.getMonth() + 1
+    const currentYear = today.getFullYear()
+    const users = await usersInDb()
+    const cars = await carsInDb()
+    const firstAgreement = new Agreement({
+        user_id: users[0]._id.toString(),
+        car_id: cars[0]._id.toString(),
+        starts_on: new Date(currentYear, currentMonth, 1),
+        ends_on: new Date(currentYear, currentMonth, 3)
+    })
+    const secondAgreement = new Agreement({
+        user_id: users[1]._id.toString(),
+        car_id: cars[1]._id.toString(),
+        starts_on: new Date(currentYear, currentMonth, 3),
+        ends_on: new Date(currentYear, currentMonth, 6)
+    })
+    await firstAgreement.save()
+    await secondAgreement.save()
+}
+
 module.exports = {
     carModelsInDb, populateCarModels,
     carsInDb, populateCars,
-    usersInDb
+    usersInDb, populateUsers, getUserAuthToken,
+    agreementsInDb, populateAgreements
 }
