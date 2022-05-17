@@ -10,6 +10,11 @@ agreementsRouter.get('/', async (req, res) => {
 
 agreementsRouter.post('/', async (req, res) => {
     const { car_id, starts_on, ends_on } = req.body
+    if (!car_id || !starts_on || !ends_on) {
+        return res.status(400).send({
+            err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
+        })
+    }
     const car = await Car.findById(car_id)
     const user = await User.findById(req.user.id)
     if (!car || !user) {
