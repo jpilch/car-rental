@@ -14,7 +14,7 @@ agreementsRouter.post('/', async (req, res) => {
     const user = await User.findById(req.user.id)
     if (!car || !user) {
         return res.status(404).send({
-            err: 'Specified car/user do not exist'
+            err: 'Agreement attribute does not exist'
         })
     }
     const agreement = new Agreement({
@@ -28,7 +28,6 @@ agreementsRouter.post('/', async (req, res) => {
     car.agreements = car.agreements.concat(savedAgreement._id)
     await user.save()
     await car.save()
-    console.log(car)
     res.status(201).json(savedAgreement)
 })
 
