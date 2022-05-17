@@ -22,6 +22,13 @@ agreementsRouter.post('/', async (req, res) => {
             err: 'Agreement attribute does not exist'
         })
     }
+    const rentalPeriodMs = new Date(ends_on) - new Date(starts_on)
+    const rentalPeriodDays = Math.ceil(rentalPeriodMs / (1000 * 60**2 * 24))
+    if (rentalPeriodDays > 9 || rentalPeriodDays < 2) {
+        return res.status(400).send({
+            err: 'Rental period must be between 2 to 9 days'
+        })
+    }
     const agreement = new Agreement({
         car_id,
         starts_on,
