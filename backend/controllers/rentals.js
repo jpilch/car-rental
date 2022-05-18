@@ -6,4 +6,15 @@ rentalsRouter.get('/', async (req, res) => {
     res.json(rentals)
 })
 
+rentalsRouter.post('/', async (req, res) => {
+    const { city_en, city_pl, address } = req.body
+    const rental = new Rental({
+        city_en,
+        city_pl,
+        address
+    })
+    const savedRental = await rental.save()
+    res.json(savedRental)
+})
+
 module.exports = rentalsRouter
