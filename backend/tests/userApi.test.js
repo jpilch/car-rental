@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
 const User = require('../models/user')
-const { usersInDb } = require('./testHelper')
+const { usersInDb, clearAll } = require('./testHelper')
 const api = supertest(app)
+
+beforeAll(async () => {
+    await clearAll()
+})
 
 beforeEach(async () => {
     await User.deleteMany({})
@@ -18,6 +22,21 @@ test('users are returned as json', async () => {
     await api.get('/api/users')
         .expect(200)
         .expect('Content-Type', /application\/json/)
+})
+
+test('user is accessible by id', async () => {
+    const users = await usersInDb()
+    const response = await api
+        .get(`/api/users/${users[0]._id.toString()}`)
+        .expect(200)
+    expect(response.body.agreements).toBeDefined()
+    expect(response.body.id).toBeDefined()
+    delete response.body.id
+    delete response.body.agreements
+    expect(response.body).toEqual({
+        username: 'sample',
+        full_name: 'sample'
+    })
 })
 
 test('user creation succeeds', async () => {

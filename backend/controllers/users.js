@@ -7,6 +7,16 @@ usersRouter.get('/', async (req, res) => {
     res.json(users)
 })
 
+usersRouter.get('/:id', async (req, res) => {
+    const user = await User.findById(req.params.id)
+    if (!user) {
+        return res.status(404).send({
+            err: 'User does not exist'
+        })
+    }
+    res.status(200).json(user)
+})
+
 usersRouter.post('/', async (req, res) => {
     const { username, full_name, password } = req.body
     const existingUser = await User.findOne({ username })
