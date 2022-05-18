@@ -8,7 +8,7 @@ const useAuth = () => {
 
     useEffect(() => {
         dispatch(extractUserAndToken())
-    }, [])
+    }, [dispatch])
 
     return {user, token}
 }
