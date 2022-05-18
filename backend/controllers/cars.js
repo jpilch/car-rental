@@ -1,6 +1,7 @@
 const carsRouter = require('express').Router()
 const Car = require('../models/car')
 const CarModel = require('../models/carmodel')
+const Rental = require('../models/rental')
 
 carsRouter.get('/', async (req, res) => {
     const cars = await Car.find({}).populate('agreements')
@@ -18,8 +19,15 @@ carsRouter.get('/:id', async (req, res) => {
 
 carsRouter.post('/', async (req, res) => {
     const carModel = await CarModel.findById(req.body.car_model)
+    const rental = await Rental.findById(req.body.rental)
+    if (!carModel || !rental) {
+        return res.status(404).send({
+            err: 'Car attribute does not exist'
+        })
+    }
     const car = new Car({
-        car_model: carModel._id
+        car_model: carModel._id,
+        rental: rental._id
     })
     const savedCar = await car.save()
     carModel.cars = carModel.cars.concat(savedCar._id)
