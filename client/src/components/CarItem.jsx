@@ -1,10 +1,19 @@
+import '../css/CarItem.css'
 import React from 'react'
 
-const CarItem = ({name}) => {
+const CarItem = (props) => {
+    const imgStyle = {
+        maxWidth: '10rem',
+        height: 'auto',
+        borderRadius: '1rem'
+    }
 
     return (
         <div className='car-item'>
-            <h2>{name}</h2>
+            <img style={imgStyle} src={props.img_url} alt=""/>
+            <div className="car-info">
+                <h2>{props.manufacturer} {props.name}</h2>
+            </div>
         </div>
     )
 }

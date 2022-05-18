@@ -31,6 +31,9 @@ const CarListing = () => {
                     {
                         carModels.map(carModel => {
                             return <CarItem
+                                key={carModel.id}
+                                img_url={carModel.img_url}
+                                manufacturer={carModel.manufacturer}
                                 name={carModel.name}
                             />
                         })
