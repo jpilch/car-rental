@@ -13,6 +13,10 @@ const CarItem = (props) => {
             <img style={imgStyle} src={props.img_url} alt=""/>
             <div className="car-info">
                 <h2>{props.manufacturer} {props.name}</h2>
+                <div className="car-specs">
+                    <p>test</p>
+                    <p>test</p>
+                </div>
             </div>
         </div>
     )

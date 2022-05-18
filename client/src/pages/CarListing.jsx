@@ -14,7 +14,7 @@ const CarListing = () => {
 
     return (
         <main id="car-list">
-            <h1>Check out our amazing offer</h1>
+            <h1>Check out our offer</h1>
             <div className="sort-by">
                 <label htmlFor="sort">Sort by: </label>
                 <select name="sort" id="sort">

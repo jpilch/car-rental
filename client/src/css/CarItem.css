@@ -1,3 +1,12 @@
 div.car-item {
     display: flex;
+    gap: 1rem;
+    border-radius: 1rem;
+    color: var(--clr-light);
+    background-color: var(--clr-dark);
+    padding: 1rem 1rem;
+}
+
+div.car-item img {
+    border: 2px solid var(--clr-light);
 }
