@@ -6,6 +6,16 @@ rentalsRouter.get('/', async (req, res) => {
     res.json(rentals)
 })
 
+rentalsRouter.get('/:id', async (req, res) => {
+    const rental = await Rental.findById(req.params.id)
+    if (!rental) {
+        return res.status(404).send({
+            err: 'Rental does not exist'
+        })
+    }
+    res.status(200).json(rental)
+})
+
 rentalsRouter.post('/', async (req, res) => {
     const { city_en, city_pl, address } = req.body
     const rental = new Rental({
