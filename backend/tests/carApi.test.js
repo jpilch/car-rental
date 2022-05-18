@@ -4,9 +4,16 @@ const supertest = require('supertest')
 const app = require('../app')
 const mockData = require('../utils/_data')
 const api = supertest(app)
+const Car = require('../models/car')
+
+beforeAll(async () => {
+    await helper.clearAll()
+    await helper.populateRentals()
+    await helper.populateCarModels()
+})
 
 beforeEach(async () => {
-    await helper.populateCarModels()
+    await Car.deleteMany({})
     await helper.populateCars()
 })
 
@@ -14,28 +21,33 @@ test('cars are returned as json', async () => {
     await api.get('/api/cars')
         .expect(200)
         .expect('Content-Type', /application\/json/)
-}, 10000)
+})
 
 test('all cars are returned', async () => {
     const response = await api.get('/api/cars')
     expect(response.body).toHaveLength(mockData.carModels.length)
-}, 10000)
+})
 
-test('car can be created and are referenced by car models', async () => {
+test('car can be created and are referenced by car model and rental', async () => {
     const carModels = await helper.carModelsInDb()
+    const rentals = await helper.rentalsInDb()
     expect(carModels[0].cars).toHaveLength(0)
     await api.post('/api/cars')
-        .send({ car_model: carModels[0]._id.toString() })
+        .send({
+            car_model: carModels[0]._id.toString(),
+            rental: rentals[0]._id.toString()
+        })
         .expect(201)
         .expect('Content-Type', /application\/json/)
     const cars = await helper.carsInDb()
     expect(cars).toHaveLength(carModels.length + 1)
     expect(cars[0]._id).toBeDefined()
-    expect(cars[0].car_model).toEqual(carModels[0]._id)
-    expect(cars[0].car_model).toBeDefined()
+    expect(cars.at(-1).car_model).toEqual(carModels[0]._id)
     const carModelsAfter = await helper.carModelsInDb()
+    const rentalsAfter = await helper.rentalsInDb()
+    expect(rentalsAfter[0].cars).toHaveLength(1)
     expect(carModelsAfter[0].cars).toHaveLength(1)
-}, 10000)
+})
 
 afterAll(() => {
     mongoose.connection.close()

@@ -99,6 +99,7 @@ const clearAll = async () => {
     await Car.deleteMany({})
     await User.deleteMany({})
     await Agreement.deleteMany({})
+    await Rental.deleteMany({})
 }
 
 module.exports = {

@@ -40,6 +40,8 @@ carsRouter.post('/', async (req, res) => {
     })
     const savedCar = await car.save()
     carModel.cars = carModel.cars.concat(savedCar._id)
+    rental.cars = rental.cars.concat(savedCar._id)
+    await rental.save()
     await carModel.save()
     res.status(201).json(savedCar)
 })
