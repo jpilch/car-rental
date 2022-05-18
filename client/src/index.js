@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {ContextProvider} from "./AppContext";
 import {store} from "./store";
 import {Provider} from "react-redux";
 

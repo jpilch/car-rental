@@ -32,7 +32,9 @@ function Navbar() {
 					</div>
 					<nav>
 						<ul className={!displayLinks ? 'none' : ''}>
-							<li><a className={'link'}>Cars</a></li>
+							<li>
+								<Link to={'/cars'}><a className={'link'}>Cars</a></Link>
+							</li>
 							<li><a className={'link'}>About</a></li>
 							<li><a className={'link'}>Contact</a></li>
 							<Link to={user ? '/my-account' : '/login'}>
