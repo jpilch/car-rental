@@ -17,4 +17,15 @@ rentalsRouter.post('/', async (req, res) => {
     res.json(savedRental)
 })
 
+rentalsRouter.delete('/:id', async (req, res) => {
+    const rental = await Rental.findById(req.params.id)
+    if (!rental) {
+        return res.status(404).send({
+            err: 'Rental does not exist'
+        })
+    }
+    await Rental.findByIdAndRemove(req.params.id)
+    res.status(204).end()
+})
+
 module.exports = rentalsRouter

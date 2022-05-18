@@ -22,6 +22,16 @@ test('rentals are returned as json', async () => {
     expect(response.body).toHaveLength(2)
 })
 
+test('rentals can be deleted', async () => {
+    const rentalsBefore = await helper.rentalsInDb()
+    expect(rentalsBefore).toHaveLength(2)
+    await api
+        .delete(`/api/rentals/${rentalsBefore[0]._id.toString()}`)
+        .expect(204)
+    const rentalsAfter = await helper.rentalsInDb()
+    expect(rentalsAfter).toHaveLength(1)
+})
+
 afterAll(() => {
     mongoose.connection.close()
 })
