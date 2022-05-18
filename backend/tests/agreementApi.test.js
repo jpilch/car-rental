@@ -37,6 +37,20 @@ test('agreements are not accessible for non logged in users', async () => {
     expect(response.body.err.toLowerCase()).toBe('login required')
 })
 
+test('agreement is accessible by id', async () => {
+    const token = await helper.getUserAuthToken(api)
+    const agreements = await helper.agreementsInDb()
+    const response = await api
+        .get(`/api/agreements/${agreements[0].toJSON().id}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(200)
+    expect(response.body.starts_on)
+        .toEqual(agreements[0].starts_on.toISOString())
+    expect(response.body.ends_on)
+        .toEqual(agreements[0].ends_on.toISOString())
+    expect(response.body).toEqual(agreements[0].toJSON())
+})
+
 test('missing agreement attributes result in an error response', async () => {
     const token = await helper.getUserAuthToken(api)
     const response = await api

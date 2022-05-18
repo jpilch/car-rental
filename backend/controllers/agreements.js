@@ -8,6 +8,16 @@ agreementsRouter.get('/', async (req, res) => {
     res.json(agreements)
 })
 
+agreementsRouter.get('/:id', async (req, res) => {
+    const agreement = await Agreement.findById(req.params.id)
+    if (!agreement) {
+        return res.status(404).send({
+            err: 'Agreement does not exist'
+        })
+    }
+    res.status(200).json(agreement)
+})
+
 agreementsRouter.post('/', async (req, res) => {
     const { car_id, starts_on, ends_on } = req.body
     if (!car_id || !starts_on || !ends_on) {

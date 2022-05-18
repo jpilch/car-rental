@@ -24,6 +24,10 @@ const agreementSchema = new mongoose.Schema({
 agreementSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.id = returnedObject._id.toString()
+        returnedObject.starts_on = returnedObject.starts_on.toISOString()
+        returnedObject.ends_on = returnedObject.ends_on.toISOString()
+        returnedObject.user_id = returnedObject.user_id.toString()
+        returnedObject.car_id = returnedObject.car_id.toString()
         delete returnedObject._id
         delete returnedObject.__v
     }
