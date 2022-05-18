@@ -4,7 +4,16 @@ const CarModel = require('../models/carmodel')
 const Rental = require('../models/rental')
 
 carsRouter.get('/', async (req, res) => {
-    const cars = await Car.find({}).populate('agreements')
+    const cars = await Car.find({}, 'car_model rental')
+        .populate('car_model', {
+            manufacturer: 1,
+            name: 1,
+        })
+        .populate('rental', {
+            city_en: 1,
+            city_pl: 1,
+            address: 1
+        })
     res.json(cars)
 })
 
