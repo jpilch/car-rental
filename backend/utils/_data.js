@@ -50,7 +50,21 @@ const users = [
     }
 ]
 
+const rentals = [
+    {
+        city_en: "Warsaw",
+        city_pl: "Warszawa",
+        address: "Sample st., no 1"
+    },
+    {
+        city_en: "Krakow",
+        city_pl: "Krakow",
+        address: "Sample st., no 2"
+    }
+]
+
 module.exports = {
     carModels,
+    rentals,
     users
 }

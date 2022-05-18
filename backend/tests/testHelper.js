@@ -2,9 +2,11 @@ const CarModel = require('../models/carmodel')
 const Car = require('../models/car')
 const User = require('../models/user')
 const Agreement = require('../models/agreement')
+const Rental = require('../models/rental')
 
 const {
     carModels,
+    rentals,
     users
 } = require('../utils/_data')
 
@@ -82,6 +84,16 @@ const populateAgreements = async () => {
     await secondAgreement.save()
 }
 
+const rentalsInDb = async () => {
+    return Rental.find({})
+}
+
+const populateRentals = async () => {
+    for (let rental of rentals) {
+        await new Rental(rental).save()
+    }
+}
+
 const clearAll = async () => {
     await CarModel.deleteMany({})
     await Car.deleteMany({})
@@ -94,5 +106,6 @@ module.exports = {
     carsInDb, populateCars,
     usersInDb, populateUsers, getUserAuthToken,
     agreementsInDb, populateAgreements,
+    rentalsInDb, populateRentals,
     clearAll
 }
