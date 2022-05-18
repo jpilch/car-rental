@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
 const Agreement = require('../models/agreement')
-const helper = require('./testHelper')
+const helper = require('../utils/helper')
 const User = require('../models/user')
 const app = require('../app')
 

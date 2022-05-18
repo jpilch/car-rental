@@ -8,7 +8,7 @@ const {
     carModels,
     rentals,
     users
-} = require('../utils/_data')
+} = require('./_data')
 
 const carModelsInDb = async () => {
     const carModels = await CarModel.find({})
