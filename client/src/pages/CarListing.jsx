@@ -1,7 +1,17 @@
-import React from 'react'
 import '../css/CarListing.css'
+import React, {useEffect, useState} from 'react'
+import CarItem from "../components/CarItem";
+import axios from "axios";
 
-function CarListing() {
+const CarListing = () => {
+    const [carModels, setCarModels] = useState([])
+    useEffect(async () => {
+        const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/car-models`
+        )
+        setCarModels(response.data)
+    }, [])
+
     return (
         <main id="car-list">
             <h1>Check out our amazing offer</h1>
@@ -18,7 +28,13 @@ function CarListing() {
                     <p>filters</p>
                 </aside>
                 <div>
-                    <p>cars</p>
+                    {
+                        carModels.map(carModel => {
+                            return <CarItem
+                                name={carModel.name}
+                            />
+                        })
+                    }
                 </div>
             </section>
         </main>
