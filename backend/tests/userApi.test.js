@@ -28,6 +28,9 @@ test('user creation succeeds', async () => {
     }
     const response = await api.post('/api/users').send(user)
     expect(response.status).toBe(201)
+    expect(response.body.agreements).toEqual([])
+    delete response.body.agreements
+    expect(response.body.id).toBeDefined()
     delete response.body.id
     expect(response.body).toEqual({
         username: user.username,
