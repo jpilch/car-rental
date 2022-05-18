@@ -1,0 +1,35 @@
+main#car-list {
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem 3rem;
+}
+
+main#car-list div.sort-by {
+    width: 50%;
+    align-self: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+main#car-list section.cars {
+    width: 50%;
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+main#car-list section.cars>aside {
+    flex: 1;
+}
+
+main#car-list section.cars>div {
+    flex: 4;
+}
