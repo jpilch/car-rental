@@ -1,6 +1,7 @@
 import '../css/CarItem.css'
 import React from 'react'
 import CarSpec from "./CarSpec";
+import CarOffer from "./CarOffer";
 import {
     mdiCarShiftPattern,
     mdiSeatPassenger,
@@ -49,12 +50,16 @@ const CarItem = (props) => {
                     <div className="car-spec-row">
                         <CarSpec
                             path={mdiSpeedometer}
-                            specText={' no distance limit'}
+                            specText={'no distance limit'}
                             specValue={''}
                         />
                     </div>
                 </div>
             </div>
+            <CarOffer
+                priceThreeDays={200}
+                detailsUrl={'/test'}
+            />
         </div>
     )
 }
