@@ -10,15 +10,12 @@ import {
     mdiSpeedometer
 } from '@mdi/js';
 import { useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {chooseCar} from "../reducers/carSlice";
 
 const CarItem = (props) => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const seeOfferDetails = () => {
-        dispatch(chooseCar(props.car_id))
-        navigate('/car-details')
+        navigate(`/cars/${props.car_id}`)
     }
 
     const imgStyle = {

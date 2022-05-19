@@ -21,7 +21,7 @@ function App() {
 					<Route path='/register' element={<Register />}/>
 					<Route path='/my-account' element={<UserAccount />}/>
 					<Route path='/cars' element={<CarListing />}/>
-					<Route path='/car-details' element={<CarDetails />}/>
+					<Route path='/cars/:id' element={<CarDetails />}/>
 				</Routes>
 				<Footer/>
 				< /Router>

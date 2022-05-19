@@ -1,21 +1,12 @@
 import '../css/CarDetails.css'
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useRef} from "react";
+import {useParams} from "react-router-dom";
 
 const CarDetails = () => {
-    const {chosenCarId} = useSelector(state => state.carReducer)
-    const carIdRef = useRef()
-
-    useEffect(() => {
-        carIdRef.current = chosenCarId
-    }, [chosenCarId])
-
-    console.log(chosenCarId)
-    console.log(carIdRef)
+    const { id } = useParams()
 
     return (
         <main id="car-details">
-            <h1>{chosenCarId}</h1>
+            <h1>{id}</h1>
         </main>
     )
 }
