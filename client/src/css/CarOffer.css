@@ -6,11 +6,18 @@ div.car-offer {
     gap: 0.5rem;
 }
 
+div.car-offer div.price {
+    width: 100%;
+}
+
 div.car-offer p {
+    text-align: end;
     font-size: 0.8rem;
 }
 
 div.car-offer h3 {
+    width: 100%;
+    text-align: end;
     text-decoration: underline;
 }
 

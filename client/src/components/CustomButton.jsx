@@ -1,7 +1,7 @@
 import '../css/Button.css'
 import Radium from "radium";
 
-const CustomButton = ({text, bgHover, colorNormal, colorHover}) => {
+const CustomButton = ({text, bgHover, colorNormal, colorHover, onClick}) => {
     const btnStyle = {
         borderColor: colorNormal,
         color: colorNormal,
@@ -14,7 +14,7 @@ const CustomButton = ({text, bgHover, colorNormal, colorHover}) => {
     }
 
     return (
-        <button style={btnStyle} type="submit" className={'btn animated-btn'}>
+        <button style={btnStyle} type="submit" className={'btn animated-btn'} onClick={onClick}>
             {text}
         </button>
     )
