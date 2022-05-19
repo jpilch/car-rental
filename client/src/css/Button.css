@@ -21,7 +21,6 @@ button.btn.animated-btn:hover {
     cursor: pointer;
     background-color: var(--clr-highlight);
     color: var(--clr-dark);
-    border-color: var(--clr-dark)
 }
 
 
