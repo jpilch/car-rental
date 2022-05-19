@@ -1,0 +1,19 @@
+div.car-offer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+div.car-offer p {
+    font-size: 0.8rem;
+}
+
+div.car-offer h3 {
+    text-decoration: underline;
+}
+
+div.car-offer button.btn.animated-btn.btn-dark {
+    margin: 0;
+}

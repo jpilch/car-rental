@@ -1,4 +1,6 @@
+import '../css/CarOffer.css'
 import React from 'react'
+import Button from "./Button";
 
 const CarOffer = ({ priceThreeDays, detailsUrl }) => {
     return (
@@ -7,7 +9,10 @@ const CarOffer = ({ priceThreeDays, detailsUrl }) => {
                 <p>Price for x days:</p>
                 <h3>{priceThreeDays} pln</h3>
             </div>
-            <button>See offer</button>
+            <Button
+                dark={true}
+                text={'See offer'}
+            />
         </div>
     )
 }
