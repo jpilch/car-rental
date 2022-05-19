@@ -1,3 +1,33 @@
 main#car-details {
     min-height: 92vh;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    grid-template-areas:
+        "ci rl"
+        "wi os";
+    padding: 10rem 20rem;
+}
+
+main#car-details section.car-info {
+    grid-area: ci;
+}
+
+main#car-details .car-info img {
+    border-radius: 1rem;
+    box-shadow: 2px 2px 5px var(--clr-dark);
+    max-height: 8rem;
+    width: auto;
+}
+
+main#car-details section.rental-locations {
+    grid-area: rl;
+}
+
+main#car-details section.what-is-included {
+    grid-area: wi;
+}
+
+main#car-details section.order-summary {
+    grid-area: os;
 }

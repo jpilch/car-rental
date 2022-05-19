@@ -30,13 +30,12 @@ const CarListing = () => {
                 <div>
                     {
                         carModels.map(carModel => {
-                            return <CarItem
-                                key={carModel.id}
-                                car_id={carModel.id}
-                                img_url={carModel.img_url}
-                                manufacturer={carModel.manufacturer}
-                                name={carModel.name}
-                            />
+                            return (
+                                <CarItem
+                                    key={carModel.id}
+                                    carModel={carModel}
+                                />
+                            )
                         })
                     }
                 </div>

@@ -1,7 +1,6 @@
 import '../css/CarOffer.css'
 import React from 'react'
 import CustomButton from "./CustomButton";
-import {Link} from 'react-router-dom'
 
 const CarOffer = ({ priceThreeDays, seeOfferDetails }) => {
     return (

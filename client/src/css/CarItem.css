@@ -8,24 +8,6 @@ div.car-item {
     padding: 1rem 1rem;
 }
 
-div.car-item div.car-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-}
-
-div.car-item div.car-specs {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-}
-
-div.car-item div.car-spec-row {
-    display: flex;
-}
-
-
 div.car-item img {
     border: 1px solid var(--clr-light);
 }
