@@ -2,11 +2,33 @@ div.car-item {
     display: flex;
     gap: 1rem;
     border-radius: 1rem;
-    color: var(--clr-light);
-    background-color: var(--clr-dark);
+    color: var(--clr-dark);
+    background-color: var(--clr-lighter);
+    border: 1px solid var(--clr-light);
+    box-shadow: 4px 4px 5px var(--clr-light);
     padding: 1rem 1rem;
 }
 
+div.car-item div.car-info {
+    flex: 1;
+}
+
+div.car-item div.car-specs,
+div.car-item div.car-spec {
+    display: flex;
+}
+
+div.car-item div.car-specs {
+    gap: 1rem;
+    flex-flow: wrap;
+}
+
+div.car-item div.car-spec {
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
 div.car-item img {
-    border: 2px solid var(--clr-light);
+    border: 1px solid var(--clr-light);
 }
