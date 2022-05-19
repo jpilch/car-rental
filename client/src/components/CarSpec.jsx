@@ -1,3 +1,4 @@
+import '../css/CarSpec.css'
 import Icon from "@mdi/react";
 import React from "react";
 
@@ -7,7 +8,7 @@ const CarSpec = ({ path, specValue, specText }) => {
             <Icon
                 path={path}
                 color={'var(--clr-dark)'}
-                size={1}
+                size={0.8}
             />
             <p>{specValue} {specText}</p>
         </div>

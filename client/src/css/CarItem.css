@@ -11,23 +11,21 @@ div.car-item {
 
 div.car-item div.car-info {
     flex: 1;
-}
-
-div.car-item div.car-specs,
-div.car-item div.car-spec {
     display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
 }
 
 div.car-item div.car-specs {
-    gap: 1rem;
-    flex-flow: wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 
-div.car-item div.car-spec {
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
+div.car-item div.car-spec-row {
+    display: flex;
 }
+
 
 div.car-item img {
     border: 1px solid var(--clr-light);

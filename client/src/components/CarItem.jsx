@@ -6,7 +6,6 @@ import {
     mdiSeatPassenger,
     mdiBagSuitcase,
     mdiBagChecked,
-    mdiCarSpeedLimiter,
     mdiSpeedometer
 } from '@mdi/js';
 
@@ -54,7 +53,6 @@ const CarItem = (props) => {
                             specValue={''}
                         />
                     </div>
-
                 </div>
             </div>
         </div>
