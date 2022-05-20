@@ -27,17 +27,29 @@ const carsInDb = async () => {
     return cars
 }
 
+const saveCar = async (carModelId, rentalId) => {
+    const carModel = await CarModel.findById(carModelId.toString())
+    const rental = await Rental.findById(rentalId.toString())
+    const car = new Car({
+        car_model: carModelId,
+        rental: rentalId
+    })
+    const savedCar = await car.save()
+    carModel.cars = carModel.cars.concat(savedCar._id)
+    rental.cars = rental.cars.concat(savedCar._id)
+    await carModel.save()
+    await rental.save()
+}
+
 const populateCars = async () => {
     await Car.deleteMany({})
     const carModels = await carModelsInDb()
     const rentals = await rentalsInDb()
+    const rentalId = rentals[0]._id
     const carModelIds = carModels.map(carModel => carModel._id)
-    const objects = carModelIds.map(carModelId => new Car({
-        car_model: carModelId,
-        rental: rentals[Math.floor(Math.random() * rentals.length)]._id
-    }))
-    const promiseArray = objects.map(object => object.save())
-    await Promise.all(promiseArray)
+    for (let carModelId of carModelIds) {
+        await saveCar(carModelId, rentalId)
+    }
 }
 
 const usersInDb = async () => {
@@ -93,9 +105,10 @@ const rentalsInDb = async () => {
 }
 
 const populateRentals = async () => {
-    for (let rental of rentals) {
-        await new Rental(rental).save()
-    }
+    await Rental.deleteMany({})
+    const objects = rentals.map(rental => new Rental(rental))
+    const promiseArray = objects.map(object => object.save())
+    await Promise.all(promiseArray)
 }
 
 const clearAll = async () => {
