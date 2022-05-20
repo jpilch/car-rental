@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import React from "react";
 import CarInfo from "../components/CarInfo";
+import OfferBenefit from "../components/OfferBenefit";
 
 const CarDetails = () => {
     const { id } = useParams()
@@ -28,7 +29,17 @@ const CarDetails = () => {
                 <h1>locations</h1>
             </section>
             <section className="what-is-included">
-                <h1>what is included</h1>
+                <h2>Great choice!</h2>
+                <div className="benefits">
+                    <ul>
+                        <OfferBenefit text={'No additional fees!'}/>
+                        <OfferBenefit text={'Free to cancel anytime!'}/>
+                    </ul>
+                    <ul>
+                        <OfferBenefit text={'Short to no queues'}/>
+                        <OfferBenefit text={'Dedicated parking space'}/>
+                    </ul>
+                </div>
             </section>
             <section className="order-summary">
                 <h1>summary</h1>
