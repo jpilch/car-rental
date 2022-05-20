@@ -33,7 +33,7 @@ function Navbar() {
 					<nav>
 						<ul className={!displayLinks ? 'none' : ''}>
 							<li>
-								<Link to={'/cars'}><a className={'link'}>Cars</a></Link>
+								<Link to={'/cars'}><p className='link'>Cars</p></Link>
 							</li>
 							<li><a className={'link'}>About</a></li>
 							<li><a className={'link'}>Contact</a></li>
