@@ -1,0 +1,28 @@
+section.offer-summary {
+    grid-area: os;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    border: 1px solid var(--clr-light);
+    border-radius: 1rem;
+}
+
+section.offer-summary div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section.offer-summary div.offer-services {
+    font-size: 0.8rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--clr-light);
+}
+
+section.offer-summary div.total {
+    font-weight: bold;
+}

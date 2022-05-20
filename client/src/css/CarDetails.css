@@ -28,9 +28,3 @@ main#car-details .car-info img {
     max-height: 8rem;
     width: auto;
 }
-
-main#car-details section.order-summary {
-    grid-area: os;
-    border: 1px solid var(--clr-light);
-    border-radius: 1rem;
-}

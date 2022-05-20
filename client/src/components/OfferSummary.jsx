@@ -3,7 +3,7 @@ import React from "react";
 
 const OfferSummary = () => {
     return (
-        <section className="order-summary">
+        <section className="offer-summary">
             <h2>Summary</h2>
             <div className="offer-services">
                 <p>Car rental</p>
