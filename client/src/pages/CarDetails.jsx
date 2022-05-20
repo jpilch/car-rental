@@ -5,12 +5,14 @@ import axios from "axios";
 import React from "react";
 import CarInfo from "../components/CarInfo";
 import OfferBenefit from "../components/OfferBenefit";
+import RentalLocations from "../components/RentalLocations";
 
 const CarDetails = () => {
     const { id } = useParams()
     const [carModel, setCarModel] = useState({})
 
     useEffect(async () => {
+        console.log(`${process.env.REACT_APP_API_URL}/car-models/${id}`)
         const response = await axios.get(
             `${process.env.REACT_APP_API_URL}/car-models/${id}`
         )
@@ -25,9 +27,7 @@ const CarDetails = () => {
                     carModel={carModel}
                 />
             </section>
-            <section className="rental-locations">
-                <h1>locations</h1>
-            </section>
+            <RentalLocations carModel={carModel}/>
             <section className="what-is-included">
                 <h2>Great choice!</h2>
                 <div className="benefits">

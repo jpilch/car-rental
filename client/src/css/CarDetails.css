@@ -29,12 +29,6 @@ main#car-details .car-info img {
     width: auto;
 }
 
-main#car-details section.rental-locations {
-    grid-area: rl;
-    border: 1px solid var(--clr-light);
-    border-radius: 1rem;
-}
-
 main#car-details section.what-is-included {
     grid-area: wi;
     display: flex;
