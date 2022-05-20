@@ -6,6 +6,7 @@ import React from "react";
 import CarInfo from "../components/CarInfo";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
+import OfferSummary from "../components/OrderSummary";
 
 const CarDetails = () => {
     const { id } = useParams()
@@ -29,9 +30,7 @@ const CarDetails = () => {
             </section>
             <RentalLocations carModel={carModel}/>
             <WhatIsIncluded />
-            <section className="order-summary">
-                <h1>summary</h1>
-            </section>
+            <OfferSummary />
         </main>
     )
 }
