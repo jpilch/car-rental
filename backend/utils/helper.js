@@ -30,8 +30,12 @@ const carsInDb = async () => {
 const populateCars = async () => {
     await Car.deleteMany({})
     const carModels = await carModelsInDb()
+    const rentals = await rentalsInDb()
     const carModelIds = carModels.map(carModel => carModel._id)
-    const objects = carModelIds.map(carModelId => new Car({ car_model: carModelId }))
+    const objects = carModelIds.map(carModelId => new Car({
+        car_model: carModelId,
+        rental: rentals[Math.floor(Math.random() * rentals.length)]._id
+    }))
     const promiseArray = objects.map(object => object.save())
     await Promise.all(promiseArray)
 }

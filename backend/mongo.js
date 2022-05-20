@@ -4,7 +4,10 @@ const logger = require('./utils/logger')
 const helper = require('./utils/helper')
 
 const populate = async () => {
+    await helper.clearAll()
+    await helper.populateRentals()
     await helper.populateCarModels()
+    await helper.populateCars()
 }
 
 mongoose.connect(`${config.MONGODB_URI}`)
