@@ -5,6 +5,8 @@ const CustomButton = ({text, bgHover, colorNormal, colorHover, onClick}) => {
     const btnStyle = {
         borderColor: colorNormal,
         color: colorNormal,
+        margin: '0',
+        boxShadow: 'none',
         ':hover': {
             backgroundColor: bgHover,
             color: colorHover,

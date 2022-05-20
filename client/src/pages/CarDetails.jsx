@@ -7,6 +7,8 @@ import CarInfo from "../components/CarInfo";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
 import OfferSummary from "../components/OfferSummary";
+import CustomButton from "../components/CustomButton";
+import Button from "../components/Button";
 
 const CarDetails = () => {
     const { id } = useParams()
@@ -21,6 +23,10 @@ const CarDetails = () => {
 
     return (
         <main id="car-details">
+            <div className="offer-heading">
+                <h1>Your Offer</h1>
+                <div></div>
+            </div>
             <section className="car-info">
                 <img src={carModel.img_url} alt=""/>
                 <CarInfo
@@ -30,6 +36,12 @@ const CarDetails = () => {
             <RentalLocations carModel={carModel}/>
             <WhatIsIncluded />
             <OfferSummary />
+            <div className="actions">
+                <Button dark={true} text={'Cancel'}/>
+                <CustomButton
+                    text={'Pay'}
+                />
+            </div>
         </main>
     )
 }

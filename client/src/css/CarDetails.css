@@ -1,15 +1,27 @@
 main#car-details {
-    min-height: 92vh;
+    height: 92vh;
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 0.5fr 2fr 1fr 0.5fr;
     grid-template-areas:
+        "yo yo"
         "ci rl"
-        "wi os";
+        "wi os"
+        ". btns";
     row-gap: 2rem;
     column-gap: 2rem;
     padding: 10rem 20rem;
 }
+
+main#car-details div.offer-heading {
+    grid-area: yo;
+    border-bottom: 1px solid var(--clr-light);
+}
+
+main#car-details div.actions {
+    grid-area: btns;
+}
+
 
 main#car-details section.car-info {
     grid-area: ci;
