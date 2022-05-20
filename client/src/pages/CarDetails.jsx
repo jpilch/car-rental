@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import React from "react";
 import CarInfo from "../components/CarInfo";
-import OfferBenefit from "../components/OfferBenefit";
+import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
 
 const CarDetails = () => {
@@ -28,19 +28,7 @@ const CarDetails = () => {
                 />
             </section>
             <RentalLocations carModel={carModel}/>
-            <section className="what-is-included">
-                <h2>Great choice!</h2>
-                <div className="benefits">
-                    <ul>
-                        <OfferBenefit text={'No additional fees!'}/>
-                        <OfferBenefit text={'Free to cancel anytime!'}/>
-                    </ul>
-                    <ul>
-                        <OfferBenefit text={'Short to no queues'}/>
-                        <OfferBenefit text={'Dedicated parking space'}/>
-                    </ul>
-                </div>
-            </section>
+            <WhatIsIncluded />
             <section className="order-summary">
                 <h1>summary</h1>
             </section>

@@ -29,40 +29,6 @@ main#car-details .car-info img {
     width: auto;
 }
 
-main#car-details section.what-is-included {
-    grid-area: wi;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1rem;
-    border: 1px solid var(--clr-light);
-    border-radius: 1rem;
-    padding-left: 5rem;
-}
-
-main#car-details section.what-is-included div.benefits {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5rem;
-}
-
-main#car-details section.what-is-included ul {
-    list-style: none;
-    line-height: 2rem;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-main#car-details section.what-is-included li {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-
 main#car-details section.order-summary {
     grid-area: os;
     border: 1px solid var(--clr-light);
