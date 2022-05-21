@@ -40,3 +40,8 @@ main#car-details .car-info img {
     max-height: 8rem;
     width: auto;
 }
+
+main#car-details div.actions {
+    display: flex;
+    justify-content: space-around;
+}

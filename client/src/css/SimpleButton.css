@@ -1,0 +1,13 @@
+button.simple {
+    padding: 1rem 1rem;
+    width: 6rem;
+    border: none;
+    font-weight: bold;
+    color: white;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 2px var(--clr-light);
+}
+
+button.simple:hover {
+    cursor: pointer;
+}

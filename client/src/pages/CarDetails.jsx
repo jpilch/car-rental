@@ -1,6 +1,7 @@
 import '../css/CarDetails.css'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import React from "react";
 import CarInfo from "../components/CarInfo";
@@ -8,13 +9,13 @@ import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
 import OfferSummary from "../components/OfferSummary";
 import DayChoices from "../components/DayChoices";
-import CustomButton from "../components/CustomButton";
-import Button from "../components/Button";
+import SimpleButton from "../components/SimpleButton";
 
 const CarDetails = () => {
     const { id } = useParams()
     const [carModel, setCarModel] = useState({})
     const [days, setDays] = useState(3)
+    const navigate = useNavigate()
 
     useEffect(async () => {
         const response = await axios.get(
@@ -46,9 +47,15 @@ const CarDetails = () => {
                 days={days}
             />
             <div className="actions">
-                <Button dark={true} text={'Cancel'}/>
-                <CustomButton
+                <SimpleButton
+                    bgColor={'var(--clr-red)'}
+                    text={'Cancel'}
+                    onClick={() => navigate('/')}
+                />
+                <SimpleButton
                     text={'Pay'}
+                    bgColor={'var(--clr-green)'}
+                    onClick={() => navigate('my-account')}
                 />
             </div>
         </main>
