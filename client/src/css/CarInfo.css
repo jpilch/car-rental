@@ -1,8 +1,29 @@
+div.car-info-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+div.car-info-container img {
+    border-radius: 1rem;
+    box-shadow: 2px 2px 5px var(--clr-dark);
+    max-height: 6rem;
+    width: auto;
+}
+
 div.car-info {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 1rem;
+}
+
+div.car-info>div.underline {
+    width: 100%;
+    height: 1px;
+    background-color: var(--clr-light);
 }
 
 div.car-info div.car-specs {
@@ -13,6 +34,7 @@ div.car-info div.car-specs {
 
 div.car-info div.car-spec-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+    gap: 3rem;
 }

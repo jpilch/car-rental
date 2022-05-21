@@ -10,6 +10,7 @@ import RentalLocations from "../components/RentalLocations";
 import OfferSummary from "../components/OfferSummary";
 import DayChoices from "../components/DayChoices";
 import SimpleButton from "../components/SimpleButton";
+import CarInfoWrapper from "../components/CarInfoWrapper";
 
 const CarDetails = () => {
     const { id } = useParams()
@@ -30,12 +31,9 @@ const CarDetails = () => {
                 <h1>Your Offer</h1>
                 <div></div>
             </div>
-            <section className="car-info">
-                <img src={carModel.img_url} alt=""/>
-                <CarInfo
-                    carModel={carModel}
-                />
-            </section>
+            <CarInfoWrapper
+                carModel={carModel}
+            />
             <DayChoices
                 days={days}
                 setDays={setDays}

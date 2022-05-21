@@ -5,7 +5,7 @@ section.rental-locations {
     justify-content: center;
     align-items: center;
     grid-area: rl;
-    border: 1px solid var(--clr-light);
+    box-shadow: 4px 4px 20px var(--clr-light);
     border-radius: 1rem;
     padding: 1rem;
 }

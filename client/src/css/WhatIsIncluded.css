@@ -5,9 +5,9 @@ main#car-details section.what-is-included {
     align-items: flex-start;
     justify-content: center;
     gap: 1rem;
-    border: 1px solid var(--clr-light);
+    box-shadow: 4px 4px 20px var(--clr-light);
     border-radius: 1rem;
-    padding-left: 5rem;
+    padding-left: 3rem;
 }
 
 main#car-details section.what-is-included div.benefits {

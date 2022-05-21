@@ -6,7 +6,7 @@ section.offer-summary {
     align-items: center;
     padding: 1rem;
     gap: 1rem;
-    border: 1px solid var(--clr-light);
+    box-shadow: 4px 4px 20px var(--clr-light);
     border-radius: 1rem;
 }
 

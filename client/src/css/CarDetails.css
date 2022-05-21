@@ -23,24 +23,6 @@ main#car-details div.actions {
 }
 
 
-main#car-details section.car-info {
-    grid-area: ci;
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--clr-light);
-    border-radius: 1rem;
-    padding-left: 5rem;
-}
-
-main#car-details .car-info img {
-    border-radius: 1rem;
-    box-shadow: 2px 2px 5px var(--clr-dark);
-    max-height: 8rem;
-    width: auto;
-}
-
 main#car-details div.actions {
     display: flex;
     justify-content: space-around;
