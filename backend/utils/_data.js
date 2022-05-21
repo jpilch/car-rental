@@ -9,7 +9,10 @@ const carModels = [
         'length': 4.98,
         'width': 1.85,
         'height': 1.44,
-        'drive_cat': 'FWD'
+        'drive_cat': 'FWD',
+        price_3: 100,
+        price_5: 150,
+        price_9: 220
     },
     {
         'manufacturer': 'Toyota',
@@ -21,7 +24,10 @@ const carModels = [
         'length': 4.42,
         'width': 1.73,
         'height': 1.49,
-        'drive_cat': 'FWD'
+        'drive_cat': 'FWD',
+        price_3: 100,
+        price_5: 150,
+        price_9: 220
     },
     {
         'manufacturer': 'Volkswagen',
@@ -33,7 +39,10 @@ const carModels = [
         'length': 4.45,
         'width': 1.84,
         'height': 1.63,
-        'drive_cat': 'AWD'
+        'drive_cat': 'AWD',
+        price_3: 100,
+        price_5: 150,
+        price_9: 220
     }
 ]
 
