@@ -33,8 +33,11 @@ const carsInDb = async () => {
     return cars
 }
 
-const saveCar = async (carModelId, rentalId) => {
+const saveCar = async (carModelId) => {
     const carModel = await CarModel.findById(carModelId.toString())
+    const rentals = await rentalsInDb()
+    const rentalId =
+        rentals[Math.floor(Math.random() * rentals.length)]._id
     const rental = await Rental.findById(rentalId.toString())
     const car = new Car({
         car_model: carModelId,
@@ -50,11 +53,10 @@ const saveCar = async (carModelId, rentalId) => {
 const populateCars = async () => {
     await Car.deleteMany({})
     const carModels = await carModelsInDb()
-    const rentals = await rentalsInDb()
-    const rentalId = rentals[0]._id
     const carModelIds = carModels.map(carModel => carModel._id)
     for (let carModelId of carModelIds) {
-        await saveCar(carModelId, rentalId)
+        await saveCar(carModelId)
+        await saveCar(carModelId)
     }
 }
 
