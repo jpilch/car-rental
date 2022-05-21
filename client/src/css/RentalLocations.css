@@ -2,7 +2,7 @@ section.rental-locations {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     grid-area: rl;
     box-shadow: 4px 4px 20px var(--clr-light);

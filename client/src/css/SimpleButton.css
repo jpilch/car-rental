@@ -1,6 +1,7 @@
 button.simple {
-    padding: 1rem 1rem;
+    padding: 1rem 0;
     width: 5rem;
+    text-align: center;
     border: none;
     font-weight: bold;
     font-size: 1rem;
