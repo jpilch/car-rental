@@ -4,7 +4,13 @@ const DayChoices = ({ days, setDays }) => {
 
     return (
         <div className="choices">
-            <h3>Rent for days:</h3>
+            <h2>How Long</h2>
+            <div className="info">
+                <p>
+                    Choose for how many days you want to rent out this car.
+                    Check the price for each period in the summary section down below.
+                </p>
+            </div>
             <div className="days">
                 <div className={'choice'.concat(days === 3 ? ' chosen' : '')}
                      onClick={() => {setDays(3)}}

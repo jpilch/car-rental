@@ -1,13 +1,13 @@
 main#car-details {
     height: 92vh;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
     grid-template-rows: 0.5fr 2fr 1fr 0.5fr;
     grid-template-areas:
-        "yo yo"
-        "ci rl"
-        "wi os"
-        ". btns";
+        "yo yo yo"
+        "ci dc rl"
+        "wi wi os"
+        ". . btns";
     row-gap: 2rem;
     column-gap: 2rem;
     padding: 10rem 20rem;

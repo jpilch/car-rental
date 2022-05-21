@@ -1,11 +1,22 @@
 div.choices {
-    flex: 0.7;
-    padding: 0.5rem 2rem 0 0.5rem;
+    grid-area: dc;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    border-left: 1px solid var(--clr-light);
+    border: 1px solid var(--clr-light);
+    border-radius: 1rem;
+}
+
+div.choices h2 {
+    text-align: center;
+}
+
+div.choices div.info {
+    text-align: justify;
+    font-style: italic;
+    font-size: 0.6rem;
 }
 
 div.choices div.days {
@@ -18,7 +29,7 @@ div.choices div.days {
 div.choices div.choice {
     flex: 1;
     width: 1rem;
-    height: 1.5rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

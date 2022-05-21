@@ -1,7 +1,7 @@
 import '../css/RentalLocations.css'
 import {mdiMapMarkerCircle} from '@mdi/js'
 import Icon from '@mdi/react'
-import React, {useState} from "react";
+import React from "react";
 
 const RentalLocations = ({carModel, days}) => {
     const today = new Date()
@@ -12,7 +12,7 @@ const RentalLocations = ({carModel, days}) => {
 
     return (
         <section className="rental-locations">
-            <h2>Pickup & return</h2>
+            <h2>Start & Stop</h2>
             <div className="locations">
                 <div className="graph">
                     <Icon

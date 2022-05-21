@@ -35,11 +35,11 @@ const CarDetails = () => {
                 <CarInfo
                     carModel={carModel}
                 />
-                <DayChoices
-                    days={days}
-                    setDays={setDays}
-                />
             </section>
+            <DayChoices
+                days={days}
+                setDays={setDays}
+            />
             <RentalLocations
                 carModel={carModel}
                 days={days}
