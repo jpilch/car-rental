@@ -8,6 +8,7 @@ const {
     EXPRESS_APP_ADMIN_FULLNAME,
     EXPRESS_APP_ADMIN_PASSWORD
 } = require('./config')
+const axios = require('axios')
 
 const {
     carModels,
@@ -64,15 +65,19 @@ const usersInDb = async () => {
 
 const populateUsers = async (api) => {
     for (let user of users) {
-        await api.post('/api/users')
-            .send(user)
+        await axios.post(
+            'http://localhost:3001/api/users',
+            user
+        )
     }
-    await api.post('/api/users')
-        .send({
+    await axios.post(
+        'http://localhost:3001/api/users',
+        {
             username: EXPRESS_APP_ADMIN_USERNAME,
             full_name: EXPRESS_APP_ADMIN_FULLNAME,
             password: EXPRESS_APP_ADMIN_PASSWORD
-        })
+        }
+    )
 }
 
 const getUserAuthToken = async (api) => {
