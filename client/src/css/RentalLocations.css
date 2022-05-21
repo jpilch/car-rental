@@ -43,3 +43,13 @@ section.rental-locations .pickup,
 section.rental-locations .return {
     font-size: 0.7rem;
 }
+
+section.rental-locations select {
+    width: 100%;
+    font-size: 0.8rem;
+    border: 1px solid var(--clr-light);
+    border-radius: 0.2rem;
+    height: 1rem;
+    /*-webkit-appearance: none;*/
+    /*-moz-appearance: none;*/
+}
