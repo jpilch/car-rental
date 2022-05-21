@@ -7,12 +7,14 @@ import CarInfo from "../components/CarInfo";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
 import OfferSummary from "../components/OfferSummary";
+import DayChoices from "../components/DayChoices";
 import CustomButton from "../components/CustomButton";
 import Button from "../components/Button";
 
 const CarDetails = () => {
     const { id } = useParams()
     const [carModel, setCarModel] = useState({})
+    const [days, setDays] = useState(3)
 
     useEffect(async () => {
         const response = await axios.get(
@@ -32,10 +34,17 @@ const CarDetails = () => {
                 <CarInfo
                     carModel={carModel}
                 />
+                <DayChoices
+                    days={days}
+                    setDays={setDays}
+                />
             </section>
             <RentalLocations carModel={carModel}/>
             <WhatIsIncluded />
-            <OfferSummary />
+            <OfferSummary
+                carModel={carModel}
+                days={days}
+            />
             <div className="actions">
                 <Button dark={true} text={'Cancel'}/>
                 <CustomButton
