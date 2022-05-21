@@ -20,6 +20,12 @@ carModelsRouter.post('/', async (req, res) => {
 
 carModelsRouter.get('/:id', async (req, res) => {
     const carModel = await CarModel.findById(req.params.id)
+        .populate({
+            path: 'cars',
+            populate: {
+                path: 'rental'
+            }
+        })
     if (carModel) {
         res.json(carModel)
     } else {
