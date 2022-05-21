@@ -1,22 +1,20 @@
 import '../css/CarDetails.css'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import React from "react";
-import CarInfo from "../components/CarInfo";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
 import OfferSummary from "../components/OfferSummary";
 import DayChoices from "../components/DayChoices";
-import SimpleButton from "../components/SimpleButton";
 import CarInfoWrapper from "../components/CarInfoWrapper";
+import OfferActions from "../components/OfferActions";
+import SiteDisclaimer from "../components/SiteDisclaimer";
 
 const CarDetails = () => {
     const { id } = useParams()
     const [carModel, setCarModel] = useState({})
     const [days, setDays] = useState(3)
-    const navigate = useNavigate()
 
     useEffect(async () => {
         const response = await axios.get(
@@ -47,18 +45,8 @@ const CarDetails = () => {
                 carModel={carModel}
                 days={days}
             />
-            <div className="actions">
-                <SimpleButton
-                    bgColor={'var(--clr-red)'}
-                    text={'Cancel'}
-                    onClick={() => navigate('/')}
-                />
-                <SimpleButton
-                    text={'Pay'}
-                    bgColor={'var(--clr-green)'}
-                    onClick={() => navigate('my-account')}
-                />
-            </div>
+            <OfferActions />
+            <SiteDisclaimer />
         </main>
     )
 }

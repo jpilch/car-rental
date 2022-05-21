@@ -1,0 +1,8 @@
+div.disclaimer {
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

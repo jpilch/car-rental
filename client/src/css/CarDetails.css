@@ -7,7 +7,7 @@ main#car-details {
         "yo yo yo"
         "ci dc rl"
         "wi wi os"
-        ". . btns";
+        "d d btns";
     row-gap: 2rem;
     column-gap: 2rem;
     padding: 10rem 20rem;
@@ -18,12 +18,6 @@ main#car-details div.offer-heading {
     border-bottom: 1px solid var(--clr-light);
 }
 
-main#car-details div.actions {
-    grid-area: btns;
-}
-
-
-main#car-details div.actions {
-    display: flex;
-    justify-content: space-around;
+main#car-details div.disclaimer {
+    grid-area: d;
 }

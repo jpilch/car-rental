@@ -1,0 +1,9 @@
+div.actions {
+    grid-area: btns;
+}
+
+
+div.actions {
+    display: flex;
+    justify-content: space-around;
+}
