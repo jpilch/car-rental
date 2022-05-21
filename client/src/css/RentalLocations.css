@@ -19,10 +19,11 @@ section.rental-locations div.locations {
 
 section.rental-locations div.graph {
     display: flex;
+    height: 100%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 section.rental-locations div.graph div.line {
@@ -35,14 +36,10 @@ section.rental-locations div.graph div.line {
 section.rental-locations .addresses {
     display: flex;
     flex-direction: column;
-    gap: 3.4rem;
+    gap: 2rem;
 }
 
 section.rental-locations .pickup,
 section.rental-locations .return {
-    font-weight: bold;
     font-size: 0.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
