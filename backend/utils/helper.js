@@ -3,6 +3,11 @@ const Car = require('../models/car')
 const User = require('../models/user')
 const Agreement = require('../models/agreement')
 const Rental = require('../models/rental')
+const {
+    EXPRESS_APP_ADMIN_USERNAME,
+    EXPRESS_APP_ADMIN_FULLNAME,
+    EXPRESS_APP_ADMIN_PASSWORD
+} = require('./config')
 
 const {
     carModels,
@@ -62,6 +67,12 @@ const populateUsers = async (api) => {
         await api.post('/api/users')
             .send(user)
     }
+    await api.post('/api/users')
+        .send({
+            username: EXPRESS_APP_ADMIN_USERNAME,
+            full_name: EXPRESS_APP_ADMIN_FULLNAME,
+            password: EXPRESS_APP_ADMIN_PASSWORD
+        })
 }
 
 const getUserAuthToken = async (api) => {

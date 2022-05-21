@@ -5,6 +5,7 @@ const helper = require('./utils/helper')
 
 const populate = async () => {
     await helper.clearAll()
+    await helper.populateUsers()
     await helper.populateRentals()
     await helper.populateCarModels()
     await helper.populateCars()
