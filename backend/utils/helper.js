@@ -6,7 +6,8 @@ const Rental = require('../models/rental')
 const {
     EXPRESS_APP_ADMIN_USERNAME,
     EXPRESS_APP_ADMIN_FULLNAME,
-    EXPRESS_APP_ADMIN_PASSWORD
+    EXPRESS_APP_ADMIN_PASSWORD,
+    NODE_ENV
 } = require('./config')
 const axios = require('axios')
 
@@ -66,6 +67,21 @@ const usersInDb = async () => {
 }
 
 const populateUsers = async (api) => {
+    if (NODE_ENV !== 'test') {
+        for (let user of users) {
+            await axios.post(
+                'http://localhost:3001/api/users',
+                user)
+        }
+        await axios.post(
+            'http://localhost:3001/api/users',
+            {
+                username: EXPRESS_APP_ADMIN_USERNAME,
+                full_name: EXPRESS_APP_ADMIN_FULLNAME,
+                password: EXPRESS_APP_ADMIN_PASSWORD
+            })
+        return
+    }
     for (let user of users) {
         await api.post('/api/users')
             .send(user)
