@@ -20,23 +20,22 @@ agreementsRouter.get('/:id', async (req, res) => {
 })
 
 agreementsRouter.post('/', async (req, res) => {
-    const { car_id, starts_on, ends_on, start_loc, end_loc } = req.body
-    if (!car_id || !starts_on || !ends_on) {
+    const { car_id, starts_on, ends_on, rental_id } = req.body
+    if (!car_id || !starts_on || !ends_on || !rental_id) {
         return res.status(400).send({
             err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
         })
     }
     const car = await Car.findById(car_id)
     const user = await User.findById(req.user.id)
-    const start_rental = await Rental.findById(start_loc)
-    const end_rental = await Rental.findById(end_loc)
-    if (!car || !user || !start_rental || !end_rental) {
+    const rental = await Rental.findById(rental_id)
+    if (!car || !user || !rental) {
         return res.status(404).send({
             err: 'Agreement attribute does not exist'
         })
     }
     const rentalPeriodMs = new Date(ends_on) - new Date(starts_on)
-    const rentalPeriodDays = Math.ceil(rentalPeriodMs / (1000 * 60**2 * 24))
+    const rentalPeriodDays = Math.abs(Math.ceil(rentalPeriodMs / (1000 * 60**2 * 24)))
     if (rentalPeriodDays > 9 || rentalPeriodDays < 2) {
         return res.status(400).send({
             err: 'Rental period must be between 2 to 9 days'
@@ -46,17 +45,14 @@ agreementsRouter.post('/', async (req, res) => {
         car_id,
         starts_on,
         ends_on,
-        start_loc,
-        end_loc,
+        rental_id,
         user_id: req.user.id
     })
     const savedAgreement = await agreement.save()
     user.agreements = user.agreements.concat(savedAgreement._id)
     car.agreements = car.agreements.concat(savedAgreement._id)
-    start_rental.agreements = start_rental.agreements.concat(savedAgreement._id)
-    end_rental.agreements = start_rental.agreements.concat(savedAgreement._id)
-    await start_rental.save()
-    await end_rental.save()
+    rental.agreements = rental.agreements.concat(savedAgreement._id)
+    await rental.save()
     await user.save()
     await car.save()
     res.status(201).json(savedAgreement)

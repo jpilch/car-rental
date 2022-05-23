@@ -19,11 +19,7 @@ const agreementSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    start_loc: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rental'
-    },
-    end_loc: {
+    rental_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rental'
     }
