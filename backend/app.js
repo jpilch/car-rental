@@ -34,7 +34,7 @@ app.use('/api/car-models', carModelsRouter)
 app.use('/api/cars', carsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
-app.use('/api/agreements', middleware.loginRequired, agreementsRouter)
+app.use('/api/agreements', agreementsRouter)
 app.use('/api/rentals', rentalsRouter)
 
 app.use(middleware.errorHandler)

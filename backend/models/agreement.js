@@ -18,6 +18,14 @@ const agreementSchema = new mongoose.Schema({
     ends_on: {
         type: Date,
         required: true
+    },
+    start_loc: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rental'
+    },
+    end_loc: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Rental'
     }
 })
 

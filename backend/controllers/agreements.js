@@ -2,6 +2,7 @@ const agreementsRouter = require('express').Router()
 const Agreement = require('../models/agreement')
 const Car = require('../models/car')
 const User = require('../models/user')
+const Rental = require('../models/rental')
 
 agreementsRouter.get('/', async (req, res) => {
     const agreements = await Agreement.find({})
@@ -19,7 +20,7 @@ agreementsRouter.get('/:id', async (req, res) => {
 })
 
 agreementsRouter.post('/', async (req, res) => {
-    const { car_id, starts_on, ends_on } = req.body
+    const { car_id, starts_on, ends_on, start_loc, end_loc } = req.body
     if (!car_id || !starts_on || !ends_on) {
         return res.status(400).send({
             err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
@@ -27,7 +28,9 @@ agreementsRouter.post('/', async (req, res) => {
     }
     const car = await Car.findById(car_id)
     const user = await User.findById(req.user.id)
-    if (!car || !user) {
+    const start_rental = await Rental.findById(start_loc)
+    const end_rental = await Rental.findById(end_loc)
+    if (!car || !user || !start_rental || !end_rental) {
         return res.status(404).send({
             err: 'Agreement attribute does not exist'
         })
@@ -43,11 +46,17 @@ agreementsRouter.post('/', async (req, res) => {
         car_id,
         starts_on,
         ends_on,
+        start_loc,
+        end_loc,
         user_id: req.user.id
     })
     const savedAgreement = await agreement.save()
     user.agreements = user.agreements.concat(savedAgreement._id)
     car.agreements = car.agreements.concat(savedAgreement._id)
+    start_rental.agreements = start_rental.agreements.concat(savedAgreement._id)
+    end_rental.agreements = start_rental.agreements.concat(savedAgreement._id)
+    await start_rental.save()
+    await end_rental.save()
     await user.save()
     await car.save()
     res.status(201).json(savedAgreement)
