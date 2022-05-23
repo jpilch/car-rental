@@ -1,23 +1,34 @@
 import '../css/RentalLocations.css'
 import {mdiMapMarkerCircle} from '@mdi/js'
 import Icon from '@mdi/react'
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import React, {useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import Loading from "./Loading";
+import {chooseEndDate, chooseStartDate} from "../reducers/offerSlice";
 
-const RentalLocations = ({carModel, days}) => {
+const RentalLocations = () => {
+    const dispatch = useDispatch()
+    const {
+        rental,
+        days,
+        startDate,
+        endDate
+    } = useSelector(state => state.offerReducer)
+
     const today = new Date()
     const pickupDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9)
     const returnDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9)
-    pickupDate.setDate(pickupDate.getDate() + 1)
-    returnDate.setDate(returnDate.getDate() + days)
-    const [rentals, setRentals] = useState([])
 
-    useEffect(async () => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/rentals`
-        )
-        setRentals(response.data)
-    }, [])
+    useEffect(() => {
+        pickupDate.setDate(today.getDate() + 1)
+        returnDate.setDate(today.getDate() + 1 + days)
+        dispatch(chooseStartDate(pickupDate.toString()))
+        dispatch(chooseEndDate(returnDate.toString()))
+    }, [dispatch, days])
+
+    if (!days || !rental || !startDate || !endDate) {
+        return <Loading />
+    }
 
     return (
         <section className="rental-locations">
@@ -37,31 +48,15 @@ const RentalLocations = ({carModel, days}) => {
                 <div className="addresses">
                     <div className="pickup">
                         <p className='date'>
-                            {pickupDate && String(pickupDate).slice(0, 25)}
+                            {startDate && String(startDate).slice(0, 25)}
                         </p>
-                        <select style={{fontSize: '0.7rem'}} name="start-loc" id="start-loc">
-                            {carModel.cars && carModel.cars.map((car, index) => {
-                                return (
-                                    <option key={car.rental.id} value={`${index}`}>
-                                        {car.rental.city_en}
-                                    </option>
-                                )
-                            })}
-                        </select>
+                        <p>{rental.city_en  + ' (' + rental.address + ')'}</p>
                     </div>
                     <div className="return">
                         <p className='date'>
-                            {returnDate && String(returnDate).slice(0, 25)}
+                            {endDate && String(endDate).slice(0, 25)}
                         </p>
-                        <select style={{fontSize: '0.7rem'}} name="start-loc" id="start-loc">
-                            {rentals && rentals.map((rental, index) => {
-                                return (
-                                    <option key={rental.id} value={`${index}`}>
-                                        {rental.city_en}
-                                    </option>
-                                )
-                            })}
-                        </select>
+                        <p>{rental.city_en + ' (' + rental.address + ')'}</p>
                     </div>
                 </div>
             </div>

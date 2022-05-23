@@ -1,7 +1,8 @@
 import '../css/CarDetails.css'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {useDispatch} from "react-redux";
+import {fetchCarModelInfo} from "../reducers/offerSlice";
 import React from "react";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
@@ -13,15 +14,11 @@ import SiteDisclaimer from "../components/SiteDisclaimer";
 
 const CarDetails = () => {
     const { id } = useParams()
-    const [carModel, setCarModel] = useState({})
-    const [days, setDays] = useState(3)
+    const dispatch = useDispatch()
 
     useEffect(async () => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/car-models/${id}`
-        )
-        setCarModel(response.data)
-    }, [])
+        dispatch(fetchCarModelInfo(id))
+    }, [dispatch])
 
     return (
         <main id="car-details">
@@ -29,22 +26,11 @@ const CarDetails = () => {
                 <h1>Your Offer</h1>
                 <div></div>
             </div>
-            <CarInfoWrapper
-                carModel={carModel}
-            />
-            <DayChoices
-                days={days}
-                setDays={setDays}
-            />
-            <RentalLocations
-                carModel={carModel}
-                days={days}
-            />
+            <CarInfoWrapper />
+            <DayChoices />
+            <RentalLocations />
             <WhatIsIncluded />
-            <OfferSummary
-                carModel={carModel}
-                days={days}
-            />
+            <OfferSummary />
             <OfferActions />
             <SiteDisclaimer />
         </main>

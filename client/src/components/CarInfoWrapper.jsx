@@ -1,11 +1,11 @@
 import '../css/CarInfoWrapper.css'
 import CarInfo from "./CarInfo";
 
-const CarInfoWrapper = ({carModel}) => {
+const CarInfoWrapper = () => {
     return (
         <section className="car-info-wrapper">
             <h2>Your Car</h2>
-            <CarInfo carModel={carModel}/>
+            <CarInfo />
         </section>
     )
 }
