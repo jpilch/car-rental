@@ -69,13 +69,15 @@ test('cannot create agreement for non-existent users', async () => {
     const token = await helper.getUserAuthToken(api)
     await User.deleteMany({})
     const cars = await helper.carsInDb()
+    const rentals = await helper.rentalsInDb()
     const response = await api
         .post('/api/agreements')
         .set('Authorization', `Bearer ${token}`)
         .send({
             car_id: cars[0]._id.toString(),
             starts_on: new Date(),
-            ends_on: new Date()
+            ends_on: new Date(),
+            rental_id: rentals[0]._id
         })
         .expect(404)
     await helper.populateUsers(api)
@@ -96,8 +98,7 @@ test('rental period must be between 2 to 9 days', async () => {
             car_id: cars[0]._id.toString(),
             starts_on: '01-01-2022',
             ends_on: '01-11-2022',
-            start_loc: rentals[0]._id,
-            end_loc: rentals[1]._id
+            rental_id: rentals[0]._id
         })
         .expect(400)
     expect(response.body.err).toBeDefined()
@@ -118,8 +119,7 @@ test('agreements are created', async () => {
             car_id: cars[0]._id.toString(),
             starts_on: '01-01-2022',
             ends_on: '01-8-2022',
-            start_loc: rentals[0]._id,
-            end_loc: rentals[1]._id
+            rental_id: rentals[0]._id
         })
         .expect(201)
         .expect('Content-Type', /application\/json/)
@@ -134,8 +134,7 @@ test('agreements are created', async () => {
         user_id: users[0]._id.toString(),
         starts_on: new Date('01-01-2022').toISOString(),
         ends_on: new Date('01-8-2022').toISOString(),
-        start_loc: rentals[0]._id.toString(),
-        end_loc: rentals[1]._id.toString()
+        rental_id: rentals[0]._id.toString()
     })
 })
 
