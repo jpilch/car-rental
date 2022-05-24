@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createAgreement = async (data, authToken) => {
+const createAgreement = async (data, authToken) => {
     const config = {
         headers: {
             'Authorization': `Bearer ${authToken}`
@@ -13,3 +13,5 @@ export const createAgreement = async (data, authToken) => {
     )
     return response
 }
+
+export default { createAgreement }

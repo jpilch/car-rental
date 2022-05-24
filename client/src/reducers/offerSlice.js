@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
+import agreementService from "../services/agreementService";
 import axios from "axios";
+import {notify} from "./notificationSlice";
 
 const initialState = {
     carModel: null,
@@ -58,6 +60,24 @@ export const fetchCarModelInfo = (id) => {
             dispatch(chooseDays(3))
         } catch (e) {
             console.log('error', e)
+        }
+    }
+}
+
+export const createAgreement = (data, authToken, navigate) => {
+    return async dispatch => {
+        const response = await agreementService.createAgreement({
+            car_id: data.car.id,
+            rental_id: data.rental.id,
+            starts_on: data.startDate,
+            ends_on: data.endDate
+        }, authToken)
+        if (response.status === 201) {
+            dispatch(notify('Successfully created an agreement', true))
+            navigate('/my-account')
+        } else {
+            dispatch(notify('Something went wrong', false))
+            console.log(response.status, response.data)
         }
     }
 }
