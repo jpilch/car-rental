@@ -20,8 +20,8 @@ agreementsRouter.get('/:id', async (req, res) => {
 })
 
 agreementsRouter.post('/', async (req, res) => {
-    const { car_id, starts_on, ends_on, rental_id } = req.body
-    if (!car_id || !starts_on || !ends_on || !rental_id) {
+    const { car_id, starts_on, ends_on, rental_id, price } = req.body
+    if (!car_id || !starts_on || !ends_on || !rental_id, !price) {
         return res.status(400).send({
             err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
         })
@@ -46,6 +46,7 @@ agreementsRouter.post('/', async (req, res) => {
         starts_on,
         ends_on,
         rental_id,
+        price,
         user_id: req.user.id
     })
     const savedAgreement = await agreement.save()

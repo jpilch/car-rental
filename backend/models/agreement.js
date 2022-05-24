@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const agreementSchema = new mongoose.Schema({
+    price: Number,
     user_id: {
         required: true,
         type: mongoose.Schema.Types.ObjectId,
