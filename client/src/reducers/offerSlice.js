@@ -9,7 +9,8 @@ const initialState = {
     rental: null,
     startDate: null,
     endDate: null,
-    days: null
+    days: null,
+    price: null
 }
 
 const offerSlice = createSlice({
@@ -33,6 +34,20 @@ const offerSlice = createSlice({
         },
         chooseEndDate: (state, action) => {
             state.endDate = action.payload
+        },
+        choosePrice: (state, action) => {
+            console.log(state, action)
+            switch (action.payload) {
+                case 3:
+                    state.price = state.carModel.price_3
+                    break
+                case 5:
+                    state.price = state.carModel.price_5
+                    break
+                case 9:
+                    state.price = state.carModel.price_9
+                    break
+            }
         }
     }
 })
@@ -43,7 +58,8 @@ export const {
     chooseCarModel,
     chooseDays,
     chooseStartDate,
-    chooseEndDate
+    chooseEndDate,
+    choosePrice
 } = offerSlice.actions
 
 export default offerSlice.reducer
@@ -58,6 +74,7 @@ export const fetchCarModelInfo = (id) => {
             dispatch(chooseCar(response.data.cars[0]))
             dispatch(chooseRental(response.data.cars[0].rental))
             dispatch(chooseDays(3))
+            dispatch(choosePrice(3))
         } catch (e) {
             console.log('error', e)
         }
@@ -70,7 +87,8 @@ export const createAgreement = (data, authToken, navigate) => {
             car_id: data.car.id,
             rental_id: data.rental.id,
             starts_on: data.startDate,
-            ends_on: data.endDate
+            ends_on: data.endDate,
+            price: data.price
         }, authToken)
         if (response.status === 201) {
             dispatch(notify('Successfully created an agreement', true))

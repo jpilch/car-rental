@@ -1,7 +1,7 @@
 import '../css/DayChoices.css'
 import {useSelector, useDispatch} from "react-redux";
 import Loading from "./Loading";
-import {chooseDays} from "../reducers/offerSlice";
+import {chooseDays, choosePrice} from "../reducers/offerSlice";
 
 const DayChoices = () => {
     const {days} = useSelector(state => state.offerReducer)
@@ -24,6 +24,7 @@ const DayChoices = () => {
                 <div className={'choice'.concat(days === 3 ? ' chosen' : '')}
                      onClick={() => {
                          dispatch(chooseDays(3))
+                         dispatch(choosePrice(3))
                      }}
                 >
                     <p>3</p>
@@ -31,6 +32,7 @@ const DayChoices = () => {
                 <div className={'choice'.concat(days === 5 ? ' chosen' : '')}
                      onClick={() => {
                          dispatch(chooseDays(5))
+                         dispatch(choosePrice(5))
                      }}
                 >
                     <p>5</p>
@@ -38,6 +40,7 @@ const DayChoices = () => {
                 <div className={'choice'.concat(days === 9 ? ' chosen' : '')}
                      onClick={() => {
                          dispatch(chooseDays(9))
+                         dispatch(choosePrice(9))
                      }}
                 >
                     <p>9</p>

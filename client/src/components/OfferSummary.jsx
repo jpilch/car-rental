@@ -4,15 +4,11 @@ import {useSelector} from "react-redux";
 import Loading from "./Loading";
 
 const OfferSummary = () => {
-    const {carModel, days} = useSelector(state => state.offerReducer)
+    const { price } = useSelector(state => state.offerReducer)
 
-    if (!carModel || !days) {
+    if (!price) {
         return <Loading />
     }
-
-    const price = days === 3
-        ? carModel.price_3
-        : (days === 5 ? carModel.price_5 : carModel.price_9)
 
     return (
         <section className="offer-summary">
