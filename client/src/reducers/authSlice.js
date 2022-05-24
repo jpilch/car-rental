@@ -37,7 +37,7 @@ const authSlice = createSlice({
                 state.token = savedUserAndToken.token
             }
         },
-        logout: (state) => {
+        resetUserInfo: (state) => {
             window.localStorage.removeItem(
                 `${process.env.REACT_APP_LOGGED_IN_USER}`
             )
@@ -47,7 +47,7 @@ const authSlice = createSlice({
     }
 })
 
-export const {setUser, setToken, saveUserAndToken, extractUserAndToken, logout} = authSlice.actions
+export const {setUser, setToken, saveUserAndToken, extractUserAndToken, resetUserInfo} = authSlice.actions
 
 export const login = (username, password) => {
     return async dispatch => {

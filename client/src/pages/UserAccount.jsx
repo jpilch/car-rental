@@ -1,17 +1,23 @@
 import '../css/UserAccount.css'
-import Button from "../components/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import Loading from "../components/Loading";
 import {notify} from "../reducers/notificationSlice";
-import {logout} from "../reducers/authSlice";
+import {resetUserInfo} from "../reducers/authSlice";
 import useAuth from "../hooks/useAuth";
+import SimpleButton from "../components/SimpleButton";
 
 const UserAccount = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const {user} = useAuth()
+
+    const logout = () => {
+        navigate('/')
+        dispatch(resetUserInfo())
+        dispatch(notify('Successfully logged out', true))
+    }
 
     if (!user) {
         return (
@@ -23,22 +29,22 @@ const UserAccount = () => {
         <main id="account">
             <div className="container">
                 <section className="greeting">
-                    <h1>Hi there{user.full_name && `, ${user.full_name}`}</h1>
+                    <h1>Hi there{user.username && `, ${user.username}`}</h1>
                 </section>
+                <div className='underline'></div>
                 <section className="manage">
-                    <Link to={'/my-account/orders'}>
-                        <p>Manage Orders</p>
-                    </Link>
-                    <Link to={'/my-account/settings'}>
-                        <p>Account Settings</p>
-                    </Link>
+                    <SimpleButton
+                        text={'Agreements'}
+                        bgColor={'var(--clr-dark)'}
+                        onClick={() => navigate('/my-account/agreements')}
+                    />
                 </section>
-                <div onClick={() => {
-                    navigate('/')
-                    dispatch(notify('Successfully logged out', true))
-                    dispatch(logout())
-                }}>
-                    <Button text={'Logout'} dark={true}/>
+                <div>
+                    <SimpleButton
+                        text={'Logout'}
+                        bgColor={'var(--clr-red)'}
+                        onClick={() => logout()}
+                    />
                 </div>
             </div>
         </main>

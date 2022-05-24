@@ -2,7 +2,8 @@ import '../css/SimpleButton.css'
 
 const SimpleButton = ({text, bgColor, onClick}) => {
     const buttonStyle = {
-        backgroundColor: bgColor
+        backgroundColor: bgColor,
+        textAlign: 'center'
     }
     return (
         <button style={buttonStyle} className='simple'
