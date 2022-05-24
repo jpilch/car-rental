@@ -7,8 +7,18 @@ usersRouter.get('/', async (req, res) => {
     res.json(users)
 })
 
+usersRouter.get('/me', async (req, res) => {
+    const userMe = await User.findById(req.user.id).populate('agreements')
+    if (!userMe) {
+        return res.status(404).send({
+            err: 'User does not exist'
+        })
+    }
+    res.json(userMe)
+})
+
 usersRouter.get('/:id', async (req, res) => {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id).populate('agreements')
     if (!user) {
         return res.status(404).send({
             err: 'User does not exist'
