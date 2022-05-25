@@ -2,7 +2,7 @@ import SimpleButton from "./SimpleButton";
 import {useSelector, useDispatch} from "react-redux";
 import {toggleModal, makeAChoice} from "../reducers/modalSlice";
 
-const Modal = ({ text }) => {
+const Modal = ({ text, onConfirm }) => {
     const {display} = useSelector(state => state.modalReducer)
     const dispatch = useDispatch()
 
@@ -57,8 +57,9 @@ const Modal = ({ text }) => {
                     <SimpleButton
                         text={'Confirm'}
                         bgColor={'var(--clr-green)'}
-                        onClick={() => {
+                        onClick={async () => {
                             dispatch(makeAChoice(true))
+                            await onConfirm()
                             dispatch(toggleModal())
                         }}
                     />

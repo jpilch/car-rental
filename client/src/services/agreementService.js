@@ -14,4 +14,17 @@ const createAgreement = async (data, authToken) => {
     return response
 }
 
-export default { createAgreement }
+const deleteAgreementById = async (id, authToken) => {
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${authToken}`
+        }
+    }
+    const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/agreements/${id}`,
+        config
+    )
+    return response
+}
+
+export default { createAgreement, deleteAgreementById }

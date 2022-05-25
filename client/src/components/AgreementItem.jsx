@@ -6,9 +6,12 @@ import {useEffect, useState} from "react";
 import Loading from "./Loading";
 import {toggleModal} from "../reducers/modalSlice";
 import {useDispatch} from "react-redux";
+import useAuth from "../hooks/useAuth";
+import {deleteAgreement, chooseAgreement} from "../reducers/agreementSlice";
 
 const AgreementItem = ({ agreement }) => {
     const dispatch = useDispatch()
+    const { token } = useAuth()
     const [car, setCar] = useState(null)
     const [carModel, setCarModel] = useState(null)
     const [rental, setRental] = useState(null)
@@ -32,6 +35,13 @@ const AgreementItem = ({ agreement }) => {
         return <Loading />
     }
 
+    // const deleteAgreement = async (id) => {
+    //     console.log('deleting agreement')
+    //     const response = await agreementService
+    //         .deleteAgreementById(id, token)
+    //     console.log(response.data, response.status)
+    // }
+
     return (
         <div className="agreement">
             <div className="agreement-summary">
@@ -52,7 +62,7 @@ const AgreementItem = ({ agreement }) => {
             </div>
             <div className="agreement-status-actions">
                 <div className="status">
-                    <p className='status'>Status:</p>
+                    <p className='status'>Status</p>
                     <p className='status-value'>{status}</p>
                 </div>
                 <div className="action" style={{
@@ -66,6 +76,7 @@ const AgreementItem = ({ agreement }) => {
                             ? 'var(--clr-green)'
                             : 'var(--clr-red)'}
                         onClick={() => {
+                            dispatch(chooseAgreement(agreement.id))
                             dispatch(toggleModal())
                         }}
                     />

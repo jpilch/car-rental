@@ -1,7 +1,7 @@
 div.agreement {
     width: 80%;
+    box-shadow: 4px 4px 20px var(--clr-light);
     border-radius: 1rem;
-    border: 1px solid var(--clr-light);
     padding: 1rem;
     display: flex;
 }
@@ -11,14 +11,12 @@ div.agreement div.agreement-summary {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-right: 1rem;
 }
 
 div.agreement div.agreement-summary p {
     line-height: 1.5rem;
-}
-
-div.agreement div.agreement-summary p {
-    line-height: 1.5rem;
+    font-size: 0.8rem;
 }
 
 div.agreement div.values p {
@@ -43,6 +41,7 @@ div.agreement div.status {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 0.9rem;
 }
 
 div.agreement div.status>p:last-child {
