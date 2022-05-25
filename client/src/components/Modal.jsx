@@ -1,14 +1,16 @@
 import SimpleButton from "./SimpleButton";
-import {useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {toggleModal, makeAChoice} from "../reducers/modalSlice";
 
-const Modal = ({ text, onConfirm }) => {
-    const [showModal, setShowModal] = useState(false)
+const Modal = ({ text }) => {
+    const {display} = useSelector(state => state.modalReducer)
+    const dispatch = useDispatch()
 
     const style = {
         width: '100%',
         fontStyle: 'italic',
         height: '100%',
-        display: !showModal ? 'none' : 'flex',
+        display: !display ? 'none' : 'flex',
         position: 'fixed',
         backgroundColor: 'rgba(0,0,0,0.6)',
         zIndex: 1,
@@ -48,15 +50,16 @@ const Modal = ({ text, onConfirm }) => {
                         text={'Cancel'}
                         bgColor={'var(--clr-red)'}
                         onClick={() => {
-                            onConfirm()
-                            setShowModal(false)
+                            dispatch(toggleModal())
+                            dispatch(makeAChoice(false))
                         }}
                     />
                     <SimpleButton
                         text={'Confirm'}
                         bgColor={'var(--clr-green)'}
                         onClick={() => {
-                            setShowModal(false)
+                            dispatch(makeAChoice(true))
+                            dispatch(toggleModal())
                         }}
                     />
                 </div>

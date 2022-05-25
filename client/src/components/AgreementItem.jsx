@@ -4,8 +4,11 @@ import rentalService from "../services/rentalService";
 import SimpleButton from "./SimpleButton";
 import {useEffect, useState} from "react";
 import Loading from "./Loading";
+import {toggleModal} from "../reducers/modalSlice";
+import {useDispatch} from "react-redux";
 
 const AgreementItem = ({ agreement }) => {
+    const dispatch = useDispatch()
     const [car, setCar] = useState(null)
     const [carModel, setCarModel] = useState(null)
     const [rental, setRental] = useState(null)
@@ -62,6 +65,9 @@ const AgreementItem = ({ agreement }) => {
                         bgColor={ agreement.active
                             ? 'var(--clr-green)'
                             : 'var(--clr-red)'}
+                        onClick={() => {
+                            dispatch(toggleModal())
+                        }}
                     />
                 </div>
             </div>
