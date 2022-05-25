@@ -95,7 +95,6 @@ export const createAgreement = (data, authToken, navigate) => {
             navigate('/my-account')
         } else {
             dispatch(notify('Something went wrong', false))
-            console.log(response.status, response.data)
         }
     }
 }

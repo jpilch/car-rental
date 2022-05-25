@@ -1,0 +1,27 @@
+main#agreements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 92vh;
+    gap: 2rem;
+}
+
+main#agreements div.underline {
+    height: 1px;
+    background-color: var(--clr-light);
+    width: 50%;
+}
+
+main#agreements section.agreement-list {
+    padding: 1rem;
+    flex: 0.8;
+    width: 50%;
+    box-shadow: 4px 4px 20px var(--clr-light);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}

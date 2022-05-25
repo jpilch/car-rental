@@ -1,0 +1,35 @@
+div.agreement {
+    width: 80%;
+    border-radius: 1rem;
+    border: 1px solid var(--clr-light);
+    padding: 1rem;
+    display: flex;
+}
+
+div.agreement div.agreement-summary {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+div.agreement div.agreement-summary p {
+    line-height: 1.5rem;
+}
+
+div.agreement div.agreement-summary p {
+    line-height: 1.5rem;
+}
+
+div.agreement div.values p {
+    font-weight: bold;
+}
+
+div.agreement div.labels {
+    text-align: right;
+}
+
+div.agreement div.agreement-actions {
+    flex: 0.6;
+    border-left: 1px solid var(--clr-light);
+}

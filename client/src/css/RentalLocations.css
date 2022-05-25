@@ -11,6 +11,7 @@ section.rental-locations {
 }
 
 section.rental-locations div.locations {
+    flex: 1;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -36,6 +37,8 @@ section.rental-locations div.graph div.line {
 section.rental-locations .addresses {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
     gap: 2rem;
 }
 
