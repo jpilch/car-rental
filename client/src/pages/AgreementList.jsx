@@ -3,6 +3,7 @@ import userService from "../services/userService";
 import {useEffect, useState} from "react";
 import useAuth from "../hooks/useAuth";
 import AgreementItem from "../components/AgreementItem";
+import Modal from "../components/Modal";
 
 const AgreementList = () => {
     const { token } = useAuth()
@@ -20,6 +21,9 @@ const AgreementList = () => {
 
     return (
         <main id="agreements">
+            <Modal
+                text={'This is a lengthy question. Do you Confirm?'}
+            />
             <h1>Your Agreements</h1>
             <div className="underline"></div>
             <section className="agreement-list">
