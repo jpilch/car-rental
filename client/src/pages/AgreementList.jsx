@@ -23,7 +23,9 @@ const AgreementList = () => {
             <h1>Your Agreements</h1>
             <div className="underline"></div>
             <section className="agreement-list">
-                {userAgreements && userAgreements.map(agreement => {
+                {userAgreements && userAgreements
+                    .slice(0, 3)
+                    .map(agreement => {
                     return (
                         <AgreementItem
                             key={agreement.id}

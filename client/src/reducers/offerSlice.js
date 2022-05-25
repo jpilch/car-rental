@@ -36,7 +36,6 @@ const offerSlice = createSlice({
             state.endDate = action.payload
         },
         choosePrice: (state, action) => {
-            console.log(state, action)
             switch (action.payload) {
                 case 3:
                     state.price = state.carModel.price_3

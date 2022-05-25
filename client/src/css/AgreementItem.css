@@ -29,7 +29,28 @@ div.agreement div.labels {
     text-align: right;
 }
 
-div.agreement div.agreement-actions {
+div.agreement div.agreement-status-actions {
     flex: 0.6;
+    padding: 0 0 0 1rem;
     border-left: 1px solid var(--clr-light);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+div.agreement div.status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.agreement div.status>p:last-child {
+    font-weight: bold;
+}
+
+div.agreement div.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

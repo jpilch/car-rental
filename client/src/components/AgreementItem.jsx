@@ -9,6 +9,9 @@ const AgreementItem = ({ agreement }) => {
     const [car, setCar] = useState(null)
     const [carModel, setCarModel] = useState(null)
     const [rental, setRental] = useState(null)
+    const status = agreement.active
+        ? 'ACTIVE'
+        : (agreement.planned ? 'PLANNED' : 'ARCHIVED')
 
     useEffect(async () => {
         const carApiResponse = await carService
@@ -44,8 +47,23 @@ const AgreementItem = ({ agreement }) => {
                     <p className='price'>{agreement.price}$</p>
                 </div>
             </div>
-            <div className="agreement-actions">
-
+            <div className="agreement-status-actions">
+                <div className="status">
+                    <p className='status'>Status:</p>
+                    <p className='status-value'>{status}</p>
+                </div>
+                <div className="action" style={{
+                    display: agreement.archived ? 'none' : ''
+                }}>
+                    <SimpleButton
+                        text={ agreement.active
+                            ? 'Contact'
+                            : 'Resign'}
+                        bgColor={ agreement.active
+                            ? 'var(--clr-green)'
+                            : 'var(--clr-red)'}
+                    />
+                </div>
             </div>
         </div>
     )
