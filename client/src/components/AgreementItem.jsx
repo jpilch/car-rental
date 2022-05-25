@@ -3,6 +3,7 @@ import carService from "../services/carService";
 import rentalService from "../services/rentalService";
 import SimpleButton from "./SimpleButton";
 import {useEffect, useState} from "react";
+import Loading from "./Loading";
 
 const AgreementItem = ({ agreement }) => {
     const [car, setCar] = useState(null)
@@ -20,6 +21,10 @@ const AgreementItem = ({ agreement }) => {
             .fetchRentalById(agreement.rental_id)
         setRental(rentalApiResponse.data)
     }, [])
+
+    if (!agreement) {
+        return <Loading />
+    }
 
     return (
         <div className="agreement">

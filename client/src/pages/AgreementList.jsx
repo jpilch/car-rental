@@ -11,9 +11,7 @@ const AgreementList = () => {
     useEffect(async () => {
         const fetchAgreements = async () => {
             const response = await userService.getLoggedInUser(token)
-            if (response.status === 200) {
-                setUserAgreements(response.data.agreements)
-            }
+            setUserAgreements(response.data.agreements)
         }
         if (token) {
             await fetchAgreements()
