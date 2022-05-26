@@ -21,7 +21,7 @@ const AgreementList = () => {
     return (
         <main id="agreements">
             <Modal
-                text={'This is a lengthy question. Do you Confirm?'}
+                text={'Do you want to delete selected agreement?'}
                 onConfirm={chosenAgreementId
                     ? () => {
                         dispatch(deleteAgreement(chosenAgreementId, token))

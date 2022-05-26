@@ -14,7 +14,7 @@ const OfferActions = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { userInfo } = useUserInfo()
-    const token = useAuth()
+    const { token } = useAuth()
     const data = useSelector(state => state.offerReducer)
 
     if (!userInfo) {
@@ -29,8 +29,6 @@ const OfferActions = () => {
         }
         return true
     }
-
-    console.log(userCanRent())
 
     return (
         <>

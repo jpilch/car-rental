@@ -47,7 +47,13 @@ const authSlice = createSlice({
     }
 })
 
-export const {setUser, setToken, saveUserAndToken, extractUserAndToken, resetUserInfo} = authSlice.actions
+export const {
+    setUser,
+    setToken,
+    saveUserAndToken,
+    extractUserAndToken,
+    resetUserInfo
+} = authSlice.actions
 
 export const login = (username, password) => {
     return async dispatch => {
