@@ -6,13 +6,10 @@ import {useEffect, useState} from "react";
 import Loading from "./Loading";
 import {toggleModal} from "../reducers/modalSlice";
 import {useDispatch} from "react-redux";
-import useAuth from "../hooks/useAuth";
-import {deleteAgreement, chooseAgreement} from "../reducers/agreementSlice";
+import {chooseAgreement} from "../reducers/agreementSlice";
 
 const AgreementItem = ({ agreement }) => {
     const dispatch = useDispatch()
-    const { token } = useAuth()
-    const [car, setCar] = useState(null)
     const [carModel, setCarModel] = useState(null)
     const [rental, setRental] = useState(null)
     const status = agreement.active
@@ -22,7 +19,6 @@ const AgreementItem = ({ agreement }) => {
     useEffect(async () => {
         const carApiResponse = await carService
             .fetchCarById(agreement.car_id)
-        setCar(carApiResponse.data)
         const carModelApiResponse = await carService
             .fetchCarModelById(carApiResponse.data.car_model)
         setCarModel(carModelApiResponse.data)
@@ -34,13 +30,6 @@ const AgreementItem = ({ agreement }) => {
     if (!agreement) {
         return <Loading />
     }
-
-    // const deleteAgreement = async (id) => {
-    //     console.log('deleting agreement')
-    //     const response = await agreementService
-    //         .deleteAgreementById(id, token)
-    //     console.log(response.data, response.status)
-    // }
 
     return (
         <div className="agreement">
