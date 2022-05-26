@@ -11,12 +11,17 @@ import Loading from "../components/Loading";
 const AgreementList = () => {
     const { token } = useAuth()
     const dispatch = useDispatch()
-    const { chosenAgreementId } = useSelector(state => state.agreementReducer)
+    const {
+        chosenAgreementId,
+        userAgreements
+    } = useSelector(state => state.agreementReducer)
     const { userInfo } = useUserInfo()
 
     if (!userInfo) {
         return <Loading />
     }
+
+    console.log(userAgreements, chosenAgreementId)
 
     return (
         <main id="agreements">
@@ -34,7 +39,7 @@ const AgreementList = () => {
             <h1>Your Agreements</h1>
             <div className="underline"></div>
             <section className="agreement-list">
-                {userInfo.agreements && userInfo.agreements
+                {userAgreements && userAgreements
                     .slice(0, 3)
                     .map(agreement => {
                     return (
