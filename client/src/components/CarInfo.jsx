@@ -5,14 +5,14 @@ import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 import Loading from "./Loading";
 
-const CarInfo = () => {
+const CarInfo = ({carModel}) => {
     const imgStyle = {
         maxWidth: '10rem',
         height: 'auto',
         borderRadius: '1rem'
     }
 
-    const {carModel} = useSelector(state => state.offerReducer)
+    // const {carModel} = useSelector(state => state.offerReducer)
 
     if (!carModel) {
         return <Loading />

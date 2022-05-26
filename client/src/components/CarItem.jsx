@@ -12,7 +12,7 @@ const CarItem = ({carModel}) => {
             <CarInfo carModel={carModel}/>
             <CarOffer
                 seeOfferDetails={() => navigate(`/cars/${carModel.id}`)}
-                priceThreeDays={200}
+                priceThreeDays={carModel.price_3}
             />
         </div>
     )

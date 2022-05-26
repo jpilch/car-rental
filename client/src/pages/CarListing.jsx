@@ -2,7 +2,6 @@ import '../css/CarListing.css'
 import React, {useEffect, useState} from 'react'
 import CarItem from "../components/CarItem";
 import axios from "axios";
-import Modal from "../components/Modal";
 
 const CarListing = () => {
     const [carModels, setCarModels] = useState([])

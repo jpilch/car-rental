@@ -4,7 +4,7 @@ div.car-item {
     border-radius: 1rem;
     color: var(--clr-dark);
     background-color: var(--clr-lighter);
-    box-shadow: 4px 4px 5px var(--clr-light);
+    box-shadow: 4px 4px 20px var(--clr-light);
     padding: 1rem 1rem;
 }
 
