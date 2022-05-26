@@ -9,6 +9,7 @@ import UserAccount from "./pages/UserAccount";
 import AgreementList from "./pages/AgreementList";
 import CarListing from "./pages/CarListing";
 import CarDetails from "./pages/CarDetails";
+import Contact from "./pages/Contact";
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 					<Route path='/my-account/agreements' element={<AgreementList />}/>
 					<Route path='/cars' element={<CarListing />}/>
 					<Route path='/cars/:id' element={<CarDetails />}/>
+					<Route path={'/contact'} element={<Contact />}/>
 				</Routes>
 				<Footer/>
 				< /Router>
