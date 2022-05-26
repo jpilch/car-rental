@@ -7,10 +7,12 @@ import {deleteAgreement} from "../reducers/agreementSlice";
 import {notify} from "../reducers/notificationSlice";
 import useUserInfo from "../hooks/useUserInfo";
 import Loading from "../components/Loading";
+import {useNavigate} from "react-router-dom";
 
 const AgreementList = () => {
     const { token } = useAuth()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {
         chosenAgreementId,
         userAgreements
@@ -21,15 +23,20 @@ const AgreementList = () => {
         return <Loading />
     }
 
-    console.log(userAgreements, chosenAgreementId)
-
     return (
         <main id="agreements">
             <Modal
                 text={'Do you want to delete selected agreement?'}
                 onConfirm={chosenAgreementId
                     ? () => {
-                        dispatch(deleteAgreement(chosenAgreementId, token))
+                        const { planned, archived, active } = userAgreements
+                            .find(agreement => agreement.id === chosenAgreementId)
+                        console.log({ planned, archived, active })
+                        if (planned || archived) {
+                            dispatch(deleteAgreement(chosenAgreementId, token))
+                        } else {
+                            navigate('/contact')
+                        }
                     }
                     : () => {
                         dispatch(notify('No agreement id specified'))
