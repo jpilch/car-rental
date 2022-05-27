@@ -2,7 +2,6 @@ import CarSpec from "./CarSpec";
 import '../css/CarInfo.css'
 import {mdiBagChecked, mdiBagSuitcase, mdiCarShiftPattern, mdiSeatPassenger, mdiSpeedometer} from "@mdi/js";
 import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
 import Loading from "./Loading";
 
 const CarInfo = ({carModel}) => {
@@ -10,12 +9,6 @@ const CarInfo = ({carModel}) => {
         maxWidth: '10rem',
         height: 'auto',
         borderRadius: '1rem'
-    }
-
-    // const {carModel} = useSelector(state => state.offerReducer)
-
-    if (!carModel) {
-        return <Loading />
     }
 
     return (
