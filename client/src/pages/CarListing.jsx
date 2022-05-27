@@ -1,14 +1,13 @@
 import '../css/CarListing.css'
 import React, {useEffect, useState} from 'react'
 import CarItem from "../components/CarItem";
-import axios from "axios";
+import carService from "../services/carService";
 
 const CarListing = () => {
     const [carModels, setCarModels] = useState([])
     useEffect(async () => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/car-models`
-        )
+        const response = await carService
+            .fetchCarModels(0)
         setCarModels(response.data)
     }, [])
 

@@ -14,4 +14,16 @@ const fetchCarModelById = async (id) => {
     return response
 }
 
-export default { fetchCarById, fetchCarModelById }
+const fetchCarModels = async (page) => {
+    const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/car-models` +
+        `?page=${page}&limit=${process.env.REACT_APP_BASE_PAGE_LIMIT}`
+    )
+    return response
+}
+
+export default {
+    fetchCarById,
+    fetchCarModelById,
+    fetchCarModels
+}

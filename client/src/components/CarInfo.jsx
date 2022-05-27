@@ -2,7 +2,6 @@ import CarSpec from "./CarSpec";
 import '../css/CarInfo.css'
 import {mdiBagChecked, mdiBagSuitcase, mdiCarShiftPattern, mdiSeatPassenger, mdiSpeedometer} from "@mdi/js";
 import React, {useEffect} from "react";
-import Loading from "./Loading";
 
 const CarInfo = ({carModel}) => {
     const imgStyle = {
