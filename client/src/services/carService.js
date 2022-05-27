@@ -22,8 +22,15 @@ const fetchCarModels = async (page) => {
     return response
 }
 
+const countCarModels = async () => {
+    return axios.get(
+        `${process.env.REACT_APP_API_URL}/car-models/count`
+    )
+}
+
 export default {
     fetchCarById,
     fetchCarModelById,
-    fetchCarModels
+    fetchCarModels,
+    countCarModels
 }

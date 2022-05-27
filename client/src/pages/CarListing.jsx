@@ -2,14 +2,29 @@ import '../css/CarListing.css'
 import React, {useEffect, useState} from 'react'
 import CarItem from "../components/CarItem";
 import carService from "../services/carService";
+import Pagination from "../components/Pagination";
+import {useDispatch, useSelector} from "react-redux";
+import {setPageCount} from "../reducers/paginationSlice";
 
 const CarListing = () => {
     const [carModels, setCarModels] = useState([])
+    const {page} = useSelector(state => state.paginationReducer)
+    const dispatch = useDispatch()
+
     useEffect(async () => {
         const response = await carService
-            .fetchCarModels(0)
-        setCarModels(response.data)
+            .countCarModels()
+        const pageCount = Math.ceil(
+            response.data.count / process.env.REACT_APP_BASE_PAGE_LIMIT
+        )
+        dispatch(setPageCount(pageCount))
     }, [])
+
+    useEffect(async () => {
+        const response = await carService
+            .fetchCarModels(page)
+        setCarModels(response.data)
+    }, [page])
 
     return (
         <main id="car-list">
@@ -39,6 +54,7 @@ const CarListing = () => {
                     }
                 </div>
             </section>
+            <Pagination />
         </main>
     )
 }
