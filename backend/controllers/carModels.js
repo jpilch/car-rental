@@ -1,5 +1,8 @@
 const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
+const middleware = require('../utils/middleware')
+
+carModelsRouter.use('/', middleware.paginated)
 
 carModelsRouter.get('/', async (req, res) => {
     const page = req.query.page

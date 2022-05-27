@@ -37,6 +37,19 @@ const loginRequired = (req, res, next) => {
     next()
 }
 
+const paginated = (req, res, next) => {
+    const { page, limit } = req.query
+    if (!page || !limit) {
+        return res.status(400).send({
+            err: 'Query params \'page\' and \'limit\' required'
+        })
+    } else {
+        req.page = page
+        req.limit = limit
+    }
+    next()
+}
+
 const errorHandler = (err, req, res, next) => {
     if (err.name === 'CastError') {
         return res.status(400).send({
@@ -69,6 +82,7 @@ module.exports = {
     tokenExtractor,
     userExtractor,
     loginRequired,
+    paginated,
     errorHandler,
     unknownEndpoint
 }
