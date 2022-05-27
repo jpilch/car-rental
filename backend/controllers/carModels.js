@@ -2,13 +2,18 @@ const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
 
 carModelsRouter.get('/', async (req, res) => {
-    const carModels = await CarModel.find({})
+    const page = req.query.page
+    const limit = req.query.limit
+
+    const carModels = await CarModel
+        .find({}, {}, { skip: page * limit, limit })
         .populate({
             path: 'cars',
             populate: {
                 path: 'rental'
             }
         })
+
     res.json(carModels)
 })
 
