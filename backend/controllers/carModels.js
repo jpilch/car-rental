@@ -2,9 +2,7 @@ const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
 const middleware = require('../utils/middleware')
 
-carModelsRouter.use('/', middleware.paginated)
-
-carModelsRouter.get('/', async (req, res) => {
+carModelsRouter.get('/', middleware.paginated, async (req, res) => {
     const page = req.page
     const limit = req.limit
     const carModels = await CarModel

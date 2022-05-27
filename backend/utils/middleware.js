@@ -38,9 +38,6 @@ const loginRequired = (req, res, next) => {
 }
 
 const paginated = (req, res, next) => {
-    if (req.method === 'POST' || req.url !== '/') {
-        return next()
-    }
     const { page, limit } = req.query
     if (!page || !limit) {
         return res.status(400).send({
