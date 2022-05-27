@@ -5,9 +5,8 @@ const middleware = require('../utils/middleware')
 carModelsRouter.use('/', middleware.paginated)
 
 carModelsRouter.get('/', async (req, res) => {
-    const page = req.query.page
-    const limit = req.query.limit
-
+    const page = req.page
+    const limit = req.limit
     const carModels = await CarModel
         .find({}, {}, { skip: page * limit, limit })
         .populate({
@@ -16,7 +15,6 @@ carModelsRouter.get('/', async (req, res) => {
                 path: 'rental'
             }
         })
-
     res.json(carModels)
 })
 
