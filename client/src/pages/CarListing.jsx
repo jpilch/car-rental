@@ -5,6 +5,7 @@ import carService from "../services/carService";
 import Pagination from "../components/Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {setPageCount} from "../reducers/paginationSlice";
+import Loading from "../components/Loading";
 
 const CarListing = () => {
     const mainRef = useRef(null)
@@ -46,6 +47,7 @@ const CarListing = () => {
                             return (
                                 <CarItem
                                     key={carModel.id}
+                                    setResults={setCarModels}
                                     carModel={carModel}
                                 />
                             )

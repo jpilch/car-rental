@@ -39,7 +39,9 @@ const Pagination = () => {
                 onClick={
                     page === pageCount -1
                         ? () => console.log('End of results.')
-                        : () => dispatch(setPage(page+1))
+                        : () => {
+                            dispatch(setPage(page + 1))
+                        }
                 }
             >
                 <Icon
