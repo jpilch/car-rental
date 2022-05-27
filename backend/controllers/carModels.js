@@ -16,6 +16,11 @@ carModelsRouter.get('/', middleware.paginated, async (req, res) => {
     res.json(carModels)
 })
 
+carModelsRouter.get('/count', async (req, res) => {
+    const count = await CarModel.countDocuments()
+    res.json({ count })
+})
+
 carModelsRouter.post('/', async (req, res) => {
     const carModel = new CarModel(req.body)
     const saveCarModel = await carModel.save()
