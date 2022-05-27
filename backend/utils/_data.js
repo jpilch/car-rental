@@ -30,7 +30,7 @@ const carModels = [
         price_9: 220
     },
     {
-        'manufacturer': 'Volkswagen',
+        'manufacturer': 'THIRD',
         'name': 'Taos',
         'img_url': 'https://images.pexels.com/photos/2365572/pexels-photo-2365572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'person_capacity': 5,
@@ -45,7 +45,7 @@ const carModels = [
         price_9: 220
     },
     {
-        'manufacturer': 'Toyota',
+        'manufacturer': 'FORTH',
         'name': 'Avalon',
         'img_url': 'https://images.pexels.com/photos/892522/pexels-photo-892522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'person_capacity': 5,
@@ -75,7 +75,7 @@ const carModels = [
         price_9: 220
     },
     {
-        'manufacturer': 'Volkswagen',
+        'manufacturer': 'SIXTH',
         'name': 'Taos',
         'img_url': 'https://images.pexels.com/photos/2365572/pexels-photo-2365572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'person_capacity': 5,
@@ -105,7 +105,7 @@ const carModels = [
         price_9: 220
     },
     {
-        'manufacturer': 'Toyota',
+        'manufacturer': 'LAST ONE',
         'name': 'Yaris',
         'img_url': 'https://images.pexels.com/photos/2365572/pexels-photo-2365572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         'person_capacity': 4,
