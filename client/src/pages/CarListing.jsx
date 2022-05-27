@@ -1,5 +1,5 @@
 import '../css/CarListing.css'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import CarItem from "../components/CarItem";
 import carService from "../services/carService";
 import Pagination from "../components/Pagination";
@@ -7,11 +7,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPageCount} from "../reducers/paginationSlice";
 
 const CarListing = () => {
+    const mainRef = useRef(null)
     const [carModels, setCarModels] = useState([])
     const {page} = useSelector(state => state.paginationReducer)
     const dispatch = useDispatch()
 
     useEffect(async () => {
+        mainRef.current.scrollIntoView()
         const response = await carService
             .countCarModels()
         const pageCount = Math.ceil(
@@ -27,7 +29,7 @@ const CarListing = () => {
     }, [page])
 
     return (
-        <main id="car-list">
+        <main id="car-list" ref={mainRef}>
             <h1>Check out our offer</h1>
             <div className="sort-by">
                 <label htmlFor="sort">Sort by: </label>
@@ -38,9 +40,6 @@ const CarListing = () => {
                 </select>
             </div>
             <section className='cars'>
-                <aside className='filters'>
-                    <p>filters</p>
-                </aside>
                 <div>
                     {
                         carModels.map(carModel => {
