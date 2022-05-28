@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPageCount} from "../reducers/paginationSlice";
 import Loading from "../components/Loading";
 import Heading from "../components/Heading";
+import Select from "../components/Select";
 
 const CarListing = () => {
     const mainRef = useRef(null)
@@ -37,15 +38,14 @@ const CarListing = () => {
         <main id="car-list" ref={mainRef}>
             <Heading
                 size={1}
-                text={'Our Car Offer'}
+                text={'Check out our cars'}
             />
             <div className="sort-by">
-                <label htmlFor="sort">Sort by: </label>
-                <select name="sort" id="sort">
-                    <option value="price-desc">price descending</option>
-                    <option value="price-asc">price ascending</option>
-                    <option value="popularity">popularity</option>
-                </select>
+                <Select>
+                    <p>Default sorting</p>
+                    <p>Price descending</p>
+                    <p>Price ascending</p>
+                </Select>
             </div>
             <section className='cars'>
                 {!carModels && <Loading />}
