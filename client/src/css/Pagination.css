@@ -11,6 +11,10 @@ section.pagination p.page-number {
 }
 
 section.pagination div.pages {
+    color: var(--clr-light);
+    background-color: var(--clr-dark);
+    padding: 0.5rem;
+    border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +32,8 @@ section.pagination div.navigate {
 }
 
 section.pagination div.page {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
