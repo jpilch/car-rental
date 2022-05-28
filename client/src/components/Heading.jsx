@@ -1,10 +1,9 @@
 const Heading = ({size, text}) => {
     const style = {
-        padding: '0.5rem 1rem',
-        border: '1px solid var(--clr-light)',
+        textAlign: 'center',
+        padding: '0.5rem 3rem',
         color: 'var(--clr-dark)',
-        textShadow: '1px 1px 1px var(--clr-light)',
-        letterSpacing: '0.1rem',
+        backgroundColor: 'var(--clr-light)',
         fontWeight: 'bold',
         borderRadius: '1rem',
         boxShadow: '3px 3px 10px var(--clr-light)'
