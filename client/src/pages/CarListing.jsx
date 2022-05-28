@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination";
 import {useDispatch, useSelector} from "react-redux";
 import {setPageCount} from "../reducers/paginationSlice";
 import Loading from "../components/Loading";
+import Heading from "../components/Heading";
 
 const CarListing = () => {
     const mainRef = useRef(null)
@@ -34,7 +35,10 @@ const CarListing = () => {
 
     return (
         <main id="car-list" ref={mainRef}>
-            <h1>Check out our offer</h1>
+            <Heading
+                size={1}
+                text={'Our Car Offer'}
+            />
             <div className="sort-by">
                 <label htmlFor="sort">Sort by: </label>
                 <select name="sort" id="sort">
