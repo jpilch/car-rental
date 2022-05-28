@@ -1,3 +1,6 @@
+import ClipLoader from "react-spinners/ClipLoader";
+import React from "react";
+
 const Loading = () => {
     const loadingStyle = {
         height: '100%',
@@ -7,7 +10,10 @@ const Loading = () => {
     }
     return (
         <div className="loading" style={loadingStyle}>
-            <h1>Loading...</h1>
+            <ClipLoader
+                loading={true}
+                size={50}
+            />
         </div>
     )
 }

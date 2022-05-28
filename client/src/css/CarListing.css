@@ -18,21 +18,10 @@ main#car-list div.sort-by {
 }
 
 main#car-list section.cars {
-    width: 50%;
-    flex: 1;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    gap: 2rem;
-}
-
-main#car-list section.cars>aside {
-    flex: 1;
-}
-
-main#car-list section.cars>div {
     flex: 4;
+    width: 50%;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 2rem;
 }

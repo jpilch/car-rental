@@ -23,10 +23,13 @@ const CarListing = () => {
         dispatch(setPageCount(pageCount))
     }, [])
 
-    useEffect(async () => {
-        const response = await carService
-            .fetchCarModels(page)
-        setCarModels(response.data)
+    useEffect(() => {
+        setCarModels(null)
+        setTimeout(async () => {
+            const response = await carService
+                .fetchCarModels(page)
+            setCarModels(response.data)
+        }, 200)
     }, [page])
 
     return (
@@ -41,19 +44,18 @@ const CarListing = () => {
                 </select>
             </div>
             <section className='cars'>
-                <div>
-                    {
-                        carModels.map(carModel => {
-                            return (
-                                <CarItem
-                                    key={carModel.id}
-                                    setResults={setCarModels}
-                                    carModel={carModel}
-                                />
-                            )
-                        })
-                    }
-                </div>
+                {!carModels && <Loading />}
+                {
+                    carModels && carModels.map(carModel => {
+                        return (
+                            <CarItem
+                                key={carModel.id}
+                                setResults={setCarModels}
+                                carModel={carModel}
+                            />
+                        )
+                    })
+                }
             </section>
             <Pagination />
         </main>
