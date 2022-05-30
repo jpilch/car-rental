@@ -1,6 +1,6 @@
 import '../css/CarDetails.css'
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {fetchCarModelInfo} from "../reducers/offerSlice";
 import React from "react";
@@ -15,13 +15,18 @@ import SiteDisclaimer from "../components/SiteDisclaimer";
 const CarDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
+    const mainRef = useRef(null)
+
+    useEffect(() => {
+        mainRef.current.scrollIntoView()
+    }, [])
 
     useEffect(async () => {
         dispatch(fetchCarModelInfo(id))
     }, [dispatch])
 
     return (
-        <main id="car-details">
+        <main id="car-details" ref={mainRef}>
             <div className="offer-heading">
                 <h1>Your Offer</h1>
                 <div></div>

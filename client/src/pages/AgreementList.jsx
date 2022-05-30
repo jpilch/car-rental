@@ -31,7 +31,6 @@ const AgreementList = () => {
                     ? () => {
                         const { planned, archived, active } = userAgreements
                             .find(agreement => agreement.id === chosenAgreementId)
-                        console.log({ planned, archived, active })
                         if (planned || archived) {
                             dispatch(deleteAgreement(chosenAgreementId, token))
                         } else {
