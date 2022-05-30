@@ -1,26 +1,28 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    default: true,
+    defaultVal: true,
     priceAsc: false,
     priceDesc: false
 }
 
-const filterSlice = createSlice({
+const sortSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
         sortDefault: (state) => {
-            state.default = true
+            state.defaultVal = true
             state.priceDesc = false
             state.priceAsc = false
         },
         sortPriceDesc: (state) => {
-            state.default = false
+            state.defaultVal = false
+            state.priceAsc = false
             state.priceDesc = true
         },
         sortPriceAsc: (state) => {
-            state.default = false
+            state.defaultVal = false
+            state.priceDesc = false
             state.priceAsc = true
         }
     }
@@ -30,6 +32,6 @@ export const {
     sortDefault,
     sortPriceDesc,
     sortPriceAsc
-} = filterSlice.actions
+} = sortSlice.actions
 
-export default filterSlice.reducer
+export default sortSlice.reducer

@@ -28,7 +28,7 @@ div.select div.options {
     display: flex;
     flex-direction: column;
     text-align: center;
-    border: 1px solid var(--clr-light);
+    border: 1px solid var(--clr-dark);
     border-radius: 0.5rem;
 }
 
