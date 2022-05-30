@@ -31,6 +31,10 @@ section.pagination div.navigate {
     background-color: var(--clr-light);
 }
 
+section.pagination div.navigate.hidden {
+    opacity: 0.4;
+}
+
 section.pagination div.page {
     width: 1.5rem;
     height: 1.5rem;

@@ -25,9 +25,10 @@ const Pagination = () => {
             </div>
             <div className="pages">
                 {
-                    [...Array(pageCount).keys()].map((index, pageNumber) => {
+                    [...Array(pageCount + 1).keys()].slice(1)
+                        .map((pageNumber, index) => {
                         return (
-                            <div key={index} className={'page'.concat(pageNumber === page ? ' current' : '')}>
+                            <div key={index} className={'page'.concat(pageNumber === page + 1 ? ' current' : '')}>
                                 <p className='page-number'>{pageNumber}</p>
                             </div>
                         )
@@ -35,7 +36,7 @@ const Pagination = () => {
                 }
             </div>
             <div
-                className={"navigate navigate-right".concat(page === pageCount ? ' hidden' : '')}
+                className={"navigate navigate-right".concat(page === pageCount - 1 ? ' hidden' : '')}
                 onClick={
                     page === pageCount -1
                         ? () => console.log('End of results.')
