@@ -20,7 +20,7 @@ const AgreementList = () => {
     const { userInfo } = useUserInfo()
 
     if (!userInfo) {
-        return <Loading />
+        return <Loading fullPageLoading={true}/>
     }
 
     return (
@@ -45,7 +45,7 @@ const AgreementList = () => {
             <h1>Your Agreements</h1>
             <div className="underline"></div>
             <section className="agreement-list">
-                {userAgreements && userAgreements
+                {userAgreements ? userAgreements
                     .slice(0, 3)
                     .map(agreement => {
                     return (
@@ -54,7 +54,7 @@ const AgreementList = () => {
                             agreement={agreement}
                         />
                     )
-                })}
+                }) : <Loading />}
             </section>
         </main>
     )

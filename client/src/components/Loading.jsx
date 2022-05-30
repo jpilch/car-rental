@@ -1,9 +1,9 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import React from "react";
 
-const Loading = () => {
+const Loading = ({ fullPageLoading }) => {
     const loadingStyle = {
-        height: '100%',
+        height: fullPageLoading ? '100vh' : '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'

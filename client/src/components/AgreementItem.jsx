@@ -21,13 +21,15 @@ const AgreementItem = ({ agreement }) => {
             .fetchCarById(agreement.car_id)
         const carModelApiResponse = await carService
             .fetchCarModelById(carApiResponse.data.car_model)
-        setCarModel(carModelApiResponse.data)
         const rentalApiResponse = await rentalService
             .fetchRentalById(agreement.rental_id)
-        setRental(rentalApiResponse.data)
+        setTimeout(() => {
+            setCarModel(carModelApiResponse.data)
+            setRental(rentalApiResponse.data)
+        }, 500)
     }, [])
 
-    if (!agreement) {
+    if (!agreement || !rental || !carModel) {
         return <Loading />
     }
 
