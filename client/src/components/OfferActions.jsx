@@ -33,16 +33,19 @@ const OfferActions = () => {
     return (
         <>
             <Modal
-                text={'You currently have a rented car. More details at your account\'s agreement page.'}
-                onConfirm={() => console.log('hello')}
+                text={userCanRent()
+                    ? 'Are you certain? You will have to pay once you continue.'
+                    : 'You currently have a rented car. More details at your account\'s agreement page.'}
+                onConfirm={userCanRent()
+                    ? () => dispatch(createAgreement(data, token, navigate))
+                    : () => null
+                }
             />
             <div className="actions">
                 <SimpleButton
                     text={'Pay'}
                     bgColor={'var(--clr-green)'}
-                    onClick={userCanRent()
-                        ? () => dispatch(createAgreement(data, token, navigate))
-                        : () => dispatch(toggleModal())
+                    onClick={() => dispatch(toggleModal())
                     }
                 />
             </div>
