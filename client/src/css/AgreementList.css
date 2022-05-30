@@ -3,7 +3,7 @@ main#agreements {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 92vh;
+    height: 100vh;
     gap: 2rem;
     padding: 4rem 2rem;
 }

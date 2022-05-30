@@ -8,8 +8,11 @@ import {notify} from "../reducers/notificationSlice";
 import useUserInfo from "../hooks/useUserInfo";
 import Loading from "../components/Loading";
 import {useNavigate} from "react-router-dom";
+import Heading from "../components/Heading";
+import {useEffect, useRef} from "react";
 
 const AgreementList = () => {
+    const mainRef = useRef(null)
     const { token } = useAuth()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,12 +22,18 @@ const AgreementList = () => {
     } = useSelector(state => state.agreementReducer)
     const { userInfo } = useUserInfo()
 
+    useEffect(() => {
+        if (mainRef.current) {
+            mainRef.current.scrollIntoView()
+        }
+    }, [mainRef.current])
+
     if (!userInfo) {
         return <Loading fullPageLoading={true}/>
     }
 
     return (
-        <main id="agreements">
+        <main id="agreements" ref={mainRef}>
             <Modal
                 text={'Do you want to delete selected agreement?'}
                 onConfirm={chosenAgreementId
@@ -42,7 +51,7 @@ const AgreementList = () => {
                     }
                 }
             />
-            <h1>Your Agreements</h1>
+            <Heading text={'Your Agreements'}/>
             <div className="underline"></div>
             <section className="agreement-list">
                 {userAgreements ? userAgreements
@@ -55,6 +64,7 @@ const AgreementList = () => {
                         />
                     )
                 }) : <Loading />}
+                {!userAgreements.length && <p>You do not have any agreements yet.</p>}
             </section>
         </main>
     )

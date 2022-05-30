@@ -18,7 +18,8 @@ const fetchCarModelById = async (id) => {
 const fetchCarModels = async (page, { defaultVal, priceAsc, priceDesc }) => {
     const sortParam = defaultVal
         ? 'sortDefault=1'
-        : priceAsc ? 'sortPriceAsc=1' : 'sortPriceDesc=1'
+        : (priceAsc ? 'sortPriceAsc=1'
+        : (priceDesc ? 'sortPriceDesc=1' : 'sortDefault=1'))
     const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/car-models` +
         `?page=${page}&limit=${process.env.REACT_APP_BASE_PAGE_LIMIT}` +
