@@ -38,6 +38,7 @@ const CarListing = () => {
     return (
         <main id="car-list" ref={mainRef}>
             <Heading
+                underline={true}
                 size={1}
                 text={'Check out our cars'}
             />

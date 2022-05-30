@@ -1,4 +1,4 @@
-const Heading = ({size, text}) => {
+const Heading = ({size, text, underline}) => {
     const style = {
         textAlign: 'center',
         padding: '0.5rem 3rem',
@@ -10,8 +10,21 @@ const Heading = ({size, text}) => {
     }
 
     return (
-        <div className='heading' style={style}>
-            <h1>{text}</h1>
+        <div className="heading-container" style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '1rem'
+        }}>
+            <div className='heading' style={style}>
+                <h1>{text}</h1>
+            </div>
+            {underline && <div className="underline" style={{
+                backgroundColor: 'var(--clr-light)',
+                height: '1px',
+                width: '40vw'
+            }}></div>}
         </div>
     )
 }

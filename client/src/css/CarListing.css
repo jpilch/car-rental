@@ -5,7 +5,7 @@ main#car-list {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
     padding: 4rem 3rem;
 }
 
@@ -15,6 +15,12 @@ main#car-list div.sort-by {
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+}
+
+main#car-list div.underline {
+    background-color: var(--clr-light);
+    height: 1px;
+    width: 50%;
 }
 
 main#car-list section.cars {
