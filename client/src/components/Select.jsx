@@ -4,6 +4,7 @@ import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import {useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {sortDefault, sortPriceAsc, sortPriceDesc} from "../reducers/sortSlice";
+import {setPage} from "../reducers/paginationSlice";
 
 const Select = ({ children }) => {
     const [open, setOpen] = useState(false)
@@ -12,7 +13,7 @@ const Select = ({ children }) => {
         defaultVal,
         priceAsc,
         priceDesc
-    } = useSelector(state => state.filterReducer)
+    } = useSelector(state => state.sortReducer)
     return (
         <div className='select'>
             <div className="toggle" onClick={() => setOpen(!open)}>
@@ -36,6 +37,7 @@ const Select = ({ children }) => {
                         return (
                             <div className="option" key={index} onClick={() => {
                                 setOpen(false)
+                                dispatch(setPage(0))
                                 switch (index) {
                                     case 0:
                                         dispatch(sortDefault())

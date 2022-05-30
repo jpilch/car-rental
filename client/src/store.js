@@ -5,7 +5,7 @@ import offerReducer from './reducers/offerSlice'
 import modalReducer from "./reducers/modalSlice";
 import agreementReducer from "./reducers/agreementSlice";
 import paginationReducer from "./reducers/paginationSlice";
-import filterReducer from "./reducers/sortSlice";
+import sortReducer from "./reducers/sortSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +15,6 @@ export const store = configureStore({
         modalReducer,
         agreementReducer,
         paginationReducer,
-        filterReducer
+        sortReducer
     }
 })

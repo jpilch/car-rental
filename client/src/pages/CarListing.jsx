@@ -13,6 +13,7 @@ const CarListing = () => {
     const mainRef = useRef(null)
     const [carModels, setCarModels] = useState([])
     const {page} = useSelector(state => state.paginationReducer)
+    const sortOptions = useSelector(state => state.sortReducer)
     const dispatch = useDispatch()
 
     useEffect(async () => {
@@ -29,10 +30,10 @@ const CarListing = () => {
         setCarModels(null)
         setTimeout(async () => {
             const response = await carService
-                .fetchCarModels(page)
+                .fetchCarModels(page, sortOptions)
             setCarModels(response.data)
         }, 200)
-    }, [page])
+    }, [page, sortOptions])
 
     return (
         <main id="car-list" ref={mainRef}>
