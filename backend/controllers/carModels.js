@@ -2,11 +2,18 @@ const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
 const middleware = require('../utils/middleware')
 
-carModelsRouter.get('/', middleware.paginated, async (req, res) => {
+carModelsRouter.get('/',
+    middleware.paginated, middleware.carModelSort,
+    async (req, res) => {
     const page = req.page
     const limit = req.limit
     const carModels = await CarModel
-        .find({}, {}, { skip: page * limit, limit })
+        .find({}, null, {
+            sort: {
+                price_3: -1
+            },
+            skip: page * limit, limit
+        })
         .populate({
             path: 'cars',
             populate: {

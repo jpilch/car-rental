@@ -85,7 +85,7 @@ const carModels = [
         'width': 1.84,
         'height': 1.63,
         'drive_cat': 'AWD',
-        price_3: 100,
+        price_3: 200,
         price_5: 150,
         price_9: 220
     },

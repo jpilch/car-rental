@@ -50,6 +50,23 @@ const paginated = (req, res, next) => {
     next()
 }
 
+const carModelSort = (req, res, next) => {
+    const {
+        sortDefault,
+        sortPriceAsc,
+        sortPriceDesc,
+    } = req.query
+    if (!sortDefault && !sortPriceAsc && !sortPriceDesc) {
+        return res.status(400).send({
+            err: 'Provide sort query param'
+        })
+    }
+    req.sortDefault = sortDefault
+    req.sortPriceAsc = sortPriceAsc
+    req.sortPriceDesc = sortPriceDesc
+    next()
+}
+
 const errorHandler = (err, req, res, next) => {
     if (err.name === 'CastError') {
         return res.status(400).send({
@@ -83,6 +100,7 @@ module.exports = {
     userExtractor,
     loginRequired,
     paginated,
+    carModelSort,
     errorHandler,
     unknownEndpoint
 }
