@@ -3,17 +3,22 @@ const CarModel = require('../models/carmodel')
 const middleware = require('../utils/middleware')
 
 carModelsRouter.get('/',
-    middleware.paginated, middleware.carModelSort,
+    middleware.paginated,
+    middleware.carModelSort,
     async (req, res) => {
     const page = req.page
     const limit = req.limit
-    const carModels = await CarModel
-        .find({}, null, {
-            sort: {
-                price_3: -1
+    const options = {
+        sort: req.sortDefault
+            ? {}
+            : {
+                price_3: req.sortPriceDesc ? -1
+                    : (req.sortPriceAsc ? 1 : 0)
             },
-            skip: page * limit, limit
-        })
+        skip: page * limit, limit
+    }
+    const carModels = await CarModel
+        .find({}, {}, options)
         .populate({
             path: 'cars',
             populate: {
