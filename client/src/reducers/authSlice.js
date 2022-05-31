@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import userService from "../services/userService";
 import axios from "axios";
 import {notify} from "./notificationSlice";
 
@@ -73,6 +74,21 @@ export const login = (username, password) => {
             }
         } catch (e) {
             dispatch(notify('Login Failed. Check you credentials', false))
+        }
+    }
+}
+
+export const register = (fullName, username, password, navigate) => {
+    return async dispatch => {
+        try {
+            const data = { fullName, username, password }
+            const response = await userService.register(data)
+            if (response.status === 201) {
+                dispatch(notify('Registration successful', true))
+                navigate('/login')
+            }
+        } catch (e) {
+            dispatch(notify('Username already taken', false))
         }
     }
 }

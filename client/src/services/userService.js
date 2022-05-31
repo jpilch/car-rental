@@ -26,4 +26,12 @@ const getLoggedInUser = async (authToken) => {
     return response
 }
 
-export default { getLoggedInUser }
+const register = async (data) => {
+    const { fullName, username, password } = data
+    return await axios.post(
+        `${process.env.REACT_APP_API_URL}/users`,
+        {fullName, username, password}
+    )
+}
+
+export default { getLoggedInUser, register }
