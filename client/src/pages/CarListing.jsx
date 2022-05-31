@@ -8,18 +8,21 @@ import {setPageCount} from "../reducers/paginationSlice";
 import Loading from "../components/Loading";
 import Heading from "../components/Heading";
 import Select from "../components/Select";
+import {useSearchParams} from "react-router-dom";
 
 const CarListing = () => {
     const mainRef = useRef(null)
-    const [carModels, setCarModels] = useState([])
+    const [carModels, setCarModels] = useState(null)
     const {page} = useSelector(state => state.paginationReducer)
     const sortOptions = useSelector(state => state.sortReducer)
     const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams()
+    const city = searchParams.get('city')
 
     useEffect(async () => {
         mainRef.current.scrollIntoView()
         const response = await carService
-            .countCarModels()
+            .countCarModels(city)
         const pageCount = Math.ceil(
             response.data.count / process.env.REACT_APP_BASE_PAGE_LIMIT
         )
@@ -30,7 +33,7 @@ const CarListing = () => {
         setCarModels(null)
         setTimeout(async () => {
             const response = await carService
-                .fetchCarModels(page, sortOptions)
+                .fetchCarModels(page, sortOptions, city)
             setCarModels(response.data)
         }, 200)
     }, [page, sortOptions])
