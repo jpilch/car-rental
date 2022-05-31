@@ -10,21 +10,18 @@ carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (r
         sort: req.sortDefault
             ? {}
             : {
-                price_3: req.sortPriceDesc ? -1
+                price_3: req.sortPriceDesc
+                    ? -1
                     : (req.sortPriceAsc ? 1 : 0)
             },
         skip: page * limit, limit
     }
-    console.log(city, typeof city)
     const filter = city
-        ? {
-            'cars.city_en': 'Warsaw'
-        } : {}
+        ? { 'cars.city_en': city.charAt(0).toUpperCase() + city.slice(1).toLowerCase() }
+        : {}
+    console.log(filter)
     const carModels = await CarModel
-        .find( {} )
-        // .populate({
-        //     path: 'cars'
-        // })
+        .find( filter, {}, options )
     res.json(carModels)
 })
 

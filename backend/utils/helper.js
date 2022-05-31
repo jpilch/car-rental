@@ -30,8 +30,7 @@ const populateCarModels = async () => {
 }
 
 const carsInDb = async () => {
-    const cars = await CarInstanceModel.find({})
-    return cars
+    return await CarInstanceModel.find({})
 }
 
 const saveCar = async (carModelId) => {
@@ -64,8 +63,7 @@ const populateCars = async () => {
 }
 
 const usersInDb = async () => {
-    const users = await User.find({})
-    return users
+    return await User.find({})
 }
 
 const populateUsers = async (api) => {
@@ -105,8 +103,7 @@ const getUserAuthToken = async (api) => {
 }
 
 const agreementsInDb = async () => {
-    const agreements = await Agreement.find({})
-    return agreements
+    return await Agreement.find({})
 }
 
 const populateAgreements = async () => {
