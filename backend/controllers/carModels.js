@@ -2,12 +2,10 @@ const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
 const middleware = require('../utils/middleware')
 
-carModelsRouter.get('/',
-    middleware.paginated,
-    middleware.carModelSort,
-    async (req, res) => {
+carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (req, res) => {
     const page = req.page
     const limit = req.limit
+    const city = req.query.city
     const options = {
         sort: req.sortDefault
             ? {}
@@ -17,14 +15,16 @@ carModelsRouter.get('/',
             },
         skip: page * limit, limit
     }
+    console.log(city, typeof city)
+    const filter = city
+        ? {
+            'cars.city_en': 'Warsaw'
+        } : {}
     const carModels = await CarModel
-        .find({}, {}, options)
-        .populate({
-            path: 'cars',
-            populate: {
-                path: 'rental'
-            }
-        })
+        .find( {} )
+        // .populate({
+        //     path: 'cars'
+        // })
     res.json(carModels)
 })
 

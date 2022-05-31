@@ -1,6 +1,6 @@
 const agreementsRouter = require('express').Router()
 const Agreement = require('../models/agreement')
-const Car = require('../models/car')
+const {carInstanceModel} = require('../models/car')
 const User = require('../models/user')
 const Rental = require('../models/rental')
 
@@ -26,7 +26,7 @@ agreementsRouter.post('/', async (req, res) => {
             err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
         })
     }
-    const car = await Car.findById(car_id)
+    const car = await carInstanceModel.findById(car_id)
     const user = await User.findById(req.user.id)
     const rental = await Rental.findById(rental_id)
     if (!car || !user || !rental) {

@@ -1,5 +1,5 @@
 const CarModel = require('../models/carmodel')
-const Car = require('../models/car')
+const {CarInstanceModel} = require('../models/car')
 const User = require('../models/user')
 const Agreement = require('../models/agreement')
 const Rental = require('../models/rental')
@@ -30,7 +30,7 @@ const populateCarModels = async () => {
 }
 
 const carsInDb = async () => {
-    const cars = await Car.find({})
+    const cars = await CarInstanceModel.find({})
     return cars
 }
 
@@ -40,19 +40,21 @@ const saveCar = async (carModelId) => {
     const rentalId =
         rentals[Math.floor(Math.random() * rentals.length)]._id
     const rental = await Rental.findById(rentalId.toString())
-    const car = new Car({
+    const car = new CarInstanceModel({
         car_model: carModelId,
+        city_en: rental.city_en,
+        city_pl: rental.city_pl,
         rental: rentalId
     })
     const savedCar = await car.save()
-    carModel.cars = carModel.cars.concat(savedCar._id)
+    carModel.cars = carModel.cars.concat(savedCar)
     rental.cars = rental.cars.concat(savedCar._id)
     await carModel.save()
     await rental.save()
 }
 
 const populateCars = async () => {
-    await Car.deleteMany({})
+    await CarInstanceModel.deleteMany({})
     const carModels = await carModelsInDb()
     const carModelIds = carModels.map(carModel => carModel._id)
     for (let carModelId of carModelIds) {
@@ -143,7 +145,7 @@ const populateRentals = async () => {
 
 const clearAll = async () => {
     await CarModel.deleteMany({})
-    await Car.deleteMany({})
+    await CarInstanceModel.deleteMany({})
     await User.deleteMany({})
     await Agreement.deleteMany({})
     await Rental.deleteMany({})

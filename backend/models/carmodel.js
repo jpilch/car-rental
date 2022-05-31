@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {carSchema} = require('./car')
 require('dotenv').config()
 
 const carModelSchema = new mongoose.Schema({
@@ -42,12 +43,7 @@ const carModelSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    cars: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Car'
-        }
-    ],
+    cars: [carSchema],
     price_3: {
         required: true,
         type: Number

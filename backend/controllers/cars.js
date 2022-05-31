@@ -1,10 +1,10 @@
 const carsRouter = require('express').Router()
-const Car = require('../models/car')
+const {CarInstanceModel} = require('../models/car')
 const CarModel = require('../models/carmodel')
 const Rental = require('../models/rental')
 
 carsRouter.get('/', async (req, res) => {
-    const cars = await Car.find({}, 'car_model rental')
+    const cars = await CarInstanceModel.find({}, 'car_model rental')
         .populate('car_model', {
             manufacturer: 1,
             name: 1,
@@ -18,7 +18,7 @@ carsRouter.get('/', async (req, res) => {
 })
 
 carsRouter.get('/:id', async (req, res) => {
-    const car = await Car.findById(req.params.id)
+    const car = await CarInstanceModel.findById(req.params.id)
     if (car) {
         res.json(car)
     } else {
@@ -34,12 +34,12 @@ carsRouter.post('/', async (req, res) => {
             err: 'Car attribute does not exist'
         })
     }
-    const car = new Car({
+    const car = new CarInstanceModel({
         car_model: carModel._id,
         rental: rental._id
     })
     const savedCar = await car.save()
-    carModel.cars = carModel.cars.concat(savedCar._id)
+    carModel.cars = carModel.cars.concat(savedCar)
     rental.cars = rental.cars.concat(savedCar._id)
     await rental.save()
     await carModel.save()
@@ -47,12 +47,12 @@ carsRouter.post('/', async (req, res) => {
 })
 
 carsRouter.put('/:id', async (req, res) => {
-    const updatedCar = await Car.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    const updatedCar = await CarInstanceModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.json(updatedCar)
 })
 
 carsRouter.delete('/:id', async (req, res) => {
-    await Car.findByIdAndRemove(req.params.id)
+    await CarInstanceModel.findByIdAndRemove(req.params.id)
     res.status(204).end()
 })
 

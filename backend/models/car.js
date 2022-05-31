@@ -9,6 +9,14 @@ const carSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rental'
     },
+    city_en: {
+        type: String,
+        required: true
+    },
+    city_pl: {
+        type: String,
+        required: true
+    },
     agreements: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -25,4 +33,9 @@ carSchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('Car', carSchema)
+const CarInstanceModel = mongoose.model('Car', carSchema)
+
+module.exports = {
+    carSchema,
+    CarInstanceModel
+}
