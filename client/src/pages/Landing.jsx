@@ -1,7 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../css/Landing.css'
 
-export default function Landing() {
+const Landing = () => {
+	const navigate = useNavigate()
+
 	return (
 			<main className={'landing'}>
 				<div className={'heading'}>
@@ -11,7 +14,14 @@ export default function Landing() {
 				</div>
 				<div className={'item'}>
 					<div className='search-wrapper'>
-						<form>
+						<form onSubmit={(e) => {
+							e.preventDefault()
+							const city = e.target.search.value
+							if (!city.replace(/\W/g, '').length) {
+								navigate(`/cars`)
+							}
+							navigate(`cars?city=${city}`)
+						}}>
 							<input type="text" name="search" id="search" placeholder={'Search for your City'}/>
 						</form>
 					</div>
@@ -22,3 +32,5 @@ export default function Landing() {
 			</main>
 	)
 }
+
+export default Landing
