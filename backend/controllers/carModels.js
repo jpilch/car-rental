@@ -32,7 +32,11 @@ carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (r
 })
 
 carModelsRouter.get('/count', async (req, res) => {
-    const count = await CarModel.countDocuments()
+    const city = req.query.city
+    const filter = city 
+    ? {'cars.city_en':  city.charAt(0).toUpperCase() + city.slice(1).toLowerCase()} 
+    : {}
+    const count = await CarModel.countDocuments(filter)
     res.json({ count })
 })
 
