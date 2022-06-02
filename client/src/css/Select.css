@@ -1,6 +1,5 @@
 div.select {
-    position: absolute;
-    width: 12rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -14,16 +13,16 @@ div.select div.toggle {
     border-radius: 0.5rem;
     padding: 0.3rem 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
 }
 
-div.select div.options {
+div.select div.select-options {
+    position: absolute;
+    top: 3rem;
     background-color: var(--clr-lighter);
     padding: 0.3rem 0;
-    position: relative;
-    top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;

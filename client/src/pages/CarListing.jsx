@@ -7,8 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPageCount} from "../reducers/paginationSlice";
 import Loading from "../components/Loading";
 import Heading from "../components/Heading";
-import Select from "../components/Select";
 import {useSearchParams} from "react-router-dom";
+import ListOptions from '../components/ListOptions';
 
 const CarListing = () => {
     const mainRef = useRef(null)
@@ -27,7 +27,7 @@ const CarListing = () => {
             response.data.count / process.env.REACT_APP_BASE_PAGE_LIMIT
         )
         dispatch(setPageCount(pageCount))
-    }, [])
+    }, [searchParams])
 
     useEffect(() => {
         setCarModels(null)
@@ -36,7 +36,7 @@ const CarListing = () => {
                 .fetchCarModels(page, sortOptions, city)
             setCarModels(response.data)
         }, 200)
-    }, [page, sortOptions])
+    }, [page, sortOptions, searchParams])
 
     return (
         <main id="car-list" ref={mainRef}>
@@ -45,13 +45,10 @@ const CarListing = () => {
                 size={1}
                 text={'Check out our cars'}
             />
-            <div className="sort-by">
-                <Select>
-                    <p>Default sorting</p>
-                    <p>Price descending</p>
-                    <p>Price ascending</p>
-                </Select>
-            </div>
+            <ListOptions 
+                city={city}
+                setSearchParams={setSearchParams}
+            />
             <section className='cars'>
                 {!carModels && <Loading />}
                 {

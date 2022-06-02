@@ -32,7 +32,7 @@ const Select = ({ children }) => {
                 />}
             </div>
             {open && (
-                <div className="options">
+                <div className="select-options">
                     {children.map((option, index) => {
                         return (
                             <div className="option" key={index} onClick={() => {

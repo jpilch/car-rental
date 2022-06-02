@@ -5,16 +5,8 @@ main#car-list {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
-    padding: 4rem 3rem;
-}
-
-main#car-list div.sort-by {
-    width: 50%;
-    align-self: center;
-    display: flex;
     gap: 1rem;
-    justify-content: flex-end;
+    padding: 4rem 3rem;
 }
 
 main#car-list div.underline {
