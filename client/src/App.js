@@ -10,8 +10,9 @@ import AgreementList from "./pages/AgreementList";
 import CarListing from "./pages/CarListing";
 import CarDetails from "./pages/CarDetails";
 import Contact from "./pages/Contact";
+import NotFound from './pages/NotFound';
 
-function App() {
+const App = () => {
 	return (
 		<>
 			<Router>
@@ -25,10 +26,11 @@ function App() {
 					<Route path='/my-account/agreements' element={<AgreementList />}/>
 					<Route path='/cars' element={<CarListing />}/>
 					<Route path='/cars/:id' element={<CarDetails />}/>
-					<Route path={'/contact'} element={<Contact />}/>
+					<Route path='/contact' element={<Contact />}/>
+					<Route path='*' element={<NotFound />} />
 				</Routes>
 				<Footer/>
-				< /Router>
+			</Router>
 		</>
 	);
 }
