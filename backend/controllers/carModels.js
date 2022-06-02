@@ -19,9 +19,15 @@ carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (r
     const filter = city
         ? { 'cars.city_en': city.charAt(0).toUpperCase() + city.slice(1).toLowerCase() }
         : {}
-    console.log(filter)
     const carModels = await CarModel
-        .find( filter, {}, options )
+        .find(filter, {}, options)
+        .populate({
+            path: 'cars',
+            populate: {
+                path: 'rental',
+                model: 'Rental'
+            }
+        })
     res.json(carModels)
 })
 
