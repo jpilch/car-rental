@@ -26,12 +26,10 @@ agreementsRouter.post('/', async (req, res) => {
             err: 'Agreement attributes \'car_id\', \'starts_on\', \'ends_on\' are required'
         })
     }
-    console.log('here')
     const car = await CarInstanceModel.findById(car_id)
-    console.log('here')
     const user = await User.findById(req.user.id)
-    console.log('here')
     const rental = await Rental.findById(rental_id)
+    console.log(car)
     if (!car || !user || !rental) {
         return res.status(404).send({
             err: 'Agreement attribute does not exist'

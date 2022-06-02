@@ -9,6 +9,7 @@ const populate = async () => {
     await helper.populateRentals()
     await helper.populateCarModels()
     await helper.populateCars()
+    await helper.populateAgreements()
 }
 
 mongoose.connect(`${config.MONGODB_URI}`)

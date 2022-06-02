@@ -116,12 +116,14 @@ const populateAgreements = async () => {
     const firstAgreement = new Agreement({
         user_id: users[0]._id.toString(),
         car_id: cars[0]._id.toString(),
+        rental_id: cars[0].rental.toString(),
         starts_on: new Date(currentYear, currentMonth, 1),
         ends_on: new Date(currentYear, currentMonth, 3)
     })
     const secondAgreement = new Agreement({
         user_id: users[1]._id.toString(),
         car_id: cars[1]._id.toString(),
+        rental_id: cars[1].rental.toString(),
         starts_on: new Date(currentYear, currentMonth, 3),
         ends_on: new Date(currentYear, currentMonth, 6)
     })

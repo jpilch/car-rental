@@ -28,6 +28,13 @@ carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (r
                 model: 'Rental'
             }
         })
+        .populate({
+            path: 'cars',
+            populate: {
+                path: 'agreements',
+                model: 'Agreement'
+            }
+        })
     res.json(carModels)
 })
 

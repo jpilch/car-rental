@@ -33,7 +33,7 @@ carSchema.set('toJSON', {
     }
 })
 
-const CarInstanceModel = mongoose.model('Car', carSchema)
+const CarInstanceModel = mongoose.model('CarInstanceModel', carSchema)
 
 module.exports = {
     carSchema,

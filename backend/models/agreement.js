@@ -10,7 +10,7 @@ const agreementSchema = new mongoose.Schema({
     car_id: {
         required: true,
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Car'
+        ref: 'CarInstanceModel'
     },
     starts_on: {
         type: Date,

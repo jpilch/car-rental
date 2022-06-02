@@ -16,7 +16,7 @@ const rentalSchema = new mongoose.Schema({
     cars: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Car'
+            ref: 'CarInstanceModel'
         }
     ],
     agreements: [
