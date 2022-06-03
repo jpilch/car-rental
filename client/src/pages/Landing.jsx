@@ -22,7 +22,6 @@ const Landing = () => {
 						if (!city.replace(/\W/g, '').length) {
 							navigate(`/cars`)
 						}
-						dispatch(chooseCity(city))
 						navigate(`cars?city=${city}`)
 					}}>
 						<input type="text" name="search" id="search" placeholder={'Search for your City'}/>

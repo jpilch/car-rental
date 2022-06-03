@@ -58,7 +58,6 @@ const populateCars = async () => {
     const carModelIds = carModels.map(carModel => carModel._id)
     for (let carModelId of carModelIds) {
         await saveCar(carModelId)
-        await saveCar(carModelId)
     }
 }
 

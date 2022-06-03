@@ -63,6 +63,7 @@ const CarListing = () => {
                                 key={carModel.id}
                                 setResults={setCarModels}
                                 carModel={carModel}
+                                city={city}
                             />
                         )
                     })

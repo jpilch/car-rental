@@ -1,8 +1,8 @@
 import '../css/CarDetails.css'
-import {useParams} from "react-router-dom";
+import {useLocation, useParams, useSearchParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
-import {useDispatch} from "react-redux";
-import {fetchCarModelInfo} from "../reducers/offerSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAvaiableCarModelInstance, fetchCarModelInfo} from "../reducers/offerSlice";
 import React from "react";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
@@ -16,6 +16,8 @@ const CarDetails = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const mainRef = useRef(null)
+    const { state } = useLocation()
+    const cityRef = useRef(state.city)
 
     useEffect(() => {
         mainRef.current.scrollIntoView()
@@ -23,6 +25,7 @@ const CarDetails = () => {
 
     useEffect(async () => {
         dispatch(fetchCarModelInfo(id))
+        dispatch(fetchAvaiableCarModelInstance(id, cityRef.current))
     }, [dispatch])
 
     return (

@@ -10,8 +10,7 @@ const initialState = {
     startDate: null,
     endDate: null,
     days: null,
-    price: null,
-    city: null
+    price: null
 }
 
 const offerSlice = createSlice({
@@ -48,9 +47,6 @@ const offerSlice = createSlice({
                     state.price = state.carModel.price_9
                     break
             }
-        },
-        chooseCity: (state, action) => {
-            state.city = action.payload
         }
     }
 })
@@ -62,8 +58,7 @@ export const {
     chooseDays,
     chooseStartDate,
     chooseEndDate,
-    choosePrice,
-    chooseCity
+    choosePrice
 } = offerSlice.actions
 
 export default offerSlice.reducer
@@ -75,8 +70,6 @@ export const fetchCarModelInfo = (id) => {
                 `${process.env.REACT_APP_API_URL}/car-models/${id}`
             )
             dispatch(chooseCarModel(response.data))
-            dispatch(chooseCar(response.data.cars[0]))
-            dispatch(chooseRental(response.data.cars[0].rental))
             dispatch(chooseDays(3))
             dispatch(choosePrice(3))
         } catch (e) {
@@ -85,9 +78,33 @@ export const fetchCarModelInfo = (id) => {
     }
 }
 
-// export const fetchAvaiableCar = () => {
-
-// }
+export const fetchAvaiableCarModelInstance = (id, city) => {
+    return async dispatch => {
+        const today = new Date()
+        const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/car-models/${id}/cars`,
+            { today }
+        )
+        for (let car of response.data) {
+            if (car.available) {
+                if (city && car.city_en.toLowerCase().includes(city.toLowerCase())) {
+                    console.log('city matched', city, car)
+                    dispatch(chooseCar(car))
+                    dispatch(chooseRental(car.rental))
+                    return
+                } else if (!city) {
+                    console.log('no city', city, car)
+                    dispatch(chooseCar(car))
+                    dispatch(chooseRental(car.rental))
+                    return
+                }
+            }
+            console.log('unavailable')
+            dispatch(chooseCar('unavaiable'))
+            dispatch(chooseRental('unavaiable'))
+        }
+    }
+}
 
 export const createAgreement = (data, authToken, navigate) => {
     return async dispatch => {
