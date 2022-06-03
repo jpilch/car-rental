@@ -85,6 +85,10 @@ export const fetchCarModelInfo = (id) => {
     }
 }
 
+// export const fetchAvaiableCar = () => {
+
+// }
+
 export const createAgreement = (data, authToken, navigate) => {
     return async dispatch => {
         const response = await agreementService.createAgreement({

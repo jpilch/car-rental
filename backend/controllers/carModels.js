@@ -1,6 +1,7 @@
 const carModelsRouter = require('express').Router()
 const CarModel = require('../models/carmodel')
 const middleware = require('../utils/middleware')
+const { CarInstanceModel } = require('../models/car')
 
 carModelsRouter.get('/', middleware.paginated, middleware.carModelSort, async (req, res) => {
     const page = req.page
@@ -66,6 +67,15 @@ carModelsRouter.get('/:id', async (req, res) => {
     } else {
         res.status(404).end()
     }
+})
+
+carModelsRouter.get('/:id/cars', async (req, res) => {
+    const carModelInstances = await CarInstanceModel
+        .find({
+            car_model: req.params.id
+        })
+        .populate('agreements')
+    res.json(carModelInstances)    
 })
 
 carModelsRouter.delete('/:id', async (req, res) => {
