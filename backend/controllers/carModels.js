@@ -74,8 +74,18 @@ carModelsRouter.get('/:id/cars', async (req, res) => {
         .find({
             car_model: req.params.id
         })
-        .populate('agreements')
-    res.json(carModelInstances)    
+        .populate('agreements rental')
+    const today = new Date(req.body.today)
+    const results = carModelInstances.map(carModelInstance => {
+        const agreements = carModelInstance.agreements
+        if (!agreements.length) {
+            return {...carModelInstance.toJSON(), available: true}
+        } else if (agreements[agreements.length - 1].ends_on < today) {
+            return {...carModelInstance.toJSON(), available: true}
+        }
+        return {...carModelInstance.toJSON(), available: false}
+    })
+    res.send(results)    
 })
 
 carModelsRouter.delete('/:id', async (req, res) => {
