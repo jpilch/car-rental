@@ -10,7 +10,8 @@ const initialState = {
     startDate: null,
     endDate: null,
     days: null,
-    price: null
+    price: null,
+    city: null
 }
 
 const offerSlice = createSlice({
@@ -47,6 +48,9 @@ const offerSlice = createSlice({
                     state.price = state.carModel.price_9
                     break
             }
+        },
+        chooseCity: (state, action) => {
+            state.city = action.payload
         }
     }
 })
@@ -58,7 +62,8 @@ export const {
     chooseDays,
     chooseStartDate,
     chooseEndDate,
-    choosePrice
+    choosePrice,
+    chooseCity
 } = offerSlice.actions
 
 export default offerSlice.reducer

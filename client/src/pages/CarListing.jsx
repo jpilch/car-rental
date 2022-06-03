@@ -51,6 +51,11 @@ const CarListing = () => {
             />
             <section className='cars'>
                 {!carModels && <Loading />}
+                {carModels && (!carModels.length && (
+                    <div className='empty-query'>
+                        <p>No cars matching the query</p>
+                    </div>
+                ))}
                 {
                     carModels && carModels.map(carModel => {
                         return (
@@ -63,7 +68,7 @@ const CarListing = () => {
                     })
                 }
             </section>
-            <Pagination />
+            {carModels && (carModels.length && <Pagination />)}
         </main>
     )
 }

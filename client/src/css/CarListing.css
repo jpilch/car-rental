@@ -23,3 +23,9 @@ main#car-list section.cars {
     flex-direction: column;
     gap: 2rem;
 }
+
+main#car-list div.empty-query {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
