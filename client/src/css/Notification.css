@@ -1,4 +1,4 @@
-div#notification {
+div#notification-container {
     position: absolute;
     width: 100vw;
     text-align: center;
@@ -9,12 +9,16 @@ div#notification {
     align-items: center;
     animation-name: notification;
     animation-duration: var(--duration-long);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-div#notification p {
-    width: 50%;
-    height: 100%;
-    border-radius: 0.5rem;
-    line-height: 3rem;
-    font-size: 1.3rem;
+div.notification p {
+    line-height: 1rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    
 }

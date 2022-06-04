@@ -8,16 +8,24 @@ const Notification = () => {
 
     const notificationStyle = {
         backgroundColor: success ? '#5dc278' : '#b84848',
-        border: `2px solid ${success ? '#1f8f3d' : '#8f231f'}`
+        border: `2px solid ${success ? '#1f8f3d' : '#8f231f'}`,
+        width: '90%',
+        height: '100%',
+        borderRadius: '1rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 
     return (
-        <div id="notification" style={{
-            display: show ? '' : 'none'
+        <div id="notification-container" style={{
+            display: show ? '' : 'none',
         }}>
-            <Icon size={1} path={mdiExclamationThick} />
-            <p style={notificationStyle}>{message}</p>
-            <Icon size={1} path={mdiExclamationThick} />
+            <div className="notification" style={notificationStyle}>
+                <Icon size={1} path={mdiExclamationThick} />
+                <p >{message}</p>
+                <Icon size={1} path={mdiExclamationThick} />
+            </div>
         </div>
     )
 }

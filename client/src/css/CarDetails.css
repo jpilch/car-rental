@@ -84,5 +84,8 @@ main#car-details div.disclaimer {
             "d"
             "btns";
         }
+        main#car-details {
+            padding: 2rem 1rem;
+        }
 }
 
