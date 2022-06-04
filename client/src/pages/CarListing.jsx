@@ -35,7 +35,7 @@ const CarListing = () => {
             const response = await carService
                 .fetchCarModels(page, sortOptions, city)
             setCarModels(response.data)
-        }, 200)
+        }, 500)
     }, [page, sortOptions, searchParams])
 
     return (
@@ -69,7 +69,7 @@ const CarListing = () => {
                     })
                 }
             </section>
-            {carModels && (carModels.length && <Pagination />)}
+            <Pagination />
         </main>
     )
 }

@@ -1,23 +1,31 @@
 import '../css/OfferActions.css'
 import SimpleButton from "./SimpleButton";
-import React from "react";
+import React, { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import {useSelector, useDispatch} from "react-redux";
-import {createAgreement} from "../reducers/offerSlice";
+import {createAgreement, reset} from "../reducers/offerSlice";
 import Modal from "./Modal";
 import {toggleModal} from "../reducers/modalSlice";
 import useUserInfo from "../hooks/useUserInfo";
 import Loading from "./Loading";
+import { notify } from '../reducers/notificationSlice';
 
-const OfferActions = () => {
+const OfferActions = ({city}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { userInfo } = useUserInfo()
     const { token } = useAuth()
     const data = useSelector(state => state.offerReducer)
-
-    if (!userInfo) {
+    useEffect(() => {
+        if (data.car === 'unavailable' && data.rental === 'unavailable') {
+            dispatch(reset())
+            navigate(city ? `/cars?city=${city}` : '/cars')
+            dispatch(notify('This car is currently unavaiable. Try a different one.', false))
+        }
+    }, [data])
+    
+    if (!userInfo || data.car === 'unavailable') {
         return <Loading />
     }
 

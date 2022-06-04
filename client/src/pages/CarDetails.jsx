@@ -2,7 +2,7 @@ import '../css/CarDetails.css'
 import {useLocation, useParams, useSearchParams} from "react-router-dom";
 import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAvaiableCarModelInstance, fetchCarModelInfo} from "../reducers/offerSlice";
+import {fetchAvaiableCarModelInstance, fetchCarModelInfo, reset} from "../reducers/offerSlice";
 import React from "react";
 import WhatIsIncluded from "../components/WhatIsIncluded";
 import RentalLocations from "../components/RentalLocations";
@@ -24,6 +24,7 @@ const CarDetails = () => {
     }, [])
 
     useEffect(async () => {
+        dispatch(reset())
         dispatch(fetchCarModelInfo(id))
         dispatch(fetchAvaiableCarModelInstance(id, cityRef.current))
     }, [dispatch])
@@ -39,7 +40,7 @@ const CarDetails = () => {
             <RentalLocations />
             <WhatIsIncluded />
             <OfferSummary />
-            <OfferActions />
+            <OfferActions city={cityRef.current}/>
             <SiteDisclaimer />
         </main>
     )

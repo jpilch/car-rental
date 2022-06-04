@@ -17,6 +17,10 @@ const offerSlice = createSlice({
     name: 'cars',
     initialState,
     reducers: {
+        reset: (state, action) => {
+            state.car = null
+            state.rental = null
+        },
         chooseCarModel: (state, action) => {
             state.carModel = action.payload
         },
@@ -58,7 +62,8 @@ export const {
     chooseDays,
     chooseStartDate,
     chooseEndDate,
-    choosePrice
+    choosePrice,
+    reset
 } = offerSlice.actions
 
 export default offerSlice.reducer
@@ -88,20 +93,17 @@ export const fetchAvaiableCarModelInstance = (id, city) => {
         for (let car of response.data) {
             if (car.available) {
                 if (city && car.city_en.toLowerCase().includes(city.toLowerCase())) {
-                    console.log('city matched', city, car)
                     dispatch(chooseCar(car))
                     dispatch(chooseRental(car.rental))
                     return
                 } else if (!city) {
-                    console.log('no city', city, car)
                     dispatch(chooseCar(car))
                     dispatch(chooseRental(car.rental))
                     return
                 }
             }
-            console.log('unavailable')
-            dispatch(chooseCar('unavaiable'))
-            dispatch(chooseRental('unavaiable'))
+            dispatch(chooseCar('unavailable'))
+            dispatch(chooseRental('unavailable'))
         }
     }
 }
