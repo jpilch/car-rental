@@ -1,8 +1,8 @@
 main#car-details {
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
-    grid-template-rows: 0.5fr 2fr 1fr 0.5fr;
+    grid-template-rows: 0.5fr 2fr 1fr 0.3fr;
     grid-template-areas:
         "yo yo yo"
         "ci dc rl"
@@ -21,3 +21,68 @@ main#car-details div.offer-heading {
 main#car-details div.disclaimer {
     grid-area: d;
 }
+
+@media screen and (max-width: 1850px) {
+    main#car-details {
+        padding: 10rem 10rem;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    main#car-details {
+        padding: 5rem 5rem;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    main#car-details {
+        flex-direction: column;
+        grid-template-areas:
+        "yo yo yo"
+        "ci rl ."
+        "wi dc os"
+        "d d btns";
+        grid-template-rows: 0.5fr 1fr 1fr 0.1fr;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    main#car-details {
+        grid-template-areas:
+            "yo yo yo"
+            "ci dc rl"
+            "wi wi os"
+            "d d btns";
+    }
+}
+
+@media screen and (max-width: 950px) {
+    main#car-details {
+        grid-template-rows: 0.3fr 1fr 0.5fr 1fr 0.3fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "yo yo"
+            "ci ci"
+            "rl dc"
+            "wi wi"
+            "d os"
+            ". btns";
+        }
+}
+
+@media screen and (max-width: 520px) {
+    main#car-details {
+        grid-template-rows: 0.3fr 1fr 0.5fr 0.5fr 1fr 0.3fr 0.3fr;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "yo"
+            "ci"
+            "rl"
+            "dc"
+            "wi"
+            "os"
+            "d"
+            "btns";
+        }
+}
+

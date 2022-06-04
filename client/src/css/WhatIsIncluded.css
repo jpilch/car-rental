@@ -10,7 +10,7 @@ main#car-details section.what-is-included {
     padding-left: 3rem;
 }
 
-main#car-details section.what-is-included div.benefits {
+main#car-details div.benefits {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,4 +29,22 @@ main#car-details section.what-is-included li {
     gap: 1rem;
     align-items: center;
     justify-content: flex-start;
+}
+
+@media screen and (max-width: 1400px) {
+    main#car-details section.what-is-included div.benefits {
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    main#car-details section.what-is-included {
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+    }
+
+    main#car-details section.what-is-included div.benefits {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

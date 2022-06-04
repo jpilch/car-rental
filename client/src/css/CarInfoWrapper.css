@@ -14,3 +14,8 @@ section.car-info-wrapper {
     padding: 1rem 1rem 1rem 3rem;
 }
 
+@media screen and (max-width: 400px) {
+    section.car-info-wrapper {
+        padding-left: 1rem;
+    }
+}
