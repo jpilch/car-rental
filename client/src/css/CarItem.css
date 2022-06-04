@@ -11,3 +11,9 @@ div.car-item {
 div.car-item img {
     border: 1px solid var(--clr-light);
 }
+
+@media screen and (max-width: 1250px) {
+    div.car-item {
+        flex-direction: column;
+    }
+}
