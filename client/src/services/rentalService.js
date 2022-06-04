@@ -7,4 +7,17 @@ const fetchRentalById = async (id) => {
     return response
 }
 
-export default { fetchRentalById }
+const countCities = async () => {
+    const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/rentals`
+    )
+    const citiesArray = [...response.data.map(rentalDoc => {
+        return rentalDoc.city_en.toLowerCase()
+    })]
+    return [...new Set(citiesArray)].length
+}
+
+export default { 
+    fetchRentalById,
+    countCities
+}

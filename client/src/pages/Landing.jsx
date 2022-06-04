@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../css/Landing.css'
 import { chooseCity } from '../reducers/offerSlice'
 import { useDispatch } from 'react-redux'
+import rentalService from '../services/rentalService'
 
 const Landing = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	useEffect(async () => {
+		const response = await rentalService.countCities()
+		console.log(response)
+	})
+
 	return (
 		<main className={'landing'}>
 			<div className={'heading'}>
