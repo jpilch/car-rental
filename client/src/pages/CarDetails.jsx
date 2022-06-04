@@ -11,6 +11,8 @@ import DayChoices from "../components/DayChoices";
 import CarInfoWrapper from "../components/CarInfoWrapper";
 import OfferActions from "../components/OfferActions";
 import SiteDisclaimer from "../components/SiteDisclaimer";
+import useAuth from '../hooks/useAuth';
+import useHandleAuthError from '../hooks/useHandleAuthError';
 
 const CarDetails = () => {
     const { id } = useParams()
@@ -19,7 +21,11 @@ const CarDetails = () => {
     const { state } = useLocation()
     const cityRef = useRef(state.city)
 
+    const { user } = useAuth()
+    const handleUserLoggedOut = useHandleAuthError('You must login first.')
+
     useEffect(() => {
+        !user && handleUserLoggedOut()
         mainRef.current.scrollIntoView()
     }, [])
 
