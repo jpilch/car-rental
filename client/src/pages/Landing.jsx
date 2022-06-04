@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../css/Landing.css'
-import { chooseCity } from '../reducers/offerSlice'
-import { useDispatch } from 'react-redux'
 import rentalService from '../services/rentalService'
 import carService from '../services/carService'
 
@@ -23,7 +21,7 @@ const Landing = () => {
 		setCarCount(response[1])
 		setManufacturerCount(response[2])
 		setFetchingSummary(false)
-	})
+	}, [])
 
 	return (
 		<main className={'landing'}>

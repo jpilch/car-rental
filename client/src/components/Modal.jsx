@@ -1,3 +1,5 @@
+import '../css/Modal.css'
+
 import SimpleButton from "./SimpleButton";
 import {useSelector, useDispatch} from "react-redux";
 import {toggleModal, makeAChoice} from "../reducers/modalSlice";

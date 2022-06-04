@@ -1,0 +1,14 @@
+@media screen and (max-width: 700px) {
+    div.modal-actions {
+        flex-direction: column;
+        align-self: center !important;
+    }
+    div.modal {
+        justify-content: space-around !important;
+        align-items: center !important;
+        height: 50% !important;
+    }
+    div.modal h2 {
+        font-size: 1rem;;
+    }
+}

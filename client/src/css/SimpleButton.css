@@ -13,3 +13,10 @@ button.simple {
 button.simple:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 400px) {
+    button.simple {
+        width: 5rem;
+       font-size: 0.8rem;
+    }
+}
