@@ -34,9 +34,28 @@ const countCarModels = async (city) => {
     )
 }
 
+const countCars = async () => {
+    const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/cars`
+    )
+    return response.data.length
+}
+
+const countManufacturers = async () => {
+    const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/car-models?page=${0}&limit=${100}&sortDefault=1`
+    )
+    const manufacturerArray = [...response.data.map(carModelDoc => {
+        return carModelDoc.manufacturer.toLowerCase()
+    })]
+    return [...new Set(manufacturerArray)].length
+}
+
 export default {
     fetchCarById,
     fetchCarModelById,
     fetchCarModels,
-    countCarModels
+    countCarModels,
+    countCars,
+    countManufacturers
 }

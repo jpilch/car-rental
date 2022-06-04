@@ -1,26 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../css/Landing.css'
 import { chooseCity } from '../reducers/offerSlice'
 import { useDispatch } from 'react-redux'
 import rentalService from '../services/rentalService'
+import carService from '../services/carService'
 
 const Landing = () => {
+	const [fetchingSummary, setFetchingSummary] = useState(true)
+	const [cityCount, setCityCount] = useState(0)
+	const [carCount, setCarCount] = useState(0)
+	const [manufacturerCount, setManufacturerCount] = useState(0)
 	const navigate = useNavigate()
-	const dispatch = useDispatch()
 
 	useEffect(async () => {
-		const response = await rentalService.countCities()
-		console.log(response)
+		const response = [
+			await rentalService.countCities(),
+			await carService.countCars(),
+			await carService.countManufacturers()
+		]
+		setCityCount(response[0])
+		setCarCount(response[1])
+		setManufacturerCount(response[2])
+		setFetchingSummary(false)
 	})
 
 	return (
 		<main className={'landing'}>
-			<div className={'heading'}>
-				<p><span className={'number-highlight'}>400</span> Cars</p>
-				<p><span className={'number-highlight'}>8</span> Manufacturers</p>
-				<p><span className={'number-highlight'}>20</span> Cities</p>
-			</div>
+			{!fetchingSummary && <div className={'heading'}>
+				<p><span className={'number-highlight'}>{carCount}</span> Cars</p>
+				<p><span className={'number-highlight'}>{manufacturerCount}</span> Manufacturers</p>
+				<p><span className={'number-highlight'}>{cityCount}</span> Cities</p>
+			</div>}
 			<div className={'item'}>
 				<div className='search-wrapper'>
 					<form onSubmit={(e) => {
