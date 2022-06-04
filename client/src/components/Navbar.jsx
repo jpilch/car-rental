@@ -52,7 +52,10 @@ function Navbar() {
 						</ul>
 					</nav>
 			</header>
-			{displayDropdown && <DropDown />}
+			{displayDropdown && <DropDown 
+				setDisplayDropdown={setDisplayDropdown}
+				user={user}
+			/>}
 		</>
 	);
 }
