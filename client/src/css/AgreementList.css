@@ -3,7 +3,7 @@ main#agreements {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     gap: 2rem;
     padding: 4rem 2rem;
 }
@@ -25,4 +25,11 @@ main#agreements section.agreement-list {
     gap: 2rem;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (max-width: 750px) {
+    main#agreements section.agreement-list {
+        width: 100%;
+    }
 }
