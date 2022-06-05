@@ -2,21 +2,22 @@ import '../css/OfferActions.css'
 import SimpleButton from "./SimpleButton";
 import React, { useEffect } from "react";
 import {useNavigate} from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import {useSelector, useDispatch} from "react-redux";
-import {createAgreement, reset} from "../reducers/offerSlice";
+import {checkout, createAgreement, reset} from "../reducers/offerSlice";
 import Modal from "./Modal";
 import {toggleModal} from "../reducers/modalSlice";
 import useUserInfo from "../hooks/useUserInfo";
 import Loading from "./Loading";
 import { notify } from '../reducers/notificationSlice';
+import useAuth from '../hooks/useAuth'
 
 const OfferActions = ({city}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { userInfo } = useUserInfo()
-    const { token } = useAuth()
     const data = useSelector(state => state.offerReducer)
+    const { token } = useAuth()
+
     useEffect(() => {
         if (data.car === 'unavailable' && data.rental === 'unavailable') {
             dispatch(reset())
@@ -45,7 +46,11 @@ const OfferActions = ({city}) => {
                     ? 'Are you certain? You will have to pay once you continue.'
                     : 'You currently have a rented car. More details at your account\'s agreement page.'}
                 onConfirm={userCanRent()
-                    ? () => dispatch(createAgreement(data, token, navigate))
+                    ? () => {
+                        dispatch(createAgreement(data, token))
+                        dispatch(reset())
+                        dispatch(checkout(data))
+                    }
                     : () => null
                 }
             />

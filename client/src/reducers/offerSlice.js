@@ -108,19 +108,44 @@ export const fetchAvaiableCarModelInstance = (id, city) => {
     }
 }
 
-export const createAgreement = (data, authToken, navigate) => {
+export const checkout = (data) => {
     return async dispatch => {
-        const response = await agreementService.createAgreement({
-            car_id: data.car.id,
-            rental_id: data.rental.id,
-            starts_on: data.startDate,
-            ends_on: data.endDate,
-            price: data.price
-        }, authToken)
-        if (response.status === 201) {
-            dispatch(notify('Successfully created an agreement', true))
-            navigate('/my-account')
-        } else {
+        try {
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/create-checkout-session`, 
+                {
+                    car_id: data.car.id,
+                    rental_id: data.rental.id,
+                    starts_on: data.startDate,
+                    ends_on: data.endDate,
+                    price: data.price
+                }
+            )
+            window.location.href = response.data.url
+        } catch (e) {
+            dispatch(notify('Something went wrong', false))
+        }
+    }
+}
+
+export const createAgreement = (data, authToken) => {
+    return async dispatch => {
+        console.log(data)
+        try {
+            const response = await agreementService.createAgreement({
+                car_id: data.car.id,
+                rental_id: data.rental.id,
+                starts_on: data.startDate,
+                ends_on: data.endDate,
+                price: data.price
+            }, authToken)
+            console.log(response)
+            if (response.status === 201) {
+                dispatch(notify('Successfully created an agreement', true))
+            } else {
+                dispatch(notify('Something went wrong', false))
+            }
+        } catch (e) {
             dispatch(notify('Something went wrong', false))
         }
     }

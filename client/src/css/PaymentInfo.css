@@ -1,0 +1,19 @@
+main#payment-info {
+    min-height: 92vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main#payment-info div.payment-info-container {
+    height: 50vh;
+    flex-direction: column;
+    width: 50%;
+    gap: 2rem;
+    border-radius: 1rem;
+    box-shadow: 4px 4px 20px var(--clr-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
