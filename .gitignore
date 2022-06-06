@@ -7,7 +7,7 @@ env/
 # react app
 node_modules/
 react-app/node_modules/
-
+_data.js
 
 # Taken from FastAPI github repo
 .idea
