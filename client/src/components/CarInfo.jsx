@@ -20,25 +20,25 @@ const CarInfo = ({carModel}) => {
                     <div className="car-spec-row">
                         <CarSpec
                             path={mdiCarShiftPattern}
-                            specText={'Manual'}
+                            specText={carModel.gearbox}
                             specValue={''}
                         />
                         <CarSpec
                             path={mdiSeatPassenger}
                             specText={'seats'}
-                            specValue={5}
+                            specValue={carModel.person_capacity}
                         />
                     </div>
                     <div className="car-spec-row">
                         <CarSpec
                             path={mdiBagSuitcase}
                             specText={'large'}
-                            specValue={1}
+                            specValue={carModel.baggage_large}
                         />
                         <CarSpec
                             path={mdiBagChecked}
                             specText={'small'}
-                            specValue={1}
+                            specValue={carModel.baggage_small}
                         />
                     </div>
                     <div className="car-spec-row">
