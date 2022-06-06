@@ -24,6 +24,7 @@ mongoose.connect(`${config.MONGODB_URI}`)
     })
 
 app.use(cors())
+app.use(express.static('build'))
 app.use(express.json())
 if (config.NODE_ENV !== 'test') {
     app.use(middleware.morganLogger)
