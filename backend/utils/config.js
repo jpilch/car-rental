@@ -12,7 +12,7 @@ const EXPRESS_APP_ADMIN_PASSWORD = process.env.EXPRESS_APP_ADMIN_PASSWORD
 const STRIPE_KEY=process.env.STRIPE_KEY
 const MOTORENT_DOMAIN = NODE_ENV === 'production' 
     ? process.env.PROD_MOTORENT_DOMAIN 
-    : process.env.DEV_MOTORENT_DOMAIN 
+    : process.env.DEV_MOTORENT_DOMAIN
 
 module.exports = {
     PORT,

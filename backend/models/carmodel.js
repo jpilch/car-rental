@@ -21,29 +21,35 @@ const carModelSchema = new mongoose.Schema({
     },
     trunk_capacity: {
         type: String,
-        required: true
     },
     avg_fuel_consumption: {
         type: Number,
-        required: true
     },
     length: {
         type: Number,
-        required: true
     },
     width: {
         type: Number,
-        required: true
     },
     height: {
         type: Number,
-        required: true
     },
     drive_cat: {
         type: String,
-        required: true
     },
     cars: [carSchema],
+    gearbox: {
+        type: String,
+        required: true
+    },
+    baggage_large: {
+        type: Number,
+        required: true
+    },
+    baggage_small: {
+        type: Number,
+        required: true
+    },
     price_3: {
         required: true,
         type: Number
