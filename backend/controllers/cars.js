@@ -2,6 +2,7 @@ const carsRouter = require('express').Router()
 const {CarInstanceModel} = require('../models/car')
 const CarModel = require('../models/carmodel')
 const Rental = require('../models/rental')
+const middleware = require('../utils/middleware')
 
 carsRouter.get('/', async (req, res) => {
     const cars = await CarInstanceModel.find({}, 'car_model rental agreements')
@@ -29,7 +30,7 @@ carsRouter.get('/:id', async (req, res) => {
     }
 })
 
-carsRouter.post('/', async (req, res) => {
+carsRouter.post('/', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const carModel = await CarModel.findById(req.body.car_model)
     const rental = await Rental.findById(req.body.rental)
     if (!carModel || !rental) {
@@ -49,12 +50,12 @@ carsRouter.post('/', async (req, res) => {
     res.status(201).json(savedCar)
 })
 
-carsRouter.put('/:id', async (req, res) => {
+carsRouter.put('/:id', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const updatedCar = await CarInstanceModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.json(updatedCar)
 })
 
-carsRouter.delete('/:id', async (req, res) => {
+carsRouter.delete('/:id', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     await CarInstanceModel.findByIdAndRemove(req.params.id)
     res.status(204).end()
 })

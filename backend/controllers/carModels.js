@@ -48,7 +48,7 @@ carModelsRouter.get('/count', async (req, res) => {
     res.json({ count })
 })
 
-carModelsRouter.post('/', async (req, res) => {
+carModelsRouter.post('/', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const carModel = new CarModel(req.body)
     const saveCarModel = await carModel.save()
     res.status(201).json(saveCarModel)
@@ -88,12 +88,12 @@ carModelsRouter.get('/:id/cars', async (req, res) => {
     res.send(results)    
 })
 
-carModelsRouter.delete('/:id', async (req, res) => {
+carModelsRouter.delete('/:id', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     await CarModel.findByIdAndRemove(req.params.id)
     res.status(204).end()
 })
 
-carModelsRouter.put('/:id', async (req, res) => {
+carModelsRouter.put('/:id', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const updatedCarModel = await CarModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
     res.json(updatedCarModel)
 })

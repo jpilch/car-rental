@@ -3,8 +3,9 @@ const Agreement = require('../models/agreement')
 const {CarInstanceModel} = require('../models/car')
 const User = require('../models/user')
 const Rental = require('../models/rental')
+const middleware = require('../utils/middleware')
 
-agreementsRouter.get('/', async (req, res) => {
+agreementsRouter.get('/', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const agreements = await Agreement.find({})
     res.json(agreements)
 })

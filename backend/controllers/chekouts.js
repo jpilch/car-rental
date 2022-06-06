@@ -1,9 +1,11 @@
 const CarModel = require('../models/carmodel')
 const {CarInstanceModel} = require('../models/car')
-const { STRIPE_KEY } = require('../utils/config')
+const { 
+    STRIPE_KEY, 
+    MOTORENT_DOMAIN 
+} = require('../utils/config')
 const stripe = require('stripe')(STRIPE_KEY)
 const paymentsRouter = require('express').Router()
-const YOUR_DOMAIN = 'http://localhost:3000';
 
 paymentsRouter.post('/create-checkout-session', async (req, res) => {
     const agreement = req.body
@@ -26,8 +28,8 @@ paymentsRouter.post('/create-checkout-session', async (req, res) => {
         ],
         mode: 'payment',
         payment_method_types: ['card'],
-        success_url: `${YOUR_DOMAIN}/payment?success=true`,
-        cancel_url: `${YOUR_DOMAIN}/payment?canceled=true`,
+        success_url: `${MOTORENT_DOMAIN}/payment?success=true`,
+        cancel_url: `${MOTORENT_DOMAIN}/payment?canceled=true`,
     });
 
     res.send({url: session.url});

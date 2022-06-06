@@ -1,8 +1,9 @@
 const usersRouter = require('express').Router()
 const bcrypt = require('bcrypt')
 const User = require('../models/user')
+const middleware = require('../utils/middleware')
 
-usersRouter.get('/', async (req, res) => {
+usersRouter.get('/', middleware.loginRequired, middleware.adminOnly, async (req, res) => {
     const users = await User.find({}).populate('agreements')
     res.json(users)
 })

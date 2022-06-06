@@ -1,6 +1,6 @@
 const morgan = require('morgan')
 const jwt = require('jsonwebtoken')
-const { SECRET } = require('../utils/config')
+const { SECRET, EXPRESS_APP_ADMIN_USERNAME } = require('../utils/config')
 
 const morganLogger = morgan('combined')
 
@@ -32,6 +32,16 @@ const loginRequired = (req, res, next) => {
     if (!req.user) {
         return res.status(401).send({
             err: 'Login required'
+        })
+    }
+    next()
+}
+
+const adminOnly = (req, res, next) => {
+    const { username } = req.user
+    if (!username || username !== EXPRESS_APP_ADMIN_USERNAME) {
+        return res.status(401).send({
+            err: 'Admin status required'
         })
     }
     next()
@@ -99,6 +109,7 @@ module.exports = {
     tokenExtractor,
     userExtractor,
     loginRequired,
+    adminOnly,
     paginated,
     carModelSort,
     errorHandler,
