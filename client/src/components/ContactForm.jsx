@@ -1,11 +1,13 @@
 import Button from "./Button";
 import '../css/Form.css'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { notify } from "../reducers/notificationSlice";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
 	const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
+
 	const handleSubmit = e => {
 		e.preventDefault()
 		const topic = e.target.topic.value
@@ -17,6 +19,7 @@ const ContactForm = () => {
 			return
 		}
 		dispatch(notify('Thanks for submiting', true))
+		navigate('/')
 	}
 
     return (
