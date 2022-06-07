@@ -11,7 +11,6 @@ import CarListing from "./pages/CarListing";
 import CarDetails from "./pages/CarDetails";
 import Contact from "./pages/Contact";
 import NotFound from './pages/NotFound';
-import PaymentInfo from './pages/PaymentInfo';
 
 const App = () => {
 	return (
@@ -28,7 +27,6 @@ const App = () => {
 					<Route path='/cars' element={<CarListing />}/>
 					<Route path='/cars/:id/' element={<CarDetails />}/>
 					<Route path='/contact' element={<Contact />}/>
-					<Route path='/payment' element={<PaymentInfo />}/>
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 				<Footer/>

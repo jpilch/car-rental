@@ -28,8 +28,8 @@ paymentsRouter.post('/create-checkout-session', async (req, res) => {
         ],
         mode: 'payment',
         payment_method_types: ['card'],
-        success_url: `${MOTORENT_DOMAIN}/payment?success=true`,
-        cancel_url: `${MOTORENT_DOMAIN}/payment?canceled=true`,
+        success_url: `${MOTORENT_DOMAIN}`,
+        cancel_url: `${MOTORENT_DOMAIN}`,
     });
 
     res.send({url: session.url});

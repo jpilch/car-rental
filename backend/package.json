@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "test": "NODE_ENV=test jest --verbose --runInBand --forceExit",
     "build:frontend": "rm -rf ./build && cd ../client && npm run build && cp -Rv ./build ../backend",
-    "deploy": "cp -Rv ./*.js ./utils ./controllers ./models ./build package.json Procfile ../../production/moto-rent/ && cd ../../production/moto-rent/ && git add . && git commit -m deploy && git push heroku master"
+    "deploy": "cp -Rv ./*.js ./utils ./controllers ./models ./build package.json Procfile ../../production/moto-rent/ && cd ../../production/moto-rent/ && git add . && git commit -m deploy && git push heroku master",
+    "deploy:full": "npm run build:frontend && npm run deploy"
   },
   "author": "Jan Pilch",
   "license": "MIT",
