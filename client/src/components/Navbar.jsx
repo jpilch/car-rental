@@ -35,8 +35,16 @@ function Navbar() {
 							<li>
 								<Link to={'/cars'}><p className='link'>Cars</p></Link>
 							</li>
-							<li><a className={'link'}>About</a></li>
-							<li><a className={'link'}>Contact</a></li>
+							<li>
+								<Link to={'/about'}>
+									<p className="link">About</p>
+								</Link>
+							</li>
+							<li>
+								<Link to={'/contact'}>
+									<p className="link">Contact</p>
+								</Link>
+							</li>
 							<Link to={user ? '/my-account' : '/login'}>
 								<Button text={user ? 'My Account' : 'Login'} />
 							</Link>

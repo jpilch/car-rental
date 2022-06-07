@@ -1,9 +1,11 @@
 import '../css/Contact.css'
+import ContactForm from '../components/ContactForm'
+
 
 const Contact = () => {
     return (
         <main id="contact">
-            <h1>Contact Page</h1>
+            <ContactForm />
         </main>
     )
 }
