@@ -1,4 +1,5 @@
 div#notification-container {
+    color: var(--clr-lighter);
     position: absolute;
     width: 100vw;
     text-align: center;
@@ -7,8 +8,6 @@ div#notification-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation-name: notification;
-    animation-duration: var(--duration-long);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,5 +1,5 @@
 import '../css/Notification.css'
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import { mdiExclamationThick } from '@mdi/js';
 import Icon from '@mdi/react'
 
