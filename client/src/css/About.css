@@ -1,0 +1,16 @@
+main#about {
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+main#about div.site-disclaimer {
+    width: 50%;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 1.5rem;
+}

@@ -10,6 +10,7 @@ import AgreementList from "./pages/AgreementList";
 import CarListing from "./pages/CarListing";
 import CarDetails from "./pages/CarDetails";
 import Contact from "./pages/Contact";
+import About from './pages/About';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
 					<Route path='/cars' element={<CarListing />}/>
 					<Route path='/cars/:id/' element={<CarDetails />}/>
 					<Route path='/contact' element={<Contact />}/>
+					<Route path='/about' element={<About />}/>
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 				<Footer/>
