@@ -1,5 +1,5 @@
 # car-rental
 Demo app for a car rental system
 
-This was my first more serious project made using React and Node for the first time.
-I know it's not perfect, but you gotta learn somehow.
+This was my first more serious web project made wifth React and Node.
+I know it's far from perfect, but you gotta learn somehow, right?
